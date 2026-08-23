@@ -127,19 +127,19 @@ const App = () => {
             </div>
             
             <div className="hidden md:flex items-center gap-8">
-              <button onClick={() => setView('home')} className={`text-base font-medium transition-colors ${view === 'home' ? 'text-black font-bold' : 'text-gray-700 hover:text-black'}`}>
+              <button onClick={() => setView('home')} className="text-base font-bold transition-colors text-black">
                 {isRtl ? 'الرئيسية' : 'Home'}
               </button>
-              <button onClick={() => setView('about')} className={`text-base font-medium transition-colors ${view === 'about' ? 'text-black font-bold' : 'text-gray-700 hover:text-black'}`}>
+              <button onClick={() => setView('about')} className="text-base font-medium transition-colors text-gray-700 hover:text-black">
                 {t.about}
               </button>
-              <button onClick={() => setView('services')} className={`text-base font-medium transition-colors ${view === 'services' ? 'text-black font-bold' : 'text-gray-700 hover:text-black'}`}>
+              <button onClick={() => setView('services')} className="text-base font-medium transition-colors text-gray-700 hover:text-black">
                 {t.services}
               </button>
-              <button onClick={() => setView('laws')} className={`text-base font-medium transition-colors ${view === 'laws' ? 'text-black font-bold' : 'text-gray-700 hover:text-black'}`}>
+              <button onClick={() => setView('laws')} className="text-base font-medium transition-colors text-gray-700 hover:text-black">
                 {t.laws}
               </button>
-              <button onClick={() => setView('contact')} className={`text-base font-medium transition-colors ${view === 'contact' ? 'text-black font-bold' : 'text-gray-700 hover:text-black'}`}>
+              <button onClick={() => setView('contact')} className="text-base font-medium transition-colors text-gray-700 hover:text-black">
                 {t.contact}
               </button>
             </div>
@@ -174,19 +174,19 @@ const App = () => {
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
           <div className="absolute top-[80px] left-4 right-4 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl z-50 p-6 flex flex-col gap-4 border border-black/5 md:hidden animate-in slide-in-from-top-4">
-            <button onClick={() => { setView('home'); setIsMobileMenuOpen(false); }} className={`text-xl font-medium transition-colors ${isRtl ? 'text-right' : 'text-left'} ${view === 'home' ? 'text-black font-bold' : 'text-gray-700'}`}>
+            <button onClick={() => { setView('home'); setIsMobileMenuOpen(false); }} className={`text-xl font-medium transition-colors text-black font-bold ${isRtl ? 'text-right' : 'text-left'}`}>
               {isRtl ? 'الرئيسية' : 'Home'}
             </button>
-            <button onClick={() => { setView('about'); setIsMobileMenuOpen(false); }} className={`text-xl font-medium transition-colors ${isRtl ? 'text-right' : 'text-left'} ${view === 'about' ? 'text-black font-bold' : 'text-gray-700'}`}>
+            <button onClick={() => { setView('about'); setIsMobileMenuOpen(false); }} className={`text-xl font-medium transition-colors text-gray-700 hover:text-black ${isRtl ? 'text-right' : 'text-left'}`}>
               {t.about}
             </button>
-            <button onClick={() => { setView('services'); setIsMobileMenuOpen(false); }} className={`text-xl font-medium transition-colors ${isRtl ? 'text-right' : 'text-left'} ${view === 'services' ? 'text-black font-bold' : 'text-gray-700'}`}>
+            <button onClick={() => { setView('services'); setIsMobileMenuOpen(false); }} className={`text-xl font-medium transition-colors text-gray-700 hover:text-black ${isRtl ? 'text-right' : 'text-left'}`}>
               {t.services}
             </button>
-            <button onClick={() => { setView('laws'); setIsMobileMenuOpen(false); }} className={`text-xl font-medium transition-colors ${isRtl ? 'text-right' : 'text-left'} ${view === 'laws' ? 'text-black font-bold' : 'text-gray-700'}`}>
+            <button onClick={() => { setView('laws'); setIsMobileMenuOpen(false); }} className={`text-xl font-medium transition-colors text-gray-700 hover:text-black ${isRtl ? 'text-right' : 'text-left'}`}>
               {t.laws}
             </button>
-            <button onClick={() => { setView('contact'); setIsMobileMenuOpen(false); }} className={`text-xl font-medium transition-colors ${isRtl ? 'text-right' : 'text-left'} ${view === 'contact' ? 'text-black font-bold' : 'text-gray-700'}`}>
+            <button onClick={() => { setView('contact'); setIsMobileMenuOpen(false); }} className={`text-xl font-medium transition-colors text-gray-700 hover:text-black ${isRtl ? 'text-right' : 'text-left'}`}>
               {t.contact}
             </button>
             <hr className="border-black/5 my-2" />

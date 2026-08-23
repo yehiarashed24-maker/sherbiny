@@ -77,7 +77,6 @@ export default function Chatbot({ isRtl }: ChatbotProps) {
 
       const reader = response.body?.getReader();
       const decoder = new TextDecoder();
-      let assistantResponse = '';
 
       // Add a placeholder message for the assistant
       setMessages(prev => [...prev, { role: 'model', content: '' }]);
