@@ -1,4 +1,3 @@
-import React from 'react';
 import { BookOpen, Scale, FileText, Landmark, Gavel, ExternalLink, ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface LawsProps {

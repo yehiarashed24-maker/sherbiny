@@ -1,4 +1,3 @@
-import React from 'react';
 import { ArrowLeft, ArrowRight, MousePointer2 } from 'lucide-react';
 import SocialCards from './components/ui/card-fan-carousel';
 

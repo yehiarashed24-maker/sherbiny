@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ArrowRight, ArrowLeft, Menu, X } from 'lucide-react';
 import About from './About';
 import Contact from './Contact';
