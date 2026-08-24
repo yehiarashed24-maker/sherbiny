@@ -17,16 +17,33 @@ export default function ConsultationModal({ isOpen, onClose, isRtl = true }: Con
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !phone) return;
+    if (!name || !phone || isSubmitting) return;
 
     setIsSubmitting(true);
-    // Simulate server submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const formData = new FormData();
+      formData.append('access_key', '3e68732b-9a04-4410-a35d-f1386a6deb3c');
+      formData.append('subject', `طلب حجز استشارة جديد من: ${name}`);
+      formData.append('from_name', 'موقع أحمد الشربيني - حجز استشارة');
+      formData.append('name', name);
+      formData.append('phone', phone);
+      formData.append('service', service);
+      formData.append('email', email || 'غير محدد');
+      formData.append('notes', notes || 'لا توجد ملاحظات إضافية');
+
+      await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
       setIsSuccess(true);
-    }, 900);
+    } catch (err) {
+      console.error('Consultation submission error:', err);
+      setIsSuccess(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleResetAndClose = () => {

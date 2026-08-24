@@ -108,11 +108,42 @@ export default function Contact({ lang, setView }: ContactProps) {
   const branches = BRANCHES[lang];
 
   const [formState, setFormState] = useState({ name: '', email: '', phone: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert(isRtl ? 'تم استلام رسالتك بنجاح، وسنتواصل معك قريباً!' : 'Message sent successfully! We will contact you soon.');
-    setFormState({ name: '', email: '', phone: '', message: '' });
+    if (!formState.name || !formState.email || isSubmitting) return;
+
+    setIsSubmitting(true);
+    try {
+      const formData = new FormData();
+      formData.append('access_key', '3e68732b-9a04-4410-a35d-f1386a6deb3c');
+      formData.append('subject', `رسالة تواصل جديدة من: ${formState.name}`);
+      formData.append('from_name', 'موقع أحمد الشربيني وشركاه');
+      formData.append('name', formState.name);
+      formData.append('email', formState.email);
+      formData.append('phone', formState.phone || 'غير محدد');
+      formData.append('message', formState.message);
+
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (res.ok) {
+        setIsSuccess(true);
+        setFormState({ name: '', email: '', phone: '', message: '' });
+        setTimeout(() => setIsSuccess(false), 8000);
+      } else {
+        alert(isRtl ? 'حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.' : 'Error sending message, please try again.');
+      }
+    } catch (err) {
+      console.error('Contact form error:', err);
+      alert(isRtl ? 'حدث خطأ في الاتصال، يرجى المحاولة لاحقاً.' : 'Connection error, please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const sanitizePhone = (phone: string) => phone.replace(/[^\d+]/g, '');
@@ -148,6 +179,11 @@ export default function Contact({ lang, setView }: ContactProps) {
           {/* Left Column: Contact Form */}
           <div>
             <form onSubmit={handleSubmit} className="space-y-6">
+              {isSuccess && (
+                <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-2xl text-emerald-800 text-sm font-semibold flex items-center gap-2.5 animate-fadeIn">
+                  <span>{isRtl ? '✅ تم إرسال رسالتك بنجاح وسنقوم بالرد عليك في أقرب وقت!' : '✅ Your message was sent successfully! We will get back to you shortly.'}</span>
+                </div>
+              )}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-black/70">{t.form.name}</label>
@@ -191,9 +227,10 @@ export default function Contact({ lang, setView }: ContactProps) {
               </div>
               <button 
                 type="submit"
-                className="w-full sm:w-auto bg-black text-white px-8 py-4 rounded-xl font-medium hover:bg-black/80 transition-colors inline-flex justify-center items-center gap-2"
+                disabled={isSubmitting}
+                className="w-full sm:w-auto bg-black text-white px-8 py-4 rounded-xl font-medium hover:bg-black/80 transition-colors inline-flex justify-center items-center gap-2 disabled:opacity-60"
               >
-                <span>{t.form.submit}</span>
+                <span>{isSubmitting ? (isRtl ? 'جاري الإرسال...' : 'Sending...') : t.form.submit}</span>
                 <Send className={`w-4 h-4 ${isRtl ? 'rotate-180' : ''}`} />
               </button>
             </form>
