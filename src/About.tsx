@@ -29,7 +29,7 @@ export default function About({ lang, setView, onBookConsultation }: AboutProps)
           <div className="pointer-events-auto flex items-center gap-3">
             <button 
               onClick={handleConsultation}
-              className="bg-[#88734C] text-white px-6 py-2.5 rounded-full text-xs md:text-sm font-bold hover:bg-[#88734C]/90 transition-colors shadow-md"
+              className="bg-black text-white px-6 py-2.5 rounded-full text-xs md:text-sm font-bold hover:bg-black/80 transition-colors shadow-md"
             >
               {isRtl ? 'احجز استشارة' : 'Book Consultation'}
             </button>

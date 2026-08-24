@@ -206,15 +206,17 @@ export default function AboutUsSection({ isRtl = false, onContactClick }: AboutU
                     alt="Ahmed El Sherbiny"
                     className="w-full h-full object-cover object-top filter contrast-[1.02]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex flex-col justify-end p-6 text-white">
-                    <span className="text-[11px] text-white/80 font-bold uppercase tracking-wider mb-1 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full w-fit">
-                      {isRtl ? "مؤسس ومدير الشركة" : "Founder & Managing Director"}
-                    </span>
-                    <h3 className="text-2xl font-bold text-white mb-1">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent flex flex-col justify-end p-6 text-white">
+                    {/* Framed Founder & Managing Director Badge */}
+                    <div className="bg-white text-black font-extrabold text-xs md:text-sm px-4 py-2 rounded-2xl shadow-2xl w-fit mb-3 border-2 border-white/80 flex items-center gap-2">
+                      <ShieldCheck className="w-4 h-4 text-black" />
+                      <span>{isRtl ? "المؤسس والمدير للشركة" : "Founder & Managing Director"}</span>
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-1 tracking-tight drop-shadow-md">
                       {isRtl ? "أ. أحمد الشربيني" : "Ahmed El Sherbiny"}
                     </h3>
-                    <p className="text-xs text-white/70 font-medium">
-                      {isRtl ? "محاسب وخبير ضرائب ومراجع قانوني معتمد" : "Certified Public Accountant & Senior Tax Expert"}
+                    <p className="text-xs md:text-sm text-white/80 font-medium leading-relaxed drop-shadow-sm">
+                      {isRtl ? "محاسب ومراجع قانوني وخبير ضرائب معتمد" : "Certified Public Accountant & Senior Tax Consultant"}
                     </p>
                   </div>
                 </div>

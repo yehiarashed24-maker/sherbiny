@@ -73,7 +73,7 @@ export default function ConsultationModal({ isOpen, onClose, isRtl = true }: Con
               <div className="p-7 md:p-9">
                 {/* Header */}
                 <div className="mb-6">
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#88734C]/10 text-[#88734C] text-xs font-bold mb-3">
+                  <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-black text-white text-xs font-bold mb-3 shadow-sm">
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>{isRtl ? 'استشارة مالية وضريبية مجانية' : 'Complimentary Consultation'}</span>
                   </div>
