@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react';
 
 interface FooterProps {
   isRtl: boolean;
@@ -91,6 +91,19 @@ export default function Footer({ isRtl, setView }: FooterProps) {
                     </a>
                   </div>
                 </div>
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/201223233620"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 hover:text-emerald-400 group transition-colors"
+                >
+                  <MessageCircle className="w-5 h-5 shrink-0 text-emerald-500 group-hover:text-emerald-400 transition-colors" />
+                  <span className="text-sm font-medium group-hover:underline underline-offset-4" dir="ltr">
+                    WhatsApp: +20 122 323 3620
+                  </span>
+                </a>
               </li>
               <li>
                 <a
