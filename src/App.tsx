@@ -9,6 +9,7 @@ import Footer from './components/ui/footer';
 import ConsultationModal from './components/ui/consultation-modal';
 import MobileTabBar from './components/ui/mobile-tab-bar';
 import LanguageSelector, { type LangType } from './components/ui/language-selector';
+import SocialStackCard from './components/ui/social-stack-card';
 
 const translations: Record<LangType, {
   nav: string[];
@@ -486,6 +487,29 @@ const App = () => {
                 <span className="text-black font-medium">{t.knowMore}</span>
               </button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Social Media Hub Section (Above Footer) */}
+      <section className="bg-[#F5F5F5] px-4 sm:px-6 py-12 sm:py-16 border-t border-black/5">
+        <div className="max-w-[88rem] mx-auto flex flex-col md:flex-row items-center justify-between gap-8 sm:gap-12 bg-white rounded-3xl sm:rounded-[36px] p-8 sm:p-12 shadow-sm border border-black/5">
+          <div className="max-w-xl text-center md:text-start">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-100 text-purple-700 text-xs font-bold mb-3">
+              <span>{isRtl ? 'تواصل معنا رقمياً' : 'Official Channels'}</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-black mb-3">
+              {isRtl ? 'تابعنا على شبكات التواصل' : 'Connect on Social Media'}
+            </h2>
+            <p className="text-black/60 text-sm sm:text-base leading-relaxed">
+              {isRtl
+                ? 'ابقَ على اطلاع دائم بآخر المستجدات الضريبية والقوانين المالية والاستشارات الاستثمارية وتأسيس الشركات عبر منصاتنا الرسمية.'
+                : 'Stay updated with the latest tax regulations, financial consulting, and business insights across our official platforms.'}
+            </p>
+          </div>
+
+          <div className="shrink-0 flex items-center justify-center">
+            <SocialStackCard lang={lang} isRtl={isRtl} />
           </div>
         </div>
       </section>

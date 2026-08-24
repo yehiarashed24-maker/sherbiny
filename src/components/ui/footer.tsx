@@ -1,6 +1,5 @@
 import { MapPin, Phone, Mail, MessageCircle, ArrowUpRight } from 'lucide-react';
 import type { LangType } from './language-selector';
-import SocialStackCard from './social-stack-card';
 
 interface FooterProps {
   isRtl?: boolean;
@@ -121,11 +120,6 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
             <p className="text-white/65 max-w-sm text-sm leading-relaxed mb-6">
               {t.desc}
             </p>
-
-            {/* Interactive Socials Stack Card */}
-            <div className="mt-2">
-              <SocialStackCard lang={lang} isRtl={isRtl} />
-            </div>
           </div>
 
           {/* Quick Links Column (3 cols) */}
