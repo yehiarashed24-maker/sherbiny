@@ -125,6 +125,11 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
                   {t.laws}
                 </button>
               </li>
+              <li>
+                <button onClick={() => setView('contact')} className="hover:text-white transition-colors text-sm">
+                  {t.contact}
+                </button>
+              </li>
             </ul>
           </div>
 
