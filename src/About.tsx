@@ -5,11 +5,13 @@ import Footer from './components/ui/footer';
 interface AboutProps {
   lang: 'en' | 'ar';
   setView: (view: 'home' | 'about' | 'contact' | 'services' | 'laws') => void;
+  onBookConsultation?: () => void;
 }
 
-export default function About({ lang, setView }: AboutProps) {
+export default function About({ lang, setView, onBookConsultation }: AboutProps) {
   const isRtl = lang === 'ar';
   const BackIcon = isRtl ? ArrowRight : ArrowLeft;
+  const handleConsultation = onBookConsultation || (() => setView('contact'));
 
   return (
     <div className="min-h-screen bg-[#F6F5F2] text-black font-sans selection:bg-black selection:text-white" dir={isRtl ? 'rtl' : 'ltr'}>
@@ -26,7 +28,7 @@ export default function About({ lang, setView }: AboutProps) {
           
           <div className="pointer-events-auto flex items-center gap-3">
             <button 
-              onClick={() => setView('contact')}
+              onClick={handleConsultation}
               className="bg-[#88734C] text-white px-6 py-2.5 rounded-full text-xs md:text-sm font-bold hover:bg-[#88734C]/90 transition-colors shadow-md"
             >
               {isRtl ? 'احجز استشارة' : 'Book Consultation'}
@@ -37,7 +39,7 @@ export default function About({ lang, setView }: AboutProps) {
 
       {/* Main Animated About Section */}
       <div className="pt-12">
-        <AboutUsSection isRtl={isRtl} onContactClick={() => setView('contact')} />
+        <AboutUsSection isRtl={isRtl} onContactClick={handleConsultation} />
       </div>
 
       {/* Universal Footer */}

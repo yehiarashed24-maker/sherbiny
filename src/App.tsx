@@ -6,6 +6,7 @@ import Services from './Services';
 import Laws from './Laws';
 import Chatbot from './components/ui/chatbot';
 import Footer from './components/ui/footer';
+import ConsultationModal from './components/ui/consultation-modal';
 
 const LogoIcon = ({ className }: { className?: string }) => (
   <svg
@@ -80,6 +81,7 @@ const App = () => {
   const [lang, setLang] = useState<'en' | 'ar'>('en');
   const [view, setView] = useState<'home' | 'about' | 'contact' | 'services' | 'laws'>('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   const t = translations[lang];
   const isRtl = lang === 'ar';
@@ -98,19 +100,39 @@ const App = () => {
   ];
 
   if (view === 'about') {
-    return <About lang={lang} setView={setView} />;
+    return (
+      <>
+        <About lang={lang} setView={setView} onBookConsultation={() => setIsModalOpen(true)} />
+        <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} />
+      </>
+    );
   }
 
   if (view === 'contact') {
-    return <Contact lang={lang} setView={setView} />;
+    return (
+      <>
+        <Contact lang={lang} setView={setView} onBookConsultation={() => setIsModalOpen(true)} />
+        <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} />
+      </>
+    );
   }
 
   if (view === 'services') {
-    return <Services lang={lang} setView={setView} />;
+    return (
+      <>
+        <Services lang={lang} setView={setView} onBookConsultation={() => setIsModalOpen(true)} />
+        <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} />
+      </>
+    );
   }
   
   if (view === 'laws') {
-    return <Laws isRtl={isRtl} setView={setView} />;
+    return (
+      <>
+        <Laws isRtl={isRtl} setView={setView} />
+        <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} />
+      </>
+    );
   }
 
   return (
@@ -158,7 +180,7 @@ const App = () => {
                 {lang === 'en' ? 'العربية' : 'EN'}
               </button>
               <button 
-                onClick={() => setView('contact')}
+                onClick={() => setIsModalOpen(true)}
                 className="bg-black text-white text-base font-medium px-7 py-2.5 rounded-full hover:bg-gray-800 transition-colors duration-200"
               >
                 {t.bookConsultation}
@@ -196,7 +218,7 @@ const App = () => {
               {t.contact}
             </button>
             <hr className="border-black/5 my-2" />
-            <button onClick={() => { setView('contact'); setIsMobileMenuOpen(false); }} className="bg-black text-white text-base font-medium py-3 rounded-full hover:bg-gray-800 w-full">
+            <button onClick={() => { setIsModalOpen(true); setIsMobileMenuOpen(false); }} className="bg-black text-white text-base font-medium py-3 rounded-full hover:bg-gray-800 w-full">
               {t.bookConsultation}
             </button>
           </div>
@@ -393,6 +415,9 @@ const App = () => {
       </section>
       {/* Footer */}
       <Footer isRtl={isRtl} setView={setView} />
+
+      {/* Consultation Modal */}
+      <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} />
 
       {/* Floating Legal Chatbot */}
       <Chatbot isRtl={isRtl} />
