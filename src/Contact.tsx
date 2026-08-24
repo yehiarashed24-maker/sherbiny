@@ -8,13 +8,13 @@ const BRANCHES: Record<LangType, { city: string; address: string; phones: string
     {
       city: 'Cairo (Headquarters)',
       address: '59 Media City - Agouza, Cairo',
-      phones: ['+20 222 718 131', '+20 120 537 3330', '+20 233 470 139'],
+      phones: ['+20 2 3347 0139', '+20 106 616 2823'],
       mapUrl: 'https://www.google.com/maps/search/?api=1&query=59+Media+City%2C+Agouza%2C+Giza%2C+Cairo'
     },
     {
       city: 'Mansoura',
       address: 'Al Hegaz Tower - Tamyouhi Square',
-      phones: ['+20 502 269 057'],
+      phones: ['+20 50 2269 057'],
       mapUrl: 'https://www.google.com/maps/search/?api=1&query=Al+Hegaz+Tower+Tamyouhi+Square+Mansoura'
     }
   ],
@@ -22,13 +22,13 @@ const BRANCHES: Record<LangType, { city: string; address: string; phones: string
     {
       city: 'القاهرة (المقر الرئيسي)',
       address: '59 مدينة الإعلام - العجوزة، القاهرة',
-      phones: ['+20 222 718 131', '+20 120 537 3330', '33470139 (02)'],
+      phones: ['33470139 (02)', '0106 6162823'],
       mapUrl: 'https://www.google.com/maps/search/?api=1&query=59+Media+City%2C+Agouza%2C+Giza%2C+Cairo'
     },
     {
       city: 'المنصورة',
       address: 'برج الحجاز - ميدان الطميهى',
-      phones: ['+20 502 269 057'],
+      phones: ['2269057 (050)'],
       mapUrl: 'https://www.google.com/maps/search/?api=1&query=Al+Hegaz+Tower+Tamyouhi+Square+Mansoura'
     }
   ],
@@ -36,13 +36,13 @@ const BRANCHES: Record<LangType, { city: string; address: string; phones: string
     {
       city: 'Le Caire (Siège Principal)',
       address: '59 Cité des Médias - Agouza, Le Caire',
-      phones: ['+20 222 718 131', '+20 120 537 3330', '+20 233 470 139'],
+      phones: ['+20 2 3347 0139', '+20 106 616 2823'],
       mapUrl: 'https://www.google.com/maps/search/?api=1&query=59+Media+City%2C+Agouza%2C+Giza%2C+Cairo'
     },
     {
       city: 'Mansourah',
       address: 'Tour Al Hegaz - Place Tamyouhi',
-      phones: ['+20 502 269 057'],
+      phones: ['+20 50 2269 057'],
       mapUrl: 'https://www.google.com/maps/search/?api=1&query=Al+Hegaz+Tower+Tamyouhi+Square+Mansoura'
     }
   ],
@@ -50,23 +50,56 @@ const BRANCHES: Record<LangType, { city: string; address: string; phones: string
     {
       city: 'Kahire (Genel Merkez)',
       address: '59 Medya Şehri - Agouza, Kahire',
-      phones: ['+20 222 718 131', '+20 120 537 3330', '+20 233 470 139'],
+      phones: ['+20 2 3347 0139', '+20 106 616 2823'],
       mapUrl: 'https://www.google.com/maps/search/?api=1&query=59+Media+City%2C+Agouza%2C+Giza%2C+Cairo'
     },
     {
       city: 'Mansura',
       address: 'Al Hegaz Kulesi - Tamyouhi Meydanı',
-      phones: ['+20 502 269 057'],
+      phones: ['+20 50 2269 057'],
       mapUrl: 'https://www.google.com/maps/search/?api=1&query=Al+Hegaz+Tower+Tamyouhi+Square+Mansoura'
     }
   ]
 };
 
-const DIRECT_PHONES = [
-  { label: 'Hotline / WhatsApp', phone: '+20 122 323 3620', isPrimary: true },
-  { label: 'Cairo Office', phone: '+20 222 718 131' },
-  { label: 'Cairo Mobile', phone: '+20 120 537 3330' },
-  { label: 'Mansoura Office', phone: '+20 502 269 057' }
+const DIRECT_PHONES: { label: Record<LangType, string>; phone: string; isPrimary?: boolean }[] = [
+  {
+    label: {
+      ar: 'الرقم الأساسي / واتساب',
+      en: 'Primary / WhatsApp',
+      fr: 'Numéro Principal / WhatsApp',
+      tr: 'Ana Hat / WhatsApp'
+    },
+    phone: '+20 122 323 3620',
+    isPrimary: true
+  },
+  {
+    label: {
+      ar: 'القاهرة (أرضي)',
+      en: 'Cairo Office',
+      fr: 'Le Caire (Fixe)',
+      tr: 'Kahire (Sabit)'
+    },
+    phone: '+20 2 3347 0139'
+  },
+  {
+    label: {
+      ar: 'المحمول الثاني',
+      en: 'Mobile 2',
+      fr: 'Mobile 2',
+      tr: 'Mobil Hat 2'
+    },
+    phone: '+20 106 616 2823'
+  },
+  {
+    label: {
+      ar: 'المنصورة (أرضي)',
+      en: 'Mansoura Office',
+      fr: 'Mansourah (Fixe)',
+      tr: 'Mansura (Sabit)'
+    },
+    phone: '+20 50 2269 057'
+  }
 ];
 
 const CONTACT_INFO: Record<LangType, {
@@ -344,13 +377,16 @@ export default function Contact({ lang, setView, onBookConsultation }: ContactPr
                 </div>
                 <div className="space-y-2">
                   {DIRECT_PHONES.map((item, i) => (
-                    <div key={i} className="flex items-center justify-between group">
+                    <div key={i} className="flex items-center justify-between group py-1 border-b border-black/5 last:border-0">
+                      <span className="text-xs text-black/60 font-medium">
+                        {item.label[lang] || item.label.en}
+                      </span>
                       <a
                         href={`tel:${sanitizePhone(item.phone)}`}
                         className={`text-sm inline-flex items-center gap-1.5 transition-colors ${
                           item.isPrimary
                             ? 'font-bold text-black hover:text-amber-600'
-                            : 'text-black/70 hover:text-black'
+                            : 'text-black/80 hover:text-black font-medium'
                         }`}
                         dir="ltr"
                       >

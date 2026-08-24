@@ -151,22 +151,36 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
                 </a>
               </li>
               <li>
-                <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 shrink-0 text-white/50" />
-                  <div className="flex flex-wrap items-center gap-2 text-sm" dir="ltr">
-                    <a
-                      href="tel:+20222718131"
-                      className="hover:text-amber-400 hover:underline underline-offset-4 transition-colors font-medium"
-                    >
-                      +20 222718131
-                    </a>
-                    <span className="text-white/30">/</span>
-                    <a
-                      href="tel:+201205373330"
-                      className="hover:text-amber-400 hover:underline underline-offset-4 transition-colors font-medium"
-                    >
-                      +20 1205373330
-                    </a>
+                <div className="flex items-start gap-3">
+                  <Phone className="w-5 h-5 shrink-0 text-white/50 mt-1" />
+                  <div className="flex flex-col gap-1 text-sm" dir="ltr">
+                    <div className="flex items-center gap-2">
+                      <a
+                        href="tel:+20233470139"
+                        className="hover:text-amber-400 hover:underline underline-offset-4 transition-colors font-medium"
+                      >
+                        +20 2 3347 0139
+                      </a>
+                      <span className="text-white/30 text-xs">(Cairo)</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <a
+                        href="tel:+201066162823"
+                        className="hover:text-amber-400 hover:underline underline-offset-4 transition-colors font-medium"
+                      >
+                        +20 106 616 2823
+                      </a>
+                      <span className="text-white/30 text-xs">(Mobile 2)</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <a
+                        href="tel:+20502269057"
+                        className="hover:text-amber-400 hover:underline underline-offset-4 transition-colors font-medium"
+                      >
+                        +20 50 2269 057
+                      </a>
+                      <span className="text-white/30 text-xs">(Mansoura)</span>
+                    </div>
                   </div>
                 </div>
               </li>
