@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ArrowRight, ArrowLeft, Menu, X } from 'lucide-react';
 import About from './About';
 import Contact from './Contact';
@@ -162,27 +162,58 @@ const translations: Record<LangType, {
   }
 };
 
+const clientLogos = [
+  { name: 'ديرما صن', img: '/clients/client-1.png' },
+  { name: 'الرمانة للدواجن', img: '/clients/client-2.png' },
+  { name: 'شركة التعمير السياحي', img: '/clients/client-3.png' },
+  { name: 'J’s Designs', img: '/clients/client-4.png' },
+  { name: 'الصالحية للاستثمار والتنمية', img: '/clients/client-5.png' },
+  { name: 'المقاولون العرب للاستثمارات', img: '/clients/client-6.png' },
+  { name: 'طيبة لجدود الدواجن', img: '/clients/client-7.png' },
+  { name: 'منتجع بيراميدز بارك', img: '/clients/client-8.png' }
+];
+
 const App = () => {
   const [lang, setLang] = useState<LangType>('ar');
   const [view, setView] = useState<'home' | 'about' | 'contact' | 'services' | 'laws'>('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const advisoryVideoRef = useRef<HTMLVideoElement>(null);
+
   const t = translations[lang] || translations.ar;
   const isRtl = lang === 'ar';
-
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
 
-  const clientLogos = [
-    { name: 'ديرما صن', img: 'https://ahmedelsherbiny.com/wp-content/uploads/2021/02/TIBA2-removebg-preview-1.png' },
-    { name: 'الرمانة للدواجن', img: 'https://ahmedelsherbiny.com/wp-content/uploads/2021/02/Picture003_-_Copy-removebg-preview-2.png' },
-    { name: 'شركة التعمير السياحي', img: 'https://ahmedelsherbiny.com/wp-content/uploads/2021/02/Picture007-removebg-preview.png' },
-    { name: 'J’s Designs', img: 'https://ahmedelsherbiny.com/wp-content/uploads/2021/02/Picture10000-removebg-preview-1-removebg-preview.png' },
-    { name: 'الصالحية للاستثمار والتنمية', img: 'https://ahmedelsherbiny.com/wp-content/uploads/2020/01/Picture01-removebg-preview.png' },
-    { name: 'المقاولون العرب للاستثمارات', img: 'https://ahmedelsherbiny.com/wp-content/uploads/2020/01/Picture004.png' },
-    { name: 'طيبة لجدود الدواجن', img: 'https://ahmedelsherbiny.com/wp-content/uploads/2020/01/TIBA2-removebg-preview.png' },
-    { name: 'منتجع بيراميدز بارك', img: 'https://ahmedelsherbiny.com/wp-content/uploads/2020/01/picture_6-removebg-preview.png' }
-  ];
+  // Robust Mobile AutoPlay without native media overlay controls
+  useEffect(() => {
+    const playVideo = (v: HTMLVideoElement | null) => {
+      if (!v) return;
+      v.defaultMuted = true;
+      v.muted = true;
+      v.playsInline = true;
+      v.setAttribute('playsinline', '');
+      v.setAttribute('webkit-playsinline', '');
+      v.setAttribute('autoplay', '');
+      const promise = v.play();
+      if (promise !== undefined) {
+        promise.catch(() => {
+          const forcePlay = () => {
+            v.play().catch(() => {});
+          };
+          window.addEventListener('touchstart', forcePlay, { once: true });
+          window.addEventListener('scroll', forcePlay, { once: true });
+          window.addEventListener('click', forcePlay, { once: true });
+        });
+      }
+    };
+
+    if (view === 'home') {
+      playVideo(heroVideoRef.current);
+      playVideo(advisoryVideoRef.current);
+    }
+  }, [view]);
 
   if (view === 'about') {
     return (
@@ -231,7 +262,7 @@ const App = () => {
   return (
     <div className="flex flex-col bg-[#F5F5F5] min-h-screen pb-16 md:pb-0" dir={isRtl ? 'rtl' : 'ltr'}>
       {/* Wrapper for Navbar + Hero */}
-      <div className="h-screen flex flex-col overflow-hidden relative">
+      <div className="min-h-screen flex flex-col relative">
         {/* Navbar */}
         <nav className="absolute top-0 left-0 right-0 z-20 px-4 sm:px-6 py-4 sm:py-5">
           <div className="flex items-center justify-between max-w-[88rem] mx-auto">
@@ -335,14 +366,17 @@ const App = () => {
         <section className="flex-1 px-4 sm:px-6 pt-20 pb-4 sm:pb-6 flex items-end max-w-[88rem] mx-auto w-full">
           <div className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden h-[calc(100vh-96px)] min-h-[480px]">
             <video 
+              ref={heroVideoRef}
               autoPlay 
               muted 
               loop 
               playsInline 
-              className="absolute inset-0 w-full h-full object-cover"
-            >
-              <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260423_161253_c72b1869-400f-45ed-ac0c-52f68c2ed5bd.mp4" type="video/mp4" />
-            </video>
+              preload="auto"
+              disablePictureInPicture
+              disableRemotePlayback
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+              src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260423_161253_c72b1869-400f-45ed-ac0c-52f68c2ed5bd.mp4"
+            />
 
             <div className="relative z-10 flex flex-col items-start justify-start h-full p-6 sm:p-10 md:p-12 pt-24 sm:pt-32 md:pt-36">
               <h1 
@@ -372,23 +406,28 @@ const App = () => {
         </section>
       </div>
 
-      {/* Backed By Section */}
-      <section className="bg-[#F5F5F5] px-6 pb-24">
-        <div className="mt-32 pt-16 border-t border-black/5 text-center">
+      {/* Backed By Section (Clients Marquee) */}
+      <section className="bg-[#F5F5F5] px-4 sm:px-6 pb-16 sm:pb-24">
+        <div className="mt-8 sm:mt-20 md:mt-32 pt-8 sm:pt-16 border-t border-black/5 text-center">
           <h3 
-            className="text-black/60 text-lg md:text-xl font-medium mb-12 whitespace-pre-line"
+            className="text-black/60 text-base sm:text-lg md:text-xl font-medium mb-8 sm:mb-12 whitespace-pre-line"
           >
             {t.fundedBy}
           </h3>
           
           <div className="w-full overflow-hidden" dir="ltr">
-            <div className="marquee-track-reverse">
+            <div className="marquee-track-reverse flex items-center">
               {[...clientLogos, ...clientLogos].map((item, index) => (
                 <div 
                   key={index} 
-                  className="mx-12 shrink-0 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                  className="mx-5 sm:mx-8 md:mx-12 shrink-0 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity"
                 >
-                  <img src={item.img} alt={item.name} className="h-20 md:h-24 w-auto object-contain mix-blend-multiply" />
+                  <img
+                    src={item.img}
+                    alt={item.name}
+                    loading="eager"
+                    className="h-14 sm:h-18 md:h-24 w-auto object-contain max-w-[130px] sm:max-w-[160px] md:max-w-none mix-blend-multiply"
+                  />
                 </div>
               ))}
             </div>
@@ -397,12 +436,12 @@ const App = () => {
       </section>
 
       {/* Use Cases Section */}
-      <section className="bg-[#F5F5F5] px-6 py-24">
+      <section className="bg-[#F5F5F5] px-4 sm:px-6 py-12 sm:py-24">
         <div className="max-w-[88rem] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           <div className={`md:pt-2 ${isRtl ? 'md:pl-12' : 'md:pr-12'}`}>
             <div className="text-black/60 text-sm mb-2">{t.expertiseEyebrow}</div>
             <h2 
-              className="text-5xl md:text-6xl font-medium leading-none mb-6 text-black"
+              className="text-4xl sm:text-5xl md:text-6xl font-medium leading-none mb-6 text-black"
               style={{ letterSpacing: '-0.04em' }}
             >
               {t.expertiseTitle}
@@ -412,25 +451,28 @@ const App = () => {
             </p>
           </div>
 
-          <div className="relative rounded-3xl overflow-hidden min-h-[720px] w-full">
+          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden min-h-[520px] sm:min-h-[720px] w-full">
             <video 
+              ref={advisoryVideoRef}
               autoPlay 
               muted 
               loop 
               playsInline 
-              className="absolute inset-0 w-full h-full object-cover"
-            >
-              <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260423_183428_ab5e672a-f608-4dcb-b319-f3e040f02e2d.mp4" type="video/mp4" />
-            </video>
+              preload="auto"
+              disablePictureInPicture
+              disableRemotePlayback
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+              src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260423_183428_ab5e672a-f608-4dcb-b319-f3e040f02e2d.mp4"
+            />
             
-            <div className="relative z-10 p-10 md:p-12">
+            <div className="relative z-10 p-6 sm:p-10 md:p-12">
               <h3 
-                className="text-4xl md:text-5xl font-medium leading-tight mb-5 text-black"
+                className="text-3xl sm:text-4xl md:text-5xl font-medium leading-tight mb-4 sm:mb-5 text-black"
                 style={{ letterSpacing: '-0.03em' }}
               >
                 {t.advisoryTitle}
               </h3>
-              <p className="text-black/70 text-base max-w-md mb-8">
+              <p className="text-black/70 text-sm sm:text-base max-w-md mb-6 sm:mb-8">
                 {t.advisorySubtitle}
               </p>
               
