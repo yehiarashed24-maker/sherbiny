@@ -76,8 +76,6 @@ export default function Footer({ isRtl, setView }: FooterProps) {
           <p className="text-white/40 text-sm">
             © {new Date().getFullYear()} {isRtl ? 'أحمد الشربيني وشركاه. جميع الحقوق محفوظة.' : 'Ahmed El Sherbiny & Co. All rights reserved.'}
           </p>
-          
-          </div>
         </div>
       </div>
     </footer>
