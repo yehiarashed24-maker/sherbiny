@@ -23,19 +23,17 @@ export default function ConsultationModal({ isOpen, onClose, isRtl = true }: Con
 
     setIsSubmitting(true);
     try {
-      const formData = new FormData();
-      formData.append('access_key', '3e68732b-9a04-4410-a35d-f1386a6deb3c');
-      formData.append('subject', `طلب حجز استشارة جديد من: ${name}`);
-      formData.append('from_name', 'موقع أحمد الشربيني - حجز استشارة');
-      formData.append('name', name);
-      formData.append('phone', phone);
-      formData.append('service', service);
-      formData.append('email', email || 'غير محدد');
-      formData.append('notes', notes || 'لا توجد ملاحظات إضافية');
-
-      await fetch('https://api.web3forms.com/submit', {
+      await fetch('/api/contact', {
         method: 'POST',
-        body: formData
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          subject: `طلب حجز استشارة جديد من: ${name}`,
+          name,
+          phone,
+          service,
+          email: email || 'غير محدد',
+          notes: notes || 'لا توجد ملاحظات إضافية'
+        })
       });
       setIsSuccess(true);
     } catch (err) {

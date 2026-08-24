@@ -11,39 +11,14 @@ type Message = {
   content: string;
 };
 
-// Google Gemini API Configuration
-const DEFAULT_KEY = ['AQ.Ab8RN6L9IPsCEPF4wC4Qwv', 'Dr7AVdDrTRL8uR24T0X4c7IyUMnQ'].join('');
-const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || DEFAULT_KEY;
-const GEMINI_MODEL = 'gemini-3.6-flash';
-
-const SYSTEM_PROMPT = `أنت AhmedSherbiny AI (المستشار الذكي لشركة أحمد الشربيني وشركاه محاسبون ومراجعون قانونيون وخبراء ضرائب).
-تحدث دائماً بلباقة واحترافية وبنفس لغة المستخدم (عربي أو إنجليزي).
-
-معلومات عن الأستاذ أحمد الشربيني والمؤسسة:
-- الأستاذ أحمد الشربيني: محاسب ومراجع قانوني مقيد بسجل المحاسبين والمراجعين ومصلحة الضرائب المصرية، وخبير ضرائب ومستشار مالي معتمد لتقييم الشركات بخبرة تزيد عن 40 عاماً.
-- تخصصات المكتب:
-  1. تأسيس وتعديل كافة أشكال الشركات في مصر (شركات مساهمة، ذات مسؤولية محدودة، الشخص الواحد، وفروع الشركات الأجنبية) واستخراج السجل التجاري والبطاقة الضريبية وتراخيص الاستثمار (GAFI).
-  2. الفحص والتخطيط الضريبي وتسوية المنازعات والطعون أمام مركز كبار الممولين، واللجان الداخلية ولجان الطعن ومجلس الدولة (ضرائب الدخل، القيمة المضافة، كسب العمل، والدمغة).
-  3. منظومة الفاتورة والإيصال الإلكتروني، استخراج الختم الإلكتروني (E-Token)، والتكويد بأنظمة GS1 و EGS.
-  4. المراجعة والتدقيق المالي وإصدار تقارير مراقب الحسابات المستقل وفقاً لمعايير المحاسبة المصرية (EAS) والدولية (IFRS).
-
-الفروع ووسائل الاتصال:
-- فرع القاهرة (المقر الرئيسي): 59 مدينة الإعلام - العجوزة، القاهرة | هاتف: +20 222718131 / +20 1205373330 / 0233470139
-- فرع الإسكندرية: برج كونكورد - محطة الرمل | هاتف: 034806050
-- فرع المنصورة: برج الحجاز - ميدان الطميهي | هاتف: 0502269057
-- الخط الساخن والواتساب المباشر: +201223233620
-- البريد الإلكتروني: Sherbiny.co@gmail.com / A.elsherbiny@yahoo.com
-
-أجب عن أسئلة المستخدمين بدقة وذكاء بناءً على القوانين والمعايير المصرية، واستخدم تنسيق Markdown المنظم والجميل.`;
-
 export default function Chatbot({ isRtl }: ChatbotProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'model',
       content: isRtl
-        ? 'مرحباً بك! أنا **AhmedSherbiny AI** 🤖، المستشار الذكي المدعوم بنموذج **Google Gemini**. كيف يمكنني مساعدتك اليوم في استشاراتك القانونية، الضريبية، وتأسيس الشركات؟'
-        : 'Welcome! I am **AhmedSherbiny AI** 🤖, your intelligent advisor powered by **Google Gemini**. How can I assist you today with legal, corporate tax, and financial inquiries?'
+        ? 'مرحباً بك! أنا **AhmedSherbiny AI** 🤖، المستشار الذكي لشركة **أحمد الشربيني وشركاه**. كيف يمكنني مساعدتك اليوم في استشاراتك القانونية، الضريبية، وتأسيس الشركات؟'
+        : 'Welcome! I am **AhmedSherbiny AI** 🤖, your legal & tax assistant for **Ahmed El Sherbiny & Co.** How can I assist you today with corporate, tax, and accounting inquiries?'
     }
   ]);
   const [input, setInput] = useState('');
@@ -73,49 +48,28 @@ export default function Chatbot({ isRtl }: ChatbotProps) {
     let assistantResponse = '';
 
     try {
-      // Build conversation history for Google Gemini
-      const conversationHistory = messages.slice(1).map(msg => ({
-        role: msg.role === 'model' ? 'model' : 'user',
-        parts: [{ text: msg.content }]
-      }));
-
-      const fullPrompt = `${SYSTEM_PROMPT}\n\nسياق المحادثة السابقة:\n${conversationHistory.map(m => `${m.role}: ${m.parts[0].text}`).join('\n')}\n\nسؤال المستخدم الجديد: ${userMessage}`;
-
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [
-              {
-                role: 'user',
-                parts: [{ text: fullPrompt }]
-              }
-            ],
-            generationConfig: {
-              temperature: 0.7,
-              maxOutputTokens: 1000
-            }
-          })
-        }
-      );
+      // Secure serverless backend API call (Zero client-side keys exposed)
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages,
+          userMessage,
+          isRtl
+        })
+      });
 
       if (response.ok) {
         const data = await response.json();
-        const generatedText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (generatedText) {
-          assistantResponse = generatedText;
+        if (data.reply) {
+          assistantResponse = data.reply;
         }
-      } else {
-        const errorData = await response.json().catch(() => null);
-        console.error('Gemini API error details:', errorData);
       }
     } catch (err) {
-      console.error('Gemini fetch exception:', err);
+      console.error('Chat API request error:', err);
     }
 
-    // Fallback in case of unexpected network drops
+    // Reliable fallback if server is unreachable
     if (!assistantResponse) {
       assistantResponse = isRtl
         ? `أهلاً بك! أنا **AhmedSherbiny AI** 🤖 المستشار الذكي لمكتب **أحمد الشربيني وشركاه**. يسعدنا تقديم استشارة قانونية وضريبية فورية. يمكنك الاتصال مباشرة على الخط الساخن: **+201223233620**.`
@@ -171,11 +125,11 @@ export default function Chatbot({ isRtl }: ChatbotProps) {
                 </h3>
                 <span className="inline-flex items-center gap-1 text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full font-medium">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                  Gemini Live
+                  Online
                 </span>
               </div>
               <p className="text-xs text-white/70">
-                {isRtl ? 'المستشار الذكي - أحمد الشربيني وشركاه' : 'Powered by Google Gemini'}
+                {isRtl ? 'المستشار الذكي - أحمد الشربيني وشركاه' : 'Smart Legal & Tax Advisor'}
               </p>
             </div>
           </div>
@@ -217,7 +171,7 @@ export default function Chatbot({ isRtl }: ChatbotProps) {
               <div className="bg-white rounded-2xl rounded-bl-sm px-4 py-3 shadow-sm border border-black/5 flex items-center gap-2 text-neutral-600">
                 <Loader2 className="w-4 h-4 animate-spin text-amber-600" />
                 <span className="text-xs font-medium">
-                  {isRtl ? 'Gemini يقوم بتحليل وصياغة الإجابة...' : 'Gemini AI is thinking...'}
+                  {isRtl ? 'جاري التفكير وصياغة الاستشارة...' : 'AhmedSherbiny AI is analyzing...'}
                 </span>
               </div>
             </div>
@@ -262,7 +216,7 @@ export default function Chatbot({ isRtl }: ChatbotProps) {
               type="text"
               value={input}
               onChange={e => setInput(e.target.value)}
-              placeholder={isRtl ? 'اسأل Gemini عن أي استشارة قانونية أو ضريبية...' : 'Ask Gemini any legal or tax question...'}
+              placeholder={isRtl ? 'اسأل AhmedSherbiny AI أي استشارة قانونية أو ضريبية...' : 'Ask AhmedSherbiny AI any legal or tax question...'}
               className="flex-1 bg-neutral-100 border border-transparent rounded-full px-4 py-2.5 text-sm focus:outline-none focus:border-black/30 focus:bg-white transition-all rtl:text-right"
               dir="auto"
               disabled={isLoading}

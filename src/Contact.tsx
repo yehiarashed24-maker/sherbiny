@@ -117,18 +117,16 @@ export default function Contact({ lang, setView }: ContactProps) {
 
     setIsSubmitting(true);
     try {
-      const formData = new FormData();
-      formData.append('access_key', '3e68732b-9a04-4410-a35d-f1386a6deb3c');
-      formData.append('subject', `رسالة تواصل جديدة من: ${formState.name}`);
-      formData.append('from_name', 'موقع أحمد الشربيني وشركاه');
-      formData.append('name', formState.name);
-      formData.append('email', formState.email);
-      formData.append('phone', formState.phone || 'غير محدد');
-      formData.append('message', formState.message);
-
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
-        body: formData
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          subject: `رسالة تواصل جديدة من: ${formState.name}`,
+          name: formState.name,
+          email: formState.email,
+          phone: formState.phone || 'غير محدد',
+          message: formState.message
+        })
       });
 
       if (res.ok) {
