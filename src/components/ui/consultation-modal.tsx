@@ -227,9 +227,17 @@ export default function ConsultationModal({ isOpen, onClose, isRtl = true }: Con
                     : 'Thank you for reaching out. One of our senior financial and tax advisors will contact you shortly via phone or WhatsApp.'}
                 </p>
 
-                <div className="bg-[#F6F5F2] p-4 rounded-2xl w-full text-xs text-black/60 mb-8 border border-black/5 flex items-center justify-center gap-2">
-                  <Phone className="w-4 h-4 text-black/80" />
-                  <span dir="ltr">+20 222718131 / +20 1205373330</span>
+                <div className="bg-[#F6F5F2] p-4 rounded-2xl w-full text-xs text-black/60 mb-8 border border-black/5 flex flex-wrap items-center justify-center gap-2">
+                  <Phone className="w-4 h-4 text-black/80 shrink-0" />
+                  <div className="flex items-center gap-2" dir="ltr">
+                    <a href="tel:+20222718131" className="hover:text-black font-semibold hover:underline">
+                      +20 222718131
+                    </a>
+                    <span>/</span>
+                    <a href="tel:+201205373330" className="hover:text-black font-semibold hover:underline">
+                      +20 1205373330
+                    </a>
+                  </div>
                 </div>
 
                 <button

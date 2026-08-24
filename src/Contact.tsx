@@ -1,23 +1,70 @@
 import { useState } from 'react';
-import { ArrowLeft, ArrowRight, MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import { ArrowLeft, ArrowRight, MapPin, Phone, Mail, Clock, Send, ExternalLink, MessageCircle } from 'lucide-react';
 import Footer from './components/ui/footer';
+
+const BRANCHES = {
+  en: [
+    {
+      city: 'Cairo (Headquarters)',
+      address: '59 Media City - Agouza, Cairo',
+      phones: ['+20 222 718 131', '+20 120 537 3330', '+20 233 470 139'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=59+Media+City%2C+Agouza%2C+Giza%2C+Cairo'
+    },
+    {
+      city: 'Alexandria',
+      address: 'Concorde Tower - Raml Station',
+      phones: ['+20 348 060 50'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=Concorde+Tower+Raml+Station+Alexandria'
+    },
+    {
+      city: 'Mansoura',
+      address: 'Al Hegaz Tower - Tamyouhi Square',
+      phones: ['+20 502 269 057'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=Al+Hegaz+Tower+Tamyouhi+Square+Mansoura'
+    }
+  ],
+  ar: [
+    {
+      city: 'القاهرة (المقر الرئيسي)',
+      address: '59 مدينة الإعلام - العجوزة، القاهرة',
+      phones: ['+20 222 718 131', '+20 120 537 3330', '33470139 (02)'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=59+Media+City%2C+Agouza%2C+Giza%2C+Cairo'
+    },
+    {
+      city: 'الأسكندرية',
+      address: 'برج كونكورد - محطة الرمل',
+      phones: ['+20 348 060 50'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=Concorde+Tower+Raml+Station+Alexandria'
+    },
+    {
+      city: 'المنصورة',
+      address: 'برج الحجاز - ميدان الطميهى',
+      phones: ['+20 502 269 057'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=Al+Hegaz+Tower+Tamyouhi+Square+Mansoura'
+    }
+  ]
+};
+
+const DIRECT_PHONES = [
+  { label: 'Hotline / WhatsApp', phone: '+20 122 323 3620', isPrimary: true },
+  { label: 'Cairo Office', phone: '+20 222 718 131' },
+  { label: 'Cairo Mobile', phone: '+20 120 537 3330' },
+  { label: 'Alexandria Office', phone: '+20 348 060 50' },
+  { label: 'Mansoura Office', phone: '+20 502 269 057' }
+];
 
 const CONTACT_INFO = {
   en: {
     title: 'Get in Touch',
-    subtitle: 'We are here to answer any questions you may have about our financial consulting services. Reach out to us and we\'ll respond as soon as we can.',
+    subtitle: 'We are here to answer any questions you may have about our financial and tax consulting services. Reach out to us and we\'ll respond promptly.',
     workingHoursTitle: 'Working Hours',
-    workingHours: 'Questions? Fill out this form and we will get back to you as soon as possible! We try to answer your inquiry within 4 hours. Please note that our working days are Monday to Saturday from 9 AM to 9 PM CET. We try to respond to all emails sent before 5 PM on the same day. In any case, you can expect a response within 48 hours.',
+    workingHours: 'Questions? Fill out this form and we will get back to you as soon as possible! Our team responds to inquiries within 4 hours. Working hours are Saturday to Thursday from 9 AM to 9 PM.',
     branchesTitle: 'Our Branches',
-    branches: [
-      { city: 'Cairo', address: '59 Media City - Agouza', tel: '(02) 33470139' },
-      { city: 'Alexandria', address: 'Concorde Tower - Raml Station', tel: '(03) 4806050' },
-      { city: 'Mansoura', address: 'Al Hegaz Tower - Tamyouhi Square', tel: '(050) 2269057' }
-    ],
-    phonesTitle: 'Direct Lines',
-    phones: ['+20 122 323 3620', '+20 233 470 139', '+20 502 269 057', '+20 348 060 50'],
+    phonesTitle: 'Direct Phone Lines',
     emailTitle: 'Email Us',
-    email: 'A.elsherbiny@yahoo.com',
+    emails: ['Sherbiny.co@gmail.com', 'A.elsherbiny@yahoo.com'],
+    openMap: 'Open in Google Maps',
+    callNow: 'Call',
     form: {
       name: 'Full Name',
       email: 'Email Address',
@@ -29,19 +76,15 @@ const CONTACT_INFO = {
   },
   ar: {
     title: 'تواصل معنا',
-    subtitle: 'نحن هنا للإجابة على أي أسئلة قد تكون لديكم حول خدماتنا الاستشارية المالية. تواصل معنا وسنرد عليك في أقرب وقت ممكن.',
+    subtitle: 'نحن هنا للإجابة على أي أسئلة قد تكون لديكم حول خدماتنا الاستشارية المالية والضريبية. تواصل معنا وسنرد عليك في أسرع وقت.',
     workingHoursTitle: 'ساعات العمل',
-    workingHours: 'الأسئلة ؟ املأ هذا النموذج ونعود إليك في أقرب وقت ممكن! نحاول الإجابة على استفسارك خلال 4 ساعات. يرجى ملاحظة أن أيام العمل لدينا هي من الاثنين إلى السبت من الساعة 9 صباحًا إلى 9 مساءً. نحاول الرد على جميع رسائل البريد الإلكتروني التي يتم إرسالها قبل الساعة 5 مساء في نفس اليوم. في أي حال ، يمكنك أن تتوقع ردا في غضون 48 ساعة.',
-    branchesTitle: 'فروعنا',
-    branches: [
-      { city: 'القاهرة', address: '59 مدينة الإعلام - العجوزة', tel: '33470139 (02)' },
-      { city: 'الأسكندرية', address: 'برج كوكورد - محطة الرمل', tel: '4806050 (03)' },
-      { city: 'المنصورة', address: 'برج الحجاز - ميدان الطميهى', tel: '2269057 (050)' }
-    ],
-    phonesTitle: 'خطوط مباشرة',
-    phones: ['+20 122 323 3620', '+20 233 470 139', '+20 502 269 057', '+20 348 060 50'],
+    workingHours: 'الأسئلة ؟ املأ هذا النموذج ونعود إليك في أقرب وقت ممكن! نحاول الإجابة على استفسارك خلال 4 ساعات. يرجى ملاحظة أن أيام العمل لدينا هي من السبت إلى الخميس من الساعة 9 صباحًا إلى 9 مساءً.',
+    branchesTitle: 'فروعنا وعناويننا',
+    phonesTitle: 'خطوط الاتصال المباشرة',
     emailTitle: 'البريد الإلكتروني',
-    email: 'A.elsherbiny@yahoo.com',
+    emails: ['Sherbiny.co@gmail.com', 'A.elsherbiny@yahoo.com'],
+    openMap: 'فتح الموقع في خرائط Google',
+    callNow: 'اتصال',
     form: {
       name: 'الاسم الكامل',
       email: 'البريد الإلكتروني',
@@ -62,15 +105,17 @@ export default function Contact({ lang, setView }: ContactProps) {
   const isRtl = lang === 'ar';
   const BackIcon = isRtl ? ArrowRight : ArrowLeft;
   const t = CONTACT_INFO[lang];
+  const branches = BRANCHES[lang];
 
   const [formState, setFormState] = useState({ name: '', email: '', phone: '', message: '' });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Prevent actual submission for demo
-    alert(isRtl ? 'تم إرسال الرسالة بنجاح!' : 'Message sent successfully!');
+    alert(isRtl ? 'تم استلام رسالتك بنجاح، وسنتواصل معك قريباً!' : 'Message sent successfully! We will contact you soon.');
     setFormState({ name: '', email: '', phone: '', message: '' });
   };
+
+  const sanitizePhone = (phone: string) => phone.replace(/[^\d+]/g, '');
 
   return (
     <div 
@@ -170,29 +215,62 @@ export default function Contact({ lang, setView }: ContactProps) {
               </p>
             </div>
 
-            {/* Email & Phone */}
+            {/* Email & Direct Phones */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pl-13 rtl:pl-0 rtl:pr-13">
               <div>
                 <div className="flex items-center gap-3 mb-3 text-black">
                   <Phone className="w-5 h-5" />
                   <h4 className="font-semibold">{t.phonesTitle}</h4>
                 </div>
-                <ul className="space-y-2 text-black/60" dir="ltr" style={{ textAlign: isRtl ? 'right' : 'left' }}>
-                  {t.phones.map((phone, i) => (
-                    <li key={i}>{phone}</li>
+                <div className="space-y-2">
+                  {DIRECT_PHONES.map((item, i) => (
+                    <div key={i} className="flex items-center justify-between group">
+                      <a
+                        href={`tel:${sanitizePhone(item.phone)}`}
+                        className={`text-sm inline-flex items-center gap-1.5 transition-colors ${
+                          item.isPrimary
+                            ? 'font-bold text-black hover:text-amber-600'
+                            : 'text-black/70 hover:text-black'
+                        }`}
+                        dir="ltr"
+                      >
+                        <Phone className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+                        <span className="group-hover:underline underline-offset-4">{item.phone}</span>
+                      </a>
+                    </div>
                   ))}
-                </ul>
+                  <a
+                    href="https://wa.me/201223233620"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 mt-2 px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 text-xs font-bold hover:bg-emerald-100 transition-colors"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    <span>{isRtl ? 'تواصل عبر الواتساب' : 'Chat on WhatsApp'}</span>
+                  </a>
+                </div>
               </div>
+
               <div>
                 <div className="flex items-center gap-3 mb-3 text-black">
                   <Mail className="w-5 h-5" />
                   <h4 className="font-semibold">{t.emailTitle}</h4>
                 </div>
-                <p className="text-black/60">{t.email}</p>
+                <div className="space-y-2">
+                  {t.emails.map((email, idx) => (
+                    <a
+                      key={idx}
+                      href={`mailto:${email}`}
+                      className="block text-sm text-black/70 hover:text-black hover:underline underline-offset-4 transition-colors"
+                    >
+                      {email}
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Branches */}
+            {/* Branches Cards - Fully Clickable */}
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center text-black">
@@ -200,12 +278,51 @@ export default function Contact({ lang, setView }: ContactProps) {
                 </div>
                 <h3 className="text-xl font-semibold">{t.branchesTitle}</h3>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pl-13 rtl:pl-0 rtl:pr-13">
-                {t.branches.map((branch, idx) => (
-                  <div key={idx} className="bg-black/5 p-5 rounded-2xl">
-                    <h4 className="font-semibold text-lg mb-2">{branch.city}</h4>
-                    <p className="text-black/60 text-sm mb-2">{branch.address}</p>
-                    <p className="text-black/80 font-medium text-sm" dir="ltr" style={{ textAlign: isRtl ? 'right' : 'left' }}>Tel: {branch.tel}</p>
+
+              <div className="grid grid-cols-1 gap-4 pl-13 rtl:pl-0 rtl:pr-13">
+                {branches.map((branch, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-black/5 hover:bg-black/[0.08] p-5 rounded-2xl transition-all border border-black/5 flex flex-col justify-between group"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <h4 className="font-bold text-lg text-black">{branch.city}</h4>
+                        <a
+                          href={branch.mapUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs font-medium text-black/60 hover:text-black bg-white px-2.5 py-1 rounded-full border border-black/10 shadow-2xs transition-colors"
+                        >
+                          <span>{t.openMap}</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      </div>
+                      
+                      <a
+                        href={branch.mapUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block text-black/70 text-sm mb-3 hover:text-black hover:underline underline-offset-4 leading-relaxed"
+                      >
+                        {branch.address}
+                      </a>
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-3 pt-3 border-t border-black/10 text-sm">
+                      <span className="text-xs text-black/50 font-medium">{t.callNow}:</span>
+                      {branch.phones.map((phone, pIdx) => (
+                        <a
+                          key={pIdx}
+                          href={`tel:${sanitizePhone(phone)}`}
+                          className="inline-flex items-center gap-1 font-semibold text-black/80 hover:text-amber-600 hover:underline transition-colors"
+                          dir="ltr"
+                        >
+                          <Phone className="w-3 h-3 text-black/50" />
+                          <span>{phone}</span>
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>

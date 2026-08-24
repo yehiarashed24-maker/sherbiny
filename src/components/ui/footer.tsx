@@ -59,19 +59,47 @@ export default function Footer({ isRtl, setView }: FooterProps) {
           <div className="flex flex-col col-span-1 md:col-span-2">
             <h4 className="text-lg font-semibold mb-6">{isRtl ? 'تواصل معنا' : 'Contact Us'}</h4>
             <ul className="space-y-4 text-white/70">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 mt-0.5 shrink-0 text-white/50" />
-                <span className="text-sm leading-relaxed">
-                  {isRtl ? '19 ش الصومال متفرع من ش إبراهيم نوار, المنطقة السادسة، مدينة نصر' : '19 Somalia St, off Ibrahim Nawar St, 6th Zone, Nasr City'}
-                </span>
+              <li>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=59+Media+City%2C+Agouza%2C+Giza%2C+Cairo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-3 hover:text-white group transition-colors"
+                >
+                  <MapPin className="w-5 h-5 mt-0.5 shrink-0 text-white/50 group-hover:text-amber-400 transition-colors" />
+                  <span className="text-sm leading-relaxed group-hover:underline underline-offset-4">
+                    {isRtl ? '59 مدينة الإعلام - العجوزة، القاهرة' : '59 Media City - Agouza, Cairo'}
+                  </span>
+                </a>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 shrink-0 text-white/50" />
-                <span className="text-sm" dir="ltr">+20 222718131 / +20 1205373330</span>
+              <li>
+                <div className="flex items-center gap-3">
+                  <Phone className="w-5 h-5 shrink-0 text-white/50" />
+                  <div className="flex flex-wrap items-center gap-2 text-sm" dir="ltr">
+                    <a
+                      href="tel:+20222718131"
+                      className="hover:text-amber-400 hover:underline underline-offset-4 transition-colors font-medium"
+                    >
+                      +20 222718131
+                    </a>
+                    <span className="text-white/30">/</span>
+                    <a
+                      href="tel:+201205373330"
+                      className="hover:text-amber-400 hover:underline underline-offset-4 transition-colors font-medium"
+                    >
+                      +20 1205373330
+                    </a>
+                  </div>
+                </div>
               </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 shrink-0 text-white/50" />
-                <span className="text-sm">Sherbiny.co@gmail.com</span>
+              <li>
+                <a
+                  href="mailto:Sherbiny.co@gmail.com"
+                  className="flex items-center gap-3 hover:text-white group transition-colors"
+                >
+                  <Mail className="w-5 h-5 shrink-0 text-white/50 group-hover:text-amber-400 transition-colors" />
+                  <span className="text-sm group-hover:underline underline-offset-4">Sherbiny.co@gmail.com</span>
+                </a>
               </li>
             </ul>
           </div>
