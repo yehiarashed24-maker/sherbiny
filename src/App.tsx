@@ -265,77 +265,7 @@ const App = () => {
         </section>
       </div>
 
-      {/* Info Section */}
-      <section className="bg-[#F5F5F5] px-6 py-24">
-        <div className="max-w-[88rem] mx-auto">
-          {/* Row 1 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16 items-start">
-            <div>
-              <h2 
-                className="text-black text-4xl md:text-5xl font-medium leading-tight mb-8"
-                style={{ letterSpacing: '-0.03em' }}
-              >
-                {t.whyUsTitle}
-              </h2>
-              <button 
-                onClick={() => setView('about')}
-                className={`inline-flex items-center gap-3 bg-black text-white text-base font-medium py-1.5 rounded-full hover:bg-gray-800 transition-colors duration-200 group ${isRtl ? 'pr-6 pl-1.5' : 'pl-6 pr-1.5'}`}
-              >
-                {t.discoverIt}
-                <div className="bg-white rounded-full p-1.5 group-hover:bg-gray-100 transition-colors duration-200">
-                  <ArrowIcon className="w-4 h-4 text-black" />
-                </div>
-              </button>
-            </div>
-            <div>
-              <p className="text-black/70 text-2xl md:text-3xl leading-relaxed">
-                {t.whyUsSubtitle}
-              </p>
-            </div>
-          </div>
 
-          {/* Row 2 */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* Card 1 */}
-            <div 
-              className="rounded-2xl lg:col-span-2 relative overflow-hidden bg-cover bg-center"
-              style={{ backgroundImage: 'url("https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260423_164207_f243351d-ed59-48ec-83a0-a5e996bdbe3c.png&w=1280&q=85")' }}
-            >
-              <div className="p-7 min-h-80 flex flex-col justify-between h-full relative z-10">
-                <h3 
-                  className="text-black text-2xl font-medium leading-snug"
-                  style={{ letterSpacing: '-0.02em' }}
-                >
-                  {t.strategiesTitle}
-                </h3>
-                <p className="text-black/70 text-base max-w-xs mt-8">
-                  {t.strategiesSubtitle}
-                </p>
-              </div>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-[#2B2644] rounded-2xl p-7 min-h-80 flex flex-col justify-between">
-              <h3 className="text-white text-2xl font-medium whitespace-pre-line">
-                {t.transparentTitle}
-              </h3>
-              <p className="text-white/60 text-base mt-8">
-                {t.transparentSubtitle}
-              </p>
-            </div>
-
-            {/* Card 3 */}
-            <div className="bg-[#2B2644] rounded-2xl p-7 min-h-80 flex flex-col justify-between">
-              <h3 className="text-white text-2xl font-medium whitespace-pre-line">
-                {t.tailoredTitle}
-              </h3>
-              <p className="text-white/60 text-base mt-8">
-                {t.tailoredSubtitle}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Backed By Section */}
       <section className="bg-[#F5F5F5] px-6 pb-24">
