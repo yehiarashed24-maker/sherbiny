@@ -90,8 +90,8 @@ export default function Chatbot({ isRtl }: ChatbotProps) {
       {/* Floating Action Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 ${
-          isRtl ? 'left-6' : 'right-6'
+        className={`fixed bottom-20 md:bottom-6 ${
+          isRtl ? 'left-4 md:left-6' : 'right-4 md:right-6'
         } w-14 h-14 bg-black text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 z-50 group ${
           isOpen ? 'hidden' : ''
         }`}
@@ -106,9 +106,9 @@ export default function Chatbot({ isRtl }: ChatbotProps) {
 
       {/* Chat Window */}
       <div
-        className={`fixed bottom-6 ${
-          isRtl ? 'left-6' : 'right-6'
-        } w-[92vw] max-w-[430px] h-[630px] max-h-[85vh] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden z-50 transition-all duration-300 origin-bottom border border-black/10 ${
+        className={`fixed bottom-20 md:bottom-6 ${
+          isRtl ? 'left-3 md:left-6' : 'right-3 md:right-6'
+        } w-[94vw] max-w-[430px] h-[600px] max-h-[80vh] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden z-50 transition-all duration-300 origin-bottom border border-black/10 ${
           isOpen ? 'scale-100 opacity-100' : 'scale-75 opacity-0 pointer-events-none'
         }`}
       >

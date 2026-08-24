@@ -7,6 +7,7 @@ import Laws from './Laws';
 import Chatbot from './components/ui/chatbot';
 import Footer from './components/ui/footer';
 import ConsultationModal from './components/ui/consultation-modal';
+import MobileTabBar from './components/ui/mobile-tab-bar';
 
 const LogoIcon = ({ className }: { className?: string }) => (
   <svg
@@ -101,37 +102,45 @@ const App = () => {
 
   if (view === 'about') {
     return (
-      <>
+      <div className="pb-16 md:pb-0 min-h-screen bg-[#F5F5F5]">
         <About lang={lang} setView={setView} onBookConsultation={() => setIsModalOpen(true)} />
+        <MobileTabBar currentView={view} setView={setView} onOpenConsultation={() => setIsModalOpen(true)} isRtl={isRtl} />
         <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} />
-      </>
+        <Chatbot isRtl={isRtl} />
+      </div>
     );
   }
 
   if (view === 'contact') {
     return (
-      <>
+      <div className="pb-16 md:pb-0 min-h-screen bg-white">
         <Contact lang={lang} setView={setView} onBookConsultation={() => setIsModalOpen(true)} />
+        <MobileTabBar currentView={view} setView={setView} onOpenConsultation={() => setIsModalOpen(true)} isRtl={isRtl} />
         <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} />
-      </>
+        <Chatbot isRtl={isRtl} />
+      </div>
     );
   }
 
   if (view === 'services') {
     return (
-      <>
+      <div className="pb-16 md:pb-0 min-h-screen bg-[#F5F5F5]">
         <Services lang={lang} setView={setView} onBookConsultation={() => setIsModalOpen(true)} />
+        <MobileTabBar currentView={view} setView={setView} onOpenConsultation={() => setIsModalOpen(true)} isRtl={isRtl} />
         <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} />
-      </>
+        <Chatbot isRtl={isRtl} />
+      </div>
     );
   }
   
   if (view === 'laws') {
     return (
-      <>
+      <div className="pb-16 md:pb-0 min-h-screen bg-[#F5F5F5]">
         <Laws isRtl={isRtl} setView={setView} />
+        <MobileTabBar currentView={view} setView={setView} onOpenConsultation={() => setIsModalOpen(true)} isRtl={isRtl} />
         <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} />
-      </>
+        <Chatbot isRtl={isRtl} />
+      </div>
     );
   }
 
@@ -225,8 +234,8 @@ const App = () => {
         )}
 
         {/* Hero Section */}
-        <section className="flex-1 px-6 pt-20 pb-6 flex items-end max-w-[88rem] mx-auto w-full">
-          <div className="relative w-full rounded-2xl overflow-hidden" style={{ height: 'calc(100vh - 96px)' }}>
+        <section className="flex-1 px-4 sm:px-6 pt-20 pb-4 sm:pb-6 flex items-end max-w-[88rem] mx-auto w-full">
+          <div className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden h-[calc(100vh-96px)] min-h-[480px]">
             <video 
               autoPlay 
               muted 
@@ -237,15 +246,15 @@ const App = () => {
               <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260423_161253_c72b1869-400f-45ed-ac0c-52f68c2ed5bd.mp4" type="video/mp4" />
             </video>
 
-            <div className="relative z-10 flex flex-col items-start justify-start h-full p-12 pt-36">
+            <div className="relative z-10 flex flex-col items-start justify-start h-full p-6 sm:p-10 md:p-12 pt-24 sm:pt-32 md:pt-36">
               <h1 
-                className="text-black text-5xl md:text-6xl font-medium leading-tight max-w-xl mb-4"
+                className="text-black text-3xl sm:text-5xl md:text-6xl font-medium leading-tight max-w-xl mb-3 sm:mb-4"
                 style={{ letterSpacing: '-0.04em' }}
                 dangerouslySetInnerHTML={{ __html: t.heroTitle }}
               />
               
               <p 
-                className="text-black/70 text-base md:text-lg max-w-md mb-8 leading-relaxed"
+                className="text-black/80 text-sm sm:text-base md:text-lg max-w-md mb-6 sm:mb-8 leading-relaxed font-medium"
                 style={{ fontFamily: "'Inter', ui-sans-serif, system-ui, sans-serif" }}
               >
                 {t.heroSubtitle}
@@ -253,11 +262,11 @@ const App = () => {
 
               <button 
                 onClick={() => setView('about')}
-                className={`inline-flex items-center gap-3 bg-black text-white text-base md:text-lg font-medium py-2 rounded-full hover:bg-gray-800 transition-colors duration-200 group ${isRtl ? 'pr-8 pl-2' : 'pl-8 pr-2'}`}
+                className={`inline-flex items-center gap-3 bg-black text-white text-sm sm:text-base md:text-lg font-medium py-2 rounded-full hover:bg-gray-800 transition-colors duration-200 group active:scale-95 shadow-lg ${isRtl ? 'pr-6 sm:pr-8 pl-2' : 'pl-6 sm:pl-8 pr-2'}`}
               >
                 {t.getStarted}
-                <div className="bg-white rounded-full p-2 group-hover:bg-gray-100 transition-colors duration-200">
-                  <ArrowIcon className="w-5 h-5 text-black" />
+                <div className="bg-white rounded-full p-1.5 sm:p-2 group-hover:bg-gray-100 transition-colors duration-200">
+                  <ArrowIcon className="w-4 h-4 sm:w-5 sm:h-5 text-black" />
                 </div>
               </button>
             </div>
@@ -351,6 +360,14 @@ const App = () => {
 
       {/* Floating Legal Chatbot */}
       <Chatbot isRtl={isRtl} />
+
+      {/* Native Mobile App Tab Bar */}
+      <MobileTabBar
+        currentView={view}
+        setView={setView}
+        onOpenConsultation={() => setIsModalOpen(true)}
+        isRtl={isRtl}
+      />
     </div>
   );
 };

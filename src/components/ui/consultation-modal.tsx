@@ -58,7 +58,7 @@ export default function ConsultationModal({ isOpen, onClose, isRtl = true }: Con
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[999] flex items-center justify-center p-4" dir={isRtl ? 'rtl' : 'ltr'}>
+        <div className="fixed inset-0 z-[999] flex items-end sm:items-center justify-center p-0 sm:p-4" dir={isRtl ? 'rtl' : 'ltr'}>
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -70,22 +70,25 @@ export default function ConsultationModal({ isOpen, onClose, isRtl = true }: Con
 
           {/* Modal Container */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.92, y: 20 }}
+            initial={{ opacity: 0, scale: 0.96, y: 40 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.92, y: 20 }}
-            transition={{ type: "spring", duration: 0.5, bounce: 0.15 }}
-            className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-black/10 overflow-hidden z-10"
+            exit={{ opacity: 0, scale: 0.96, y: 40 }}
+            transition={{ type: "spring", duration: 0.5, bounce: 0.12 }}
+            className="relative w-full max-w-lg bg-white rounded-t-[32px] sm:rounded-3xl shadow-2xl border border-black/10 overflow-hidden z-10 max-h-[92vh] flex flex-col"
           >
+            {/* Mobile Sheet Handle Bar */}
+            <div className="w-12 h-1.5 bg-black/20 rounded-full mx-auto mt-3 sm:hidden shrink-0" />
+
             {/* Close Button */}
             <button
               onClick={handleResetAndClose}
-              className={`absolute top-5 ${isRtl ? 'left-5' : 'right-5'} w-10 h-10 rounded-full bg-black/5 hover:bg-black/10 flex items-center justify-center text-black/70 hover:text-black transition-colors z-20`}
+              className={`absolute top-4 ${isRtl ? 'left-4' : 'right-4'} w-9 h-9 rounded-full bg-black/5 hover:bg-black/10 flex items-center justify-center text-black/70 hover:text-black transition-colors z-20`}
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
 
             {!isSuccess ? (
-              <div className="p-7 md:p-9">
+              <div className="p-6 sm:p-9 overflow-y-auto max-h-[85vh]">
                 {/* Header */}
                 <div className="mb-6">
                   <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-black text-white text-xs font-bold mb-3 shadow-sm">
