@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ShieldCheck } from 'lucide-react';
 
 const CARD_VIDEOS = [
   'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260506_030111_a9e15665-d379-4a7f-8116-695bbe452ad1.mp4',
@@ -161,7 +161,7 @@ export default function Services({ lang, setView, onBookConsultation }: Services
 
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
-      targetProgress.current += e.deltaY * 0.0018;
+      targetProgress.current += e.deltaY * 0.0015;
     };
 
     const handleTouchStart = (e: TouchEvent) => {
@@ -172,7 +172,7 @@ export default function Services({ lang, setView, onBookConsultation }: Services
     const handleTouchMove = (e: TouchEvent) => {
       if (!isDragging.current) return;
       const deltaY = startTouchY.current - e.touches[0].clientY;
-      targetProgress.current += deltaY * 0.005;
+      targetProgress.current += deltaY * 0.004;
       startTouchY.current = e.touches[0].clientY;
     };
 
@@ -184,7 +184,7 @@ export default function Services({ lang, setView, onBookConsultation }: Services
       const w = window.innerWidth;
       const h = window.innerHeight;
 
-      let cardW = Math.round(w * 0.16 + 160);
+      let cardW = Math.round(w * 0.18 + 150);
       const heightFactor = Math.min(1.0, Math.max(0.65, h / 850));
       cardW = Math.round(cardW * heightFactor);
       cardW = Math.min(380, Math.max(280, cardW));
@@ -214,13 +214,11 @@ export default function Services({ lang, setView, onBookConsultation }: Services
     };
   }, []);
 
-  // Compute positions, rotations, and visual rules at 60fps
+  // Optimized lightweight 60fps render loop
   const renderLoop = () => {
-    // Upward flow speed of continuous transition
-    targetProgress.current += 0.0016;
+    targetProgress.current += 0.0012;
     progress.current += (targetProgress.current - progress.current) * 0.08;
 
-    // Smoothly interpolate mouse tilt
     mouse.current.x += (mouse.current.targetX - mouse.current.x) * 0.08;
     mouse.current.y += (mouse.current.targetY - mouse.current.y) * 0.08;
 
@@ -232,7 +230,6 @@ export default function Services({ lang, setView, onBookConsultation }: Services
     const roundedIndex = Math.round(continuousProgress);
     const diffFromRound = continuousProgress - roundedIndex;
     
-    // Non-linear dwell logic
     const easedDiff = Math.sign(diffFromRound) * Math.pow(Math.abs(diffFromRound) * 2, 4.2) / 2;
     const virtualActiveIndex = roundedIndex + easedDiff;
 
@@ -249,10 +246,10 @@ export default function Services({ lang, setView, onBookConsultation }: Services
       const sign = Math.sign(offset);
 
       if (absOffset > 3.0) {
-        card.style.visibility = 'hidden';
+        card.style.display = 'none';
         continue;
       } else {
-        card.style.visibility = 'visible';
+        card.style.display = 'block';
       }
 
       const gap = 36;
@@ -307,8 +304,8 @@ export default function Services({ lang, setView, onBookConsultation }: Services
       const localCardRotation = -sign * rot;
       const centerFactor = Math.max(0, 1 - absOffset);
 
-      const maxTiltY = 15;
-      const maxTiltX = 12;
+      const maxTiltY = 14;
+      const maxTiltX = 10;
       const activeTiltX = -mouse.current.y * maxTiltX * centerFactor;
       const activeTiltY = mouse.current.x * maxTiltY * centerFactor;
 
@@ -316,9 +313,8 @@ export default function Services({ lang, setView, onBookConsultation }: Services
       const totalRotY = activeTiltY;
 
       card.style.zIndex = Math.round(z).toString();
-      card.style.opacity = `${Math.min(1, 0.4 + centerFactor * 0.6)}`;
-
-      card.style.transform = `translateY(${y.toFixed(2)}px) translateZ(${z.toFixed(2)}px) rotateX(${totalRotX.toFixed(2)}deg) rotateY(${totalRotY.toFixed(2)}deg) rotateZ(-3deg)`;
+      card.style.opacity = `${Math.min(1, 0.45 + centerFactor * 0.55)}`;
+      card.style.transform = `translate3d(0, ${y.toFixed(1)}px, ${z.toFixed(1)}px) rotateX(${totalRotX.toFixed(1)}deg) rotateY(${totalRotY.toFixed(1)}deg) rotateZ(-3deg)`;
     }
   };
 
@@ -332,45 +328,44 @@ export default function Services({ lang, setView, onBookConsultation }: Services
     return () => cancelAnimationFrame(frameId.current);
   }, [metrics]);
 
-  const thicknessLayers = [-1.47, -0.73, 0, 0.73, 1.47];
   const handleConsultation = onBookConsultation || (() => setView('contact'));
 
   return (
-    <div className="relative w-screen h-screen bg-[#000000] text-white flex items-center justify-center overflow-hidden select-none font-sans" dir={isRtl ? 'rtl' : 'ltr'}>
+    <div className="relative w-screen h-screen bg-[#F5F5F5] text-black flex items-center justify-center overflow-hidden select-none font-sans" dir={isRtl ? 'rtl' : 'ltr'}>
       
       {/* Top Navbar */}
       <nav className="absolute top-0 left-0 right-0 z-50 px-6 py-5 flex items-center justify-between pointer-events-none">
         <div className="max-w-[88rem] mx-auto w-full flex items-center justify-between">
           <button 
             onClick={() => setView('home')} 
-            className="pointer-events-auto inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-xl px-5 py-2.5 rounded-full border border-white/15 shadow-md text-white transition-all duration-200"
+            className="pointer-events-auto inline-flex items-center gap-2 bg-white/80 hover:bg-white backdrop-blur-xl px-5 py-2.5 rounded-full border border-black/5 shadow-md text-black transition-all duration-200"
           >
             <BackIcon className="w-5 h-5" />
             <span className="font-semibold text-sm">{isRtl ? 'الرئيسية' : 'Home'}</span>
           </button>
 
           <div className="pointer-events-none text-center">
-            <h1 className="text-xl md:text-2xl font-bold tracking-tight text-white/90">
+            <h1 className="text-xl md:text-2xl font-bold tracking-tight text-black">
               {isRtl ? 'خدماتنا المهنية' : 'Our Professional Services'}
             </h1>
-            <p className="text-[11px] text-white/50 hidden sm:block">
+            <p className="text-xs text-black/60 hidden sm:block font-medium">
               {isRtl ? 'أحمد الشربيني وشركاه - محاسبون ومراجعون قانونيون' : 'Ahmed El Sherbiny & Co. Certified Public Accountants'}
             </p>
           </div>
 
           <button 
             onClick={handleConsultation}
-            className="pointer-events-auto bg-white text-black px-5 py-2.5 rounded-full text-xs md:text-sm font-bold hover:bg-white/90 transition-all shadow-md hover:scale-105"
+            className="pointer-events-auto bg-black text-white px-5 py-2.5 rounded-full text-xs md:text-sm font-bold hover:bg-black/80 transition-all shadow-md hover:scale-105"
           >
             {isRtl ? 'احجز استشارة' : 'Book Consultation'}
           </button>
         </div>
       </nav>
 
-      {/* Floating Bottom Helper / Action Bar */}
-      <div className="absolute bottom-6 inset-x-6 z-40 flex items-center justify-between max-w-xl mx-auto pointer-events-none">
-        <div className="bg-white/10 backdrop-blur-xl border border-white/15 px-4 py-2 rounded-full text-xs text-white/80 shadow-lg mx-auto flex items-center gap-2">
-          <span>{isRtl ? '🖱️ حرّك بالماوس أو مرّر (Scroll) لتصفح الخدمات' : '🖱️ Move mouse or scroll to explore services'}</span>
+      {/* Floating Bottom Helper */}
+      <div className="absolute bottom-6 inset-x-6 z-40 flex items-center justify-center pointer-events-none">
+        <div className="bg-white/90 backdrop-blur-xl border border-black/10 px-5 py-2.5 rounded-full text-xs font-semibold text-black/80 shadow-xl flex items-center gap-2">
+          <span>{isRtl ? '🖱️ حرّك بالماوس أو مرّر (Scroll) لتصفح كروت الخدمات' : '🖱️ Move mouse or scroll to explore service cards'}</span>
         </div>
       </div>
 
@@ -394,7 +389,7 @@ export default function Services({ lang, setView, onBookConsultation }: Services
             <div
               key={service.id}
               ref={(el) => { cardsRefs.current[i] = el; }}
-              className="absolute inset-0"
+              className="absolute inset-0 will-change-transform"
               style={{
                 width: `${metrics.cardW}px`,
                 height: `${metrics.cardH}px`,
@@ -402,163 +397,118 @@ export default function Services({ lang, setView, onBookConsultation }: Services
                 backfaceVisibility: 'visible',
               }}
             >
-              {/* Build physical 3D volumetric thickness by dense parallel layering */}
-              {thicknessLayers.map((zOffset, layerIdx) => {
-                const isFrontFace = layerIdx === thicknessLayers.length - 1;
-                const isBackFace = layerIdx === 0;
+              {/* Front face slice */}
+              <div
+                className="absolute inset-0 rounded-[22px] border-2 border-white/20 pointer-events-none overflow-hidden shadow-2xl bg-black"
+                style={{
+                  transform: 'translateZ(1.5px)',
+                  backfaceVisibility: 'hidden',
+                }}
+              >
+                <video
+                  src={CARD_VIDEOS[i % CARD_VIDEOS.length]}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover rounded-[22px] filter contrast-[1.05]"
+                />
 
-                const videoSrc = CARD_VIDEOS[i % CARD_VIDEOS.length];
-                const baseBgColor = '#0f0f0f';
+                {/* Dark Gradient Overlay for readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/35 z-10" />
 
-                // Middle structural slice
-                if (!isFrontFace && !isBackFace) {
-                  return (
-                    <div
-                      key={layerIdx}
-                      className="absolute inset-0 rounded-[20px] border border-[#808080] pointer-events-none overflow-hidden"
-                      style={{
-                        backgroundColor: '#808080',
-                        transform: `translateZ(${zOffset}px)`,
-                      }}
-                    />
-                  );
-                }
-
-                // Front face slice
-                if (isFrontFace) {
-                  return (
-                    <div
-                      key={layerIdx}
-                      className="absolute inset-0 rounded-[20px] border border-white/20 pointer-events-none overflow-hidden shadow-2xl"
-                      style={{
-                        backgroundColor: baseBgColor,
-                        transform: `translateZ(${zOffset}px)`,
-                        backfaceVisibility: 'hidden',
-                        boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.2)',
-                      }}
-                    >
-                      <video
-                        src={videoSrc}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="absolute inset-0 w-full h-full object-cover rounded-[20px] filter contrast-[1.05]"
-                      />
-
-                      {/* Dark Gradient Overlay for readability */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/30 z-10" />
-
-                      <div className="absolute inset-0 p-5 sm:p-6 text-white h-full w-full font-sans z-20 flex flex-col justify-between" dir={isRtl ? 'rtl' : 'ltr'}>
-                        {/* Top Header on Card */}
-                        <div className="flex items-center justify-between">
-                          {/* Silver Metallic Contact Chip */}
-                          <div className="w-8 h-8 sm:w-9 sm:h-9">
-                            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                              <path
-                                fillRule="evenodd"
-                                clipRule="evenodd"
-                                d="M20 8H40V14C40.0016 14.5299 40.2128 15.0377 40.5875 15.4125C40.9623 15.7872 41.4701 15.9984 42 16H59V24H42C41.4701 24.0016 40.9623 24.2128 40.5875 24.5875C40.2128 24.9623 40.0016 25.4701 40 26V52H20V8ZM18 8H8.00039C4.47435 8 1.56576 10.6083 1.08 14H18V8ZM1 16V24V26V34V36V44H18V36H1V34H18V26H1V24H18V16H1ZM1.08 46C1.56576 49.3917 4.47435 52 8.00039 52H18V46H1.08ZM42 14V8H52.0004C55.5264 8 58.4342 10.6084 58.92 14H42ZM59 26H42V34H59V26ZM59 36H42V44H59V36ZM52.0004 52H42V46H58.92C58.4342 49.3916 55.5264 52 52.0004 52Z"
-                                fill={`url(#chip_grad_${i})`}
-                              />
-                              <defs>
-                                <linearGradient id={`chip_grad_${i}`} x1="30" y1="8" x2="30" y2="52" gradientUnits="userSpaceOnUse">
-                                  <stop stopColor="white" />
-                                  <stop offset="1" stopColor="#999999" />
-                                </linearGradient>
-                              </defs>
-                            </svg>
-                          </div>
-
-                          {/* Category Badge / Logo */}
-                          <div className="flex items-center gap-2">
-                            <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/20 text-[10px] sm:text-xs font-bold text-white tracking-wide">
-                              {service.category}
-                            </span>
-                            <img src="/logo.png" alt="Logo" className="h-6 w-auto object-contain brightness-0 invert opacity-80" />
-                          </div>
-                        </div>
-
-                        {/* Middle Content */}
-                        <div className="my-auto py-1">
-                          <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5 tracking-tight drop-shadow-md">
-                            {service.title}
-                          </h3>
-                          <p className="text-[11px] sm:text-xs text-white/85 leading-relaxed font-normal line-clamp-2 drop-shadow-sm">
-                            {service.shortDesc}
-                          </p>
-                        </div>
-
-                        {/* Bottom Footer on Card */}
-                        <div className="flex items-end justify-between pt-2 border-t border-white/15">
-                          <div className="font-mono text-[10px] sm:text-[11px] font-medium tracking-widest text-white/90">
-                            {service.cardNumber}
-                          </div>
-                          
-                          {/* Intersecting Circles */}
-                          <div className="flex -space-x-2.5 items-center opacity-85">
-                            <div className="w-5 h-5 rounded-full bg-white/30 backdrop-blur-[1px] border border-white/20" />
-                            <div className="w-5 h-5 rounded-full bg-white/50 backdrop-blur-[1px] border border-white/20" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                }
-
-                // Back face slice
-                if (isBackFace) {
-                  return (
-                    <div
-                      key={layerIdx}
-                      className="absolute inset-0 rounded-[20px] border border-white/20 pointer-events-none overflow-hidden"
-                      style={{
-                        backgroundColor: baseBgColor,
-                        transform: `translateZ(${zOffset}px) rotateX(180deg)`,
-                        backfaceVisibility: 'hidden',
-                        boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.2)',
-                      }}
-                    >
-                      {/* Render Video with blur */}
-                      <div className="absolute inset-0 pointer-events-none" style={{ filter: 'blur(16px)', transform: 'scale(1.15)' }}>
-                        <video
-                          src={videoSrc}
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          className="absolute inset-0 w-full h-full object-cover"
+                <div className="absolute inset-0 p-5 sm:p-6 text-white h-full w-full font-sans z-20 flex flex-col justify-between" dir={isRtl ? 'rtl' : 'ltr'}>
+                  {/* Top Header on Card */}
+                  <div className="flex items-center justify-between">
+                    {/* Metallic Contact Chip */}
+                    <div className="w-8 h-8 sm:w-9 sm:h-9">
+                      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M20 8H40V14C40.0016 14.5299 40.2128 15.0377 40.5875 15.4125C40.9623 15.7872 41.4701 15.9984 42 16H59V24H42C41.4701 24.0016 40.9623 24.2128 40.5875 24.5875C40.2128 24.9623 40.0016 25.4701 40 26V52H20V8ZM18 8H8.00039C4.47435 8 1.56576 10.6083 1.08 14H18V8ZM1 16V24V26V34V36V44H18V36H1V34H18V26H1V24H18V16H1ZM1.08 46C1.56576 49.3917 4.47435 52 8.00039 52H18V46H1.08ZM42 14V8H52.0004C55.5264 8 58.4342 10.6084 58.92 14H42ZM59 26H42V34H59V26ZM59 36H42V44H59V36ZM52.0004 52H42V46H58.92C58.4342 49.3916 55.5264 52 52.0004 52Z"
+                          fill="url(#chip_grad)"
                         />
-                      </div>
-
-                      {/* Magnetic stripe */}
-                      <div className="absolute left-0 right-0 top-4 h-7 sm:h-8 bg-black/90 backdrop-blur-md z-10" />
-
-                      {/* Details on Back Face */}
-                      <div className="absolute inset-x-5 top-14 bottom-4 z-20 flex flex-col justify-between text-white" dir={isRtl ? 'rtl' : 'ltr'}>
-                        <ul className="space-y-1.5 text-[10px] sm:text-xs text-white/90 leading-tight">
-                          {service.bullets.map((b, idx) => (
-                            <li key={idx} className="flex items-center gap-1.5">
-                              <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                              <span>{b}</span>
-                            </li>
-                          ))}
-                        </ul>
-
-                        <div 
-                          className="pt-2 border-t border-white/15 flex items-center justify-between text-[9px] sm:text-[10px] text-white/70 font-mono"
-                          style={{ fontFamily: '"JetBrains Mono", monospace' }}
-                        >
-                          <span className="uppercase tracking-wide">{service.client}</span>
-                          <span>CVV: {service.id}09</span>
-                        </div>
-                      </div>
+                        <defs>
+                          <linearGradient id="chip_grad" x1="30" y1="8" x2="30" y2="52" gradientUnits="userSpaceOnUse">
+                            <stop stopColor="#F5F5F5" />
+                            <stop offset="1" stopColor="#999999" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
                     </div>
-                  );
-                }
 
-                return null;
-              })}
+                    {/* Category Badge / Logo */}
+                    <div className="flex items-center gap-2">
+                      <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/20 text-[10px] sm:text-xs font-bold text-white tracking-wide">
+                        {service.category}
+                      </span>
+                      <img src="/logo.png" alt="Logo" className="h-6 w-auto object-contain brightness-0 invert opacity-90" />
+                    </div>
+                  </div>
+
+                  {/* Middle Content */}
+                  <div className="my-auto py-1">
+                    <h3 className="text-lg sm:text-xl font-extrabold text-white mb-1 tracking-tight drop-shadow-md">
+                      {service.title}
+                    </h3>
+                    <p className="text-[11px] sm:text-xs text-white/85 leading-relaxed font-medium line-clamp-2 drop-shadow-sm">
+                      {service.shortDesc}
+                    </p>
+                  </div>
+
+                  {/* Bottom Footer on Card */}
+                  <div className="flex items-end justify-between pt-2 border-t border-white/15">
+                    <div className="font-mono text-[10px] sm:text-[11px] font-medium tracking-widest text-white/90">
+                      {service.cardNumber}
+                    </div>
+                    
+                    {/* Intersecting Circles */}
+                    <div className="flex -space-x-2.5 items-center opacity-85">
+                      <div className="w-5 h-5 rounded-full bg-white/30 backdrop-blur-[1px] border border-white/20" />
+                      <div className="w-5 h-5 rounded-full bg-white/50 backdrop-blur-[1px] border border-white/20" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Back face slice (Lightweight performance optimized) */}
+              <div
+                className="absolute inset-0 rounded-[22px] border-2 border-white/15 pointer-events-none overflow-hidden bg-gradient-to-br from-[#1c1c1e] to-[#0a0a0c] shadow-2xl"
+                style={{
+                  transform: 'translateZ(-1.5px) rotateX(180deg)',
+                  backfaceVisibility: 'hidden',
+                }}
+              >
+                {/* Magnetic stripe */}
+                <div className="absolute left-0 right-0 top-4 h-7 sm:h-8 bg-black z-10 border-y border-white/10" />
+
+                {/* Details on Back Face */}
+                <div className="absolute inset-x-5 top-14 bottom-4 z-20 flex flex-col justify-between text-white" dir={isRtl ? 'rtl' : 'ltr'}>
+                  <div className="space-y-1.5 pt-1">
+                    <div className="inline-flex items-center gap-1 text-[10px] text-white/60 font-semibold mb-1">
+                      <ShieldCheck className="w-3 h-3 text-white" />
+                      <span>{isRtl ? 'تفاصيل الخدمة' : 'Key Capabilities'}</span>
+                    </div>
+                    <ul className="space-y-1.5 text-[10px] sm:text-xs text-white/90 leading-tight">
+                      {service.bullets.map((b, idx) => (
+                        <li key={idx} className="flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div 
+                    className="pt-2 border-t border-white/15 flex items-center justify-between text-[9px] sm:text-[10px] text-white/70 font-mono"
+                    style={{ fontFamily: '"JetBrains Mono", monospace' }}
+                  >
+                    <span className="uppercase tracking-wide">{service.client}</span>
+                    <span>CVV: {service.id}09</span>
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
