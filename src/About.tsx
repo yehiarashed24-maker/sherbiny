@@ -217,6 +217,26 @@ export default function About({ lang, setView }: AboutProps) {
         </h2>
       </div>
 
+      {/* Founder Panel */}
+      <div className={`absolute top-24 left-6 right-6 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 lg:w-[380px] z-[80] pointer-events-auto ${isRtl ? 'lg:left-12 lg:right-auto' : 'lg:right-12 lg:left-auto'}`}>
+        <div className="bg-white/40 backdrop-blur-2xl border border-white/50 p-6 md:p-8 rounded-3xl shadow-xl text-center transition-transform hover:scale-[1.02] duration-300 flex flex-col items-center">
+          <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-white/80 shadow-md mb-4 shrink-0 bg-white">
+            <img src="/founder.jpg" alt="Ahmed El Sherbiny" className="w-full h-full object-cover object-top" />
+          </div>
+          <h3 className="text-xl md:text-2xl font-bold text-black mb-1">
+            {isRtl ? 'أحمد الشربيني' : 'Ahmed El Sherbiny'}
+          </h3>
+          <p className="text-sm md:text-[15px] font-medium text-black/80 mb-3 drop-shadow-sm">
+            {isRtl ? 'مؤسس ومدير الشركة' : 'Founder & Managing Director'}
+          </p>
+          <p className="text-xs md:text-sm leading-relaxed text-black/70 drop-shadow-sm text-center">
+            {isRtl 
+              ? 'محاسب قانوني وخبير ضرائب بخبرة تمتد لعقود في تقديم الاستشارات المالية للشركات الكبرى، وتأسيس أنظمة محاسبية متكاملة لدعم الاقتصاد.' 
+              : 'Certified Public Accountant and tax expert with decades of experience providing financial consulting for major companies and establishing integrated accounting systems.'}
+          </p>
+        </div>
+      </div>
+
       {/* Information Panel (Objectives) */}
       <div className={`absolute bottom-6 left-6 right-6 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 lg:w-[420px] z-[80] pointer-events-auto ${isRtl ? 'lg:right-12 lg:left-auto' : 'lg:left-12 lg:right-auto'}`}>
         <div className="bg-white/40 backdrop-blur-2xl border border-white/50 p-6 md:p-8 rounded-3xl shadow-xl text-left rtl:text-right transition-transform hover:scale-[1.02] duration-300">
