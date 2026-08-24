@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { LangType } from './language-selector';
 
 interface SocialStackCardProps {
@@ -9,8 +9,33 @@ interface SocialStackCardProps {
 export default function SocialStackCard({ lang = 'ar', isRtl = true }: SocialStackCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   const title = 'Socials';
+
+  // IntersectionObserver: On mobile/scroll, automatically open the card when scrolled into view
+  useEffect(() => {
+    const cardEl = cardRef.current;
+    if (!cardEl) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // If device is touch/mobile (or when scrolling into view), trigger automatic open
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+          setIsOpen(true);
+        } else if (!entry.isIntersecting) {
+          setIsOpen(false);
+          setActiveTooltip(null);
+        }
+      },
+      {
+        threshold: [0, 0.35, 0.7]
+      }
+    );
+
+    observer.observe(cardEl);
+    return () => observer.disconnect();
+  }, []);
 
   const layers = [
     {
@@ -96,7 +121,8 @@ export default function SocialStackCard({ lang = 'ar', isRtl = true }: SocialSta
     <div className="flex flex-col items-center gap-4 w-full max-w-xs mx-auto select-none">
       {/* The 3D Interactive Squircle Stack Card */}
       <div
-        className="relative w-60 h-60 sm:w-68 sm:h-68 md:w-72 md:h-72 rounded-[32px] sm:rounded-[36px] p-5 sm:p-6 flex flex-col justify-between overflow-hidden shadow-2xl transition-all duration-500 cursor-pointer group border-2 border-white/20 hover:border-white/40 active:scale-[0.99] touch-manipulation"
+        ref={cardRef}
+        className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-[36px] sm:rounded-[42px] p-6 sm:p-7 flex flex-col justify-between overflow-hidden shadow-2xl transition-all duration-500 cursor-pointer group border-2 border-white/25 hover:border-white/50 active:scale-[0.99] touch-manipulation"
         style={{
           background: 'linear-gradient(135deg, #7c3aed 0%, #a855f7 35%, #ec4899 70%, #f97316 100%)',
           boxShadow: isOpen
@@ -123,10 +149,10 @@ export default function SocialStackCard({ lang = 'ar', isRtl = true }: SocialSta
         {/* Header "Socials" Text */}
         <div className="relative z-30 flex items-start justify-between w-full pointer-events-none">
           <div
-            className={`font-extrabold text-white text-2xl sm:text-3xl tracking-tight transition-all duration-500 drop-shadow-md ${
+            className={`font-extrabold text-white text-2xl sm:text-3xl md:text-4xl tracking-tight transition-all duration-500 drop-shadow-md ${
               isOpen
-                ? isRtl ? 'translate-y-0 text-right w-full flex justify-end opacity-95' : 'translate-y-0 text-right w-full flex justify-end opacity-95'
-                : 'translate-y-16 sm:translate-y-20 w-full text-center opacity-100'
+                ? 'translate-y-0 text-right w-full flex justify-end opacity-95'
+                : 'translate-y-20 sm:translate-y-24 w-full text-center opacity-100'
             }`}
           >
             {title}
@@ -162,8 +188,8 @@ export default function SocialStackCard({ lang = 'ar', isRtl = true }: SocialSta
                 onMouseLeave={() => setActiveTooltip(null)}
                 className={`absolute border-2 shadow-lg transition-all duration-500 ease-out flex ${
                   isRtl
-                    ? 'bottom-0 right-0 rounded-tl-[28px] rounded-tr-[16px] rounded-bl-[12px] items-start justify-start p-2 sm:p-2.5'
-                    : 'bottom-0 left-0 rounded-tr-[28px] rounded-tl-[16px] rounded-br-[12px] items-start justify-end p-2 sm:p-2.5'
+                    ? 'bottom-0 right-0 rounded-tl-[32px] rounded-tr-[18px] rounded-bl-[14px] items-start justify-start p-2.5 sm:p-3'
+                    : 'bottom-0 left-0 rounded-tr-[32px] rounded-tl-[18px] rounded-br-[14px] items-start justify-end p-2.5 sm:p-3'
                 } ${
                   isOpen
                     ? 'pointer-events-auto opacity-100 hover:brightness-110 active:scale-95'
@@ -195,27 +221,9 @@ export default function SocialStackCard({ lang = 'ar', isRtl = true }: SocialSta
         {/* Bottom Subtle Indicator */}
         <div className={`relative z-20 transition-opacity duration-300 text-center pointer-events-none ${isOpen ? 'opacity-0' : 'opacity-85'}`}>
           <span className="text-[10px] sm:text-[11px] font-semibold text-white/90 bg-black/25 backdrop-blur-md px-3 py-1 rounded-full border border-white/15 shadow-sm">
-            {isRtl ? 'اضغط أو مرر للاستعراض' : 'Tap or hover to explore'}
+            {isRtl ? 'مرر المؤشر للاستعراض' : 'Hover to explore'}
           </span>
         </div>
-      </div>
-
-      {/* Mobile-Friendly Quick Access Social Pills (for instant 1-tap navigation on phones) */}
-      <div className="flex items-center justify-center gap-2 sm:gap-2.5 pt-1 flex-wrap">
-        {layers.map((item) => (
-          <a
-            key={`pill-${item.id}`}
-            href={item.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-white shadow-md hover:scale-110 active:scale-95 transition-all border border-white/20"
-            style={{ background: item.bg }}
-            title={lang === 'ar' ? item.arName : item.name}
-            aria-label={item.name}
-          >
-            {item.icon}
-          </a>
-        ))}
       </div>
     </div>
   );
