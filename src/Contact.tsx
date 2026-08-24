@@ -12,12 +12,6 @@ const BRANCHES: Record<LangType, { city: string; address: string; phones: string
       mapUrl: 'https://www.google.com/maps/search/?api=1&query=59+Media+City%2C+Agouza%2C+Giza%2C+Cairo'
     },
     {
-      city: 'Alexandria',
-      address: 'Concorde Tower - Raml Station',
-      phones: ['+20 348 060 50'],
-      mapUrl: 'https://www.google.com/maps/search/?api=1&query=Concorde+Tower+Raml+Station+Alexandria'
-    },
-    {
       city: 'Mansoura',
       address: 'Al Hegaz Tower - Tamyouhi Square',
       phones: ['+20 502 269 057'],
@@ -30,12 +24,6 @@ const BRANCHES: Record<LangType, { city: string; address: string; phones: string
       address: '59 مدينة الإعلام - العجوزة، القاهرة',
       phones: ['+20 222 718 131', '+20 120 537 3330', '33470139 (02)'],
       mapUrl: 'https://www.google.com/maps/search/?api=1&query=59+Media+City%2C+Agouza%2C+Giza%2C+Cairo'
-    },
-    {
-      city: 'الأسكندرية',
-      address: 'برج كونكورد - محطة الرمل',
-      phones: ['+20 348 060 50'],
-      mapUrl: 'https://www.google.com/maps/search/?api=1&query=Concorde+Tower+Raml+Station+Alexandria'
     },
     {
       city: 'المنصورة',
@@ -52,12 +40,6 @@ const BRANCHES: Record<LangType, { city: string; address: string; phones: string
       mapUrl: 'https://www.google.com/maps/search/?api=1&query=59+Media+City%2C+Agouza%2C+Giza%2C+Cairo'
     },
     {
-      city: 'Alexandrie',
-      address: 'Tour Concorde - Station Raml',
-      phones: ['+20 348 060 50'],
-      mapUrl: 'https://www.google.com/maps/search/?api=1&query=Concorde+Tower+Raml+Station+Alexandria'
-    },
-    {
       city: 'Mansourah',
       address: 'Tour Al Hegaz - Place Tamyouhi',
       phones: ['+20 502 269 057'],
@@ -72,12 +54,6 @@ const BRANCHES: Record<LangType, { city: string; address: string; phones: string
       mapUrl: 'https://www.google.com/maps/search/?api=1&query=59+Media+City%2C+Agouza%2C+Giza%2C+Cairo'
     },
     {
-      city: 'İskenderiye',
-      address: 'Concorde Kulesi - Raml İstasyonu',
-      phones: ['+20 348 060 50'],
-      mapUrl: 'https://www.google.com/maps/search/?api=1&query=Concorde+Tower+Raml+Station+Alexandria'
-    },
-    {
       city: 'Mansura',
       address: 'Al Hegaz Kulesi - Tamyouhi Meydanı',
       phones: ['+20 502 269 057'],
@@ -90,7 +66,6 @@ const DIRECT_PHONES = [
   { label: 'Hotline / WhatsApp', phone: '+20 122 323 3620', isPrimary: true },
   { label: 'Cairo Office', phone: '+20 222 718 131' },
   { label: 'Cairo Mobile', phone: '+20 120 537 3330' },
-  { label: 'Alexandria Office', phone: '+20 348 060 50' },
   { label: 'Mansoura Office', phone: '+20 502 269 057' }
 ];
 
