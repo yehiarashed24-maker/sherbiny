@@ -237,7 +237,11 @@ const App = () => {
           <div className="flex items-center justify-between max-w-[88rem] mx-auto">
             {/* Logo */}
             <div className="flex items-center gap-2.5 sm:gap-3 cursor-pointer" onClick={() => setView('home')}>
-              <img src="/logo.png" alt="Ahmed El Sherbiny" className="h-9 sm:h-11 md:h-12 w-auto object-contain" />
+              <img
+                src={lang === 'ar' ? '/logo.png' : '/logo-en.png'}
+                alt={t.brandName}
+                className="h-9 sm:h-11 md:h-12 w-auto object-contain"
+              />
               <div className="flex flex-col">
                 <span className="text-base sm:text-lg md:text-xl font-bold tracking-tight text-black leading-tight">
                   {t.brandName}

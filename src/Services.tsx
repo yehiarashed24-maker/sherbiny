@@ -575,7 +575,11 @@ export default function Services({ lang, setView, onBookConsultation }: Services
                       <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/20 text-[10px] sm:text-xs font-bold text-white tracking-wide">
                         {service.category}
                       </span>
-                      <img src="/logo.png" alt="Logo" className="h-6 w-auto object-contain brightness-0 invert opacity-90" />
+                      <img
+                        src={lang === 'ar' ? '/logo.png' : '/logo-en.png'}
+                        alt="Logo"
+                        className="h-6 w-auto object-contain brightness-0 invert opacity-90"
+                      />
                     </div>
                   </div>
 

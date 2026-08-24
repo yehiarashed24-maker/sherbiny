@@ -84,7 +84,11 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
           {/* Brand */}
           <div className="col-span-1 md:col-span-1 flex flex-col items-start">
             <div className="flex items-center gap-3 mb-4 bg-white/10 p-2.5 rounded-2xl backdrop-blur-sm">
-              <img src="/logo.png" alt="Ahmed El Sherbiny" className="h-10 w-auto object-contain brightness-0 invert" />
+              <img
+                src={lang === 'ar' ? '/logo.png' : '/logo-en.png'}
+                alt={t.name}
+                className="h-10 w-auto object-contain brightness-0 invert"
+              />
             </div>
             <h3 className="text-xl font-bold mb-1">
               {t.name}
