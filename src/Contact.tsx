@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { ArrowLeft, ArrowRight, MapPin, Phone, Mail, Clock, Send, ExternalLink, MessageCircle } from 'lucide-react';
 import Footer from './components/ui/footer';
+import type { LangType } from './components/ui/language-selector';
 
-const BRANCHES = {
+const BRANCHES: Record<LangType, { city: string; address: string; phones: string[]; mapUrl: string }[]> = {
   en: [
     {
       city: 'Cairo (Headquarters)',
@@ -42,6 +43,46 @@ const BRANCHES = {
       phones: ['+20 502 269 057'],
       mapUrl: 'https://www.google.com/maps/search/?api=1&query=Al+Hegaz+Tower+Tamyouhi+Square+Mansoura'
     }
+  ],
+  fr: [
+    {
+      city: 'Le Caire (Siège Principal)',
+      address: '59 Cité des Médias - Agouza, Le Caire',
+      phones: ['+20 222 718 131', '+20 120 537 3330', '+20 233 470 139'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=59+Media+City%2C+Agouza%2C+Giza%2C+Cairo'
+    },
+    {
+      city: 'Alexandrie',
+      address: 'Tour Concorde - Station Raml',
+      phones: ['+20 348 060 50'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=Concorde+Tower+Raml+Station+Alexandria'
+    },
+    {
+      city: 'Mansourah',
+      address: 'Tour Al Hegaz - Place Tamyouhi',
+      phones: ['+20 502 269 057'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=Al+Hegaz+Tower+Tamyouhi+Square+Mansoura'
+    }
+  ],
+  tr: [
+    {
+      city: 'Kahire (Genel Merkez)',
+      address: '59 Medya Şehri - Agouza, Kahire',
+      phones: ['+20 222 718 131', '+20 120 537 3330', '+20 233 470 139'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=59+Media+City%2C+Agouza%2C+Giza%2C+Cairo'
+    },
+    {
+      city: 'İskenderiye',
+      address: 'Concorde Kulesi - Raml İstasyonu',
+      phones: ['+20 348 060 50'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=Concorde+Tower+Raml+Station+Alexandria'
+    },
+    {
+      city: 'Mansura',
+      address: 'Al Hegaz Kulesi - Tamyouhi Meydanı',
+      phones: ['+20 502 269 057'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=Al+Hegaz+Tower+Tamyouhi+Square+Mansoura'
+    }
   ]
 };
 
@@ -53,7 +94,20 @@ const DIRECT_PHONES = [
   { label: 'Mansoura Office', phone: '+20 502 269 057' }
 ];
 
-const CONTACT_INFO = {
+const CONTACT_INFO: Record<LangType, {
+  title: string;
+  subtitle: string;
+  workingHoursTitle: string;
+  workingHours: string;
+  branchesTitle: string;
+  phonesTitle: string;
+  emailTitle: string;
+  emails: string[];
+  openMap: string;
+  callNow: string;
+  form: { name: string; email: string; phone: string; message: string; submit: string };
+  back: string;
+}> = {
   en: {
     title: 'Get in Touch',
     subtitle: 'We are here to answer any questions you may have about our financial and tax consulting services. Reach out to us and we\'ll respond promptly.',
@@ -93,15 +147,56 @@ const CONTACT_INFO = {
       submit: 'إرسال الرسالة'
     },
     back: 'العودة'
+  },
+  fr: {
+    title: 'Contactez-nous',
+    subtitle: "Nous sommes à votre disposition pour répondre à toutes vos questions relatives à nos services d'audit, de fiscalité et de création d'entreprises en Égypte.",
+    workingHoursTitle: "Horaires d'Ouverture",
+    workingHours: "Du Samedi au Jeudi, de 9h00 à 21h00. Notre équipe d'experts répond à vos demandes sous 4 heures.",
+    branchesTitle: 'Nos Agences & Adresses',
+    phonesTitle: 'Lignes Téléphoniques Directes',
+    emailTitle: 'Contact Email',
+    emails: ['Sherbiny.co@gmail.com', 'A.elsherbiny@yahoo.com'],
+    openMap: 'Ouvrir dans Google Maps',
+    callNow: 'Appeler',
+    form: {
+      name: 'Nom Complet',
+      email: 'Adresse Email',
+      phone: 'Numéro de Téléphone',
+      message: 'Votre Message',
+      submit: 'Envoyer le Message'
+    },
+    back: 'Retour'
+  },
+  tr: {
+    title: 'İletişime Geçin',
+    subtitle: "Mısır'daki mali müşavirlik, şirket kuruluşu ve vergi danışmanlığı hizmetlerimiz hakkında sorularınız için bize ulaşın.",
+    workingHoursTitle: 'Çalışma Saatleri',
+    workingHours: 'Cumartesi - Perşembe: 09:00 - 21:00. Ekibimiz sorularınıza en geç 4 saat içinde dönüş sağlamaktadır.',
+    branchesTitle: 'Şubelerimiz ve Adreslerimiz',
+    phonesTitle: 'Doğrudan İletişim Hatları',
+    emailTitle: 'E-posta',
+    emails: ['Sherbiny.co@gmail.com', 'A.elsherbiny@yahoo.com'],
+    openMap: "Google Haritalar'da Aç",
+    callNow: 'Ara',
+    form: {
+      name: 'Ad Soyad',
+      email: 'E-posta Adresi',
+      phone: 'Telefon Numarası',
+      message: 'Mesajınız',
+      submit: 'Mesajı Gönder'
+    },
+    back: 'Geri'
   }
 };
 
 interface ContactProps {
-  lang: 'en' | 'ar';
+  lang: LangType;
   setView: (view: 'home' | 'about' | 'contact' | 'services' | 'laws') => void;
+  onBookConsultation?: () => void;
 }
 
-export default function Contact({ lang, setView }: ContactProps) {
+export default function Contact({ lang, setView, onBookConsultation }: ContactProps) {
   const isRtl = lang === 'ar';
   const BackIcon = isRtl ? ArrowRight : ArrowLeft;
   const t = CONTACT_INFO[lang];
@@ -366,7 +461,7 @@ export default function Contact({ lang, setView }: ContactProps) {
           </div>
         </div>
       </div>
-      <Footer isRtl={isRtl} setView={setView} />
+      <Footer isRtl={isRtl} lang={lang} setView={setView} />
     </div>
   );
 }

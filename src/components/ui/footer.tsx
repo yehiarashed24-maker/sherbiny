@@ -1,11 +1,82 @@
 import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react';
+import type { LangType } from './language-selector';
 
 interface FooterProps {
-  isRtl: boolean;
+  isRtl?: boolean;
+  lang?: LangType;
   setView: (view: 'home' | 'about' | 'contact' | 'services' | 'laws') => void;
 }
 
-export default function Footer({ isRtl, setView }: FooterProps) {
+const FOOTER_TEXT: Record<LangType, {
+  name: string;
+  sub: string;
+  desc: string;
+  quickLinks: string;
+  home: string;
+  about: string;
+  services: string;
+  laws: string;
+  contact: string;
+  address: string;
+  rights: string;
+}> = {
+  ar: {
+    name: 'أحمد الشربيني وشركاه',
+    sub: 'محاسبون ومراجعون قانونيون',
+    desc: 'مكتب أحمد الشربينى وشركاه محاسبون ومراجعون قانونيون، خبراء في تقديم الاستشارات المالية، المراجعة المحاسبية وتأسيس الشركات لضمان نموك المالي بأمان.',
+    quickLinks: 'روابط سريعة',
+    home: 'الرئيسية',
+    about: 'من نحن',
+    services: 'الخدمات',
+    laws: 'القوانين',
+    contact: 'تواصل معنا',
+    address: '59 مدينة الإعلام - العجوزة، القاهرة',
+    rights: 'جميع الحقوق محفوظة.'
+  },
+  en: {
+    name: 'Ahmed El Sherbiny & Co.',
+    sub: 'Certified Public Accountants & Auditors',
+    desc: 'Ahmed El Sherbiny & Co. Certified Public Accountants and Auditors. Experts in financial consulting, auditing, and company formation in Egypt.',
+    quickLinks: 'Quick Links',
+    home: 'Home',
+    about: 'About Us',
+    services: 'Services',
+    laws: 'Laws',
+    contact: 'Contact Us',
+    address: '59 Media City - Agouza, Cairo',
+    rights: 'All rights reserved.'
+  },
+  fr: {
+    name: 'Ahmed El Sherbiny & Co.',
+    sub: 'Experts-Comptables & Commissaires aux Comptes',
+    desc: "Cabinet d'expertise comptable, d'audit financier et de conseil fiscal stratégique en Égypte.",
+    quickLinks: 'Liens Rapides',
+    home: 'Accueil',
+    about: 'À Propos',
+    services: 'Services',
+    laws: 'Lois',
+    contact: 'Contactez-nous',
+    address: '59 Cité des Médias - Agouza, Le Caire',
+    rights: 'Tous droits réservés.'
+  },
+  tr: {
+    name: 'Ahmed El Sherbiny & Co.',
+    sub: 'Yeminli Mali Müşavirlik ve Bağımsız Denetim',
+    desc: "Mısır'da şirket kuruluşu, vergi danışmanlığı ve bağımsız denetim alanında 40 yılı aşkın güvenilir çözüm ortağınız.",
+    quickLinks: 'Hızlı Bağlantılar',
+    home: 'Ana Sayfa',
+    about: 'Hakkımızda',
+    services: 'Hizmetler',
+    laws: 'Mevzuat',
+    contact: 'İletişim',
+    address: '59 Medya Şehri - Agouza, Kahire',
+    rights: 'Tüm hakları saklıdır.'
+  }
+};
+
+export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterProps) {
+  const t = FOOTER_TEXT[lang] || FOOTER_TEXT.en;
+
   return (
     <footer className="bg-black text-white pt-16 pb-8" dir={isRtl ? 'rtl' : 'ltr'}>
       <div className="max-w-[88rem] mx-auto px-6">
@@ -16,40 +87,38 @@ export default function Footer({ isRtl, setView }: FooterProps) {
               <img src="/logo.png" alt="Ahmed El Sherbiny" className="h-10 w-auto object-contain brightness-0 invert" />
             </div>
             <h3 className="text-xl font-bold mb-1">
-              {isRtl ? 'أحمد الشربيني وشركاه' : 'Ahmed El Sherbiny & Co.'}
+              {t.name}
             </h3>
             <p className="text-xs text-white/50 mb-4 font-medium">
-              {isRtl ? 'محاسبون ومراجعون قانونيون' : 'Certified Public Accountants & Auditors'}
+              {t.sub}
             </p>
             <p className="text-white/60 mb-6 max-w-sm text-sm leading-relaxed">
-              {isRtl
-                ? 'مكتب أحمد الشربينى وشركاه محاسبون ومراجعون قانونيون، خبراء في تقديم الاستشارات المالية، المراجعة المحاسبية وتأسيس الشركات لضمان نموك المالي بأمان.'
-                : 'Ahmed El Sherbiny & Co. Certified Public Accountants and Auditors. Experts in financial consulting, auditing, and company formation.'}
+              {t.desc}
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="flex flex-col">
-            <h4 className="text-lg font-semibold mb-6">{isRtl ? 'روابط سريعة' : 'Quick Links'}</h4>
+            <h4 className="text-lg font-semibold mb-6">{t.quickLinks}</h4>
             <ul className="space-y-4 text-white/70">
               <li>
                 <button onClick={() => setView('home')} className="hover:text-white transition-colors text-sm">
-                  {isRtl ? 'الرئيسية' : 'Home'}
+                  {t.home}
                 </button>
               </li>
               <li>
                 <button onClick={() => setView('about')} className="hover:text-white transition-colors text-sm">
-                  {isRtl ? 'من نحن' : 'About Us'}
+                  {t.about}
                 </button>
               </li>
               <li>
                 <button onClick={() => setView('services')} className="hover:text-white transition-colors text-sm">
-                  {isRtl ? 'الخدمات' : 'Services'}
+                  {t.services}
                 </button>
               </li>
               <li>
                 <button onClick={() => setView('laws')} className="hover:text-white transition-colors text-sm">
-                  {isRtl ? 'القوانين' : 'Laws'}
+                  {t.laws}
                 </button>
               </li>
             </ul>
@@ -57,7 +126,7 @@ export default function Footer({ isRtl, setView }: FooterProps) {
 
           {/* Contact */}
           <div className="flex flex-col col-span-1 md:col-span-2">
-            <h4 className="text-lg font-semibold mb-6">{isRtl ? 'تواصل معنا' : 'Contact Us'}</h4>
+            <h4 className="text-lg font-semibold mb-6">{t.contact}</h4>
             <ul className="space-y-4 text-white/70">
               <li>
                 <a
@@ -68,7 +137,7 @@ export default function Footer({ isRtl, setView }: FooterProps) {
                 >
                   <MapPin className="w-5 h-5 mt-0.5 shrink-0 text-white/50 group-hover:text-amber-400 transition-colors" />
                   <span className="text-sm leading-relaxed group-hover:underline underline-offset-4">
-                    {isRtl ? '59 مدينة الإعلام - العجوزة، القاهرة' : '59 Media City - Agouza, Cairo'}
+                    {t.address}
                   </span>
                 </a>
               </li>
@@ -121,7 +190,7 @@ export default function Footer({ isRtl, setView }: FooterProps) {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/40 text-sm">
-            © {new Date().getFullYear()} {isRtl ? 'أحمد الشربيني وشركاه. جميع الحقوق محفوظة.' : 'Ahmed El Sherbiny & Co. All rights reserved.'}
+            © {new Date().getFullYear()} {t.name}. {t.rights}
           </p>
         </div>
       </div>

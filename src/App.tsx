@@ -8,22 +8,71 @@ import Chatbot from './components/ui/chatbot';
 import Footer from './components/ui/footer';
 import ConsultationModal from './components/ui/consultation-modal';
 import MobileTabBar from './components/ui/mobile-tab-bar';
+import LanguageSelector, { type LangType } from './components/ui/language-selector';
 
-const LogoIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox="0 0 40 40"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M20 4L4 36H11.5L20 19L28.5 36H36L20 4Z" fill="currentColor" />
-    <rect x="14" y="24" width="12" height="3.5" fill="currentColor" />
-  </svg>
-);
-
-const translations = {
+const translations: Record<LangType, {
+  nav: string[];
+  home: string;
+  about: string;
+  contact: string;
+  services: string;
+  laws: string;
+  bookConsultation: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  getStarted: string;
+  whyUsTitle: string;
+  discoverIt: string;
+  whyUsSubtitle: string;
+  strategiesTitle: string;
+  strategiesSubtitle: string;
+  transparentTitle: string;
+  transparentSubtitle: string;
+  tailoredTitle: string;
+  tailoredSubtitle: string;
+  fundedBy: string;
+  expertiseEyebrow: string;
+  expertiseTitle: string;
+  expertiseSubtitle: string;
+  advisoryTitle: string;
+  advisorySubtitle: string;
+  knowMore: string;
+  brandName: string;
+  brandSub: string;
+}> = {
+  ar: {
+    nav: ['الرئيسية', 'من نحن', 'الخدمات', 'القوانين', 'تواصل معنا'],
+    home: 'الرئيسية',
+    about: 'من نحن',
+    contact: 'تواصل معنا',
+    services: 'الخدمات',
+    laws: 'القوانين',
+    bookConsultation: 'احجز استشارة',
+    heroTitle: 'أحمد الشربيني وشركاه<br />محاسبون قانونيون',
+    heroSubtitle: 'أهلا بك ومرحباً فى الموقع الإلكترونى للمحاسب القانوني أحمد الشربينى وشركاه. نساعدك في بناء مشروعك وتأمين نموك المالي.',
+    getStarted: 'أقرأ المزيد',
+    whyUsTitle: 'لماذا أحمد الشربيني؟',
+    discoverIt: 'اكتشف المزيد',
+    whyUsSubtitle: 'لدينا نخبة من الاستشاريين لديهم معرفة عميقة بجميع أنظمة الضرائب للوصول لأفضل النتائج، بما يتوافق ويرضى عملائنا.',
+    strategiesTitle: 'التخطيط الضريبي',
+    strategiesSubtitle: 'نهدف لمساعدة العملاء علي ترشيد العبء الضريبي وفقا لأحكام القانون من خلال تخطيط مالي شامل.',
+    transparentTitle: 'شفافية دائمة،\nوموثوقية عالية.',
+    transparentSubtitle: 'فحص مالي وإشراف ضريبي كامل في زمن قياسي لضمان تسوية المواقف المالية والانطلاق بثقة.',
+    tailoredTitle: 'مخصص\nبالكامل',
+    tailoredSubtitle: 'نساعدك فى تأسيس شركتك فى جمهورية مصر العربية مع توفير جميع التسهيلات لبناء مشروعك بنجاح.',
+    fundedBy: 'نحظى بثقة شركاء متميزين\nوقادة مبتكرين.',
+    expertiseEyebrow: 'خدماتنا',
+    expertiseTitle: 'المحاسبة والمراجعة',
+    expertiseSubtitle: 'فريقنا مؤهل بكفاءة وخبرات لتنفيذ خدمات المراجعة المالية من خلال تطبيق أساليب المراجعة المصرية والدولية.',
+    advisoryTitle: 'الخدمات الإلكترونية',
+    advisorySubtitle: 'نتولي عنك تقديم الاقرارات الضريبية إلكترونياً ويمكنك الدخول الى سجلك الضريبي الإلكتروني خلال 24 ساعة.',
+    knowMore: 'المزيد من التفاصيل',
+    brandName: 'أحمد الشربيني وشركاه',
+    brandSub: 'محاسبون ومراجعون قانونيون'
+  },
   en: {
     nav: ['Home', 'About Us', 'Services', 'Laws', 'Contact Us'],
+    home: 'Home',
     about: 'About Us',
     contact: 'Contact Us',
     services: 'Services',
@@ -47,44 +96,79 @@ const translations = {
     expertiseSubtitle: 'Our team is highly qualified and experienced to execute financial auditing services applying Egyptian and international auditing standards.',
     advisoryTitle: 'E-Services',
     advisorySubtitle: 'We handle your tax returns electronically, allowing you to access your digital tax record within 24 hours.',
-    knowMore: 'Know more'
+    knowMore: 'Know more',
+    brandName: 'Ahmed El Sherbiny & Co.',
+    brandSub: 'Certified Public Accountants & Auditors'
   },
-  ar: {
-    nav: ['الرئيسية', 'من نحن', 'الخدمات', 'القوانين', 'تواصل معنا'],
-    about: 'من نحن',
-    contact: 'تواصل معنا',
-    services: 'الخدمات',
-    laws: 'القوانين',
-    bookConsultation: 'احجز استشارة',
-    heroTitle: 'أحمد الشربيني وشركاه<br />محاسبون قانونيون',
-    heroSubtitle: 'أهلا بك ومرحباً فى الموقع الإلكترونى للمحاسب القانوني أحمد الشربينى وشركاه. نساعدك في بناء مشروعك وتأمين نموك المالي.',
-    getStarted: 'أقرأ المزيد',
-    whyUsTitle: 'لماذا أحمد الشربيني؟',
-    discoverIt: 'اكتشف المزيد',
-    whyUsSubtitle: 'لدينا نخبة من الاستشاريين لديهم معرفة عميقة بجميع أنظمة الضرائب للوصول لأفضل النتائج، بما يتوافق ويرضى عملائنا.',
-    strategiesTitle: 'التخطيط الضريبي',
-    strategiesSubtitle: 'نهدف لمساعدة العملاء علي ترشيد العبء الضريبي وفقا لأحكام القانون من خلال تخطيط مالي شامل.',
-    transparentTitle: 'شفافية دائمة،\nوموثوقية عالية.',
-    transparentSubtitle: 'فحص مالي وإشراف ضريبي كامل في زمن قياسي لضمان تسوية المواقف المالية والانطلاق بثقة.',
-    tailoredTitle: 'مخصص\nبالكامل',
-    tailoredSubtitle: 'نساعدك فى تأسيس شركتك فى جمهورية مصر العربية مع توفير جميع التسهيلات لبناء مشروعك بنجاح.',
-    fundedBy: 'نحظى بثقة شركاء متميزين\nوقادة مبتكرين.',
-    expertiseEyebrow: 'خدماتنا',
-    expertiseTitle: 'المحاسبة والمراجعة',
-    expertiseSubtitle: 'فريقنا مؤهل بكفاءة وخبرات لتنفيذ خدمات المراجعة المالية من خلال تطبيق أساليب المراجعة المصرية والدولية.',
-    advisoryTitle: 'الخدمات الإلكترونية',
-    advisorySubtitle: 'نتولي عنك تقديم الاقرارات الضريبية كترونيا ويمكنك الدخول الى سجلك الضريبي الإلكتروني خلال 24 ساعة.',
-    knowMore: 'المزيد من التفاصيل'
+  fr: {
+    nav: ['Accueil', 'À Propos', 'Services', 'Lois', 'Contact'],
+    home: 'Accueil',
+    about: 'À Propos',
+    contact: 'Contact',
+    services: 'Services',
+    laws: 'Lois',
+    bookConsultation: 'Réserver une Consultation',
+    heroTitle: 'Ahmed El Sherbiny & Co.<br />Experts-Comptables',
+    heroSubtitle: "Bienvenue sur le site officiel d'Ahmed El Sherbiny & Co. Experts-Comptables et Commissaires aux Comptes en Égypte.",
+    getStarted: 'En savoir plus',
+    whyUsTitle: 'Pourquoi Ahmed El Sherbiny ?',
+    discoverIt: 'Découvrir',
+    whyUsSubtitle: 'Notre cabinet offre des conseils de haut niveau avec une maîtrise approfondie du système fiscal et juridique égyptien.',
+    strategiesTitle: 'Planification Fiscale',
+    strategiesSubtitle: 'Optimisation de la charge fiscale en parfaite conformité avec la réglementation égyptienne.',
+    transparentTitle: 'Transparence totale,\nfiabilité absolue.',
+    transparentSubtitle: 'Accompagnement rigoureux lors des contrôles fiscaux et conseil financier stratégique en un temps record.',
+    tailoredTitle: 'Sur mesure\net stratégique',
+    tailoredSubtitle: 'Faites confiance à Ahmed El Sherbiny & Co. pour la création de votre société et votre réussite financière en Égypte.',
+    fundedBy: 'La confiance des plus grandes institutions\net des leaders visionnaires.',
+    expertiseEyebrow: 'Nos Domaines',
+    expertiseTitle: 'Audit & Comptabilité',
+    expertiseSubtitle: "Notre équipe qualifiée applique rigoureusement les normes d'audit égyptiennes et internationales.",
+    advisoryTitle: 'Services Numériques',
+    advisorySubtitle: 'Télédéclarations fiscales et facturation électronique en conformité totale avec les autorités.',
+    knowMore: 'Détails',
+    brandName: 'Ahmed El Sherbiny & Co.',
+    brandSub: 'Experts-Comptables & Commissaires aux Comptes'
+  },
+  tr: {
+    nav: ['Ana Sayfa', 'Hakkımızda', 'Hizmetler', 'Mevzuat', 'İletişim'],
+    home: 'Ana Sayfa',
+    about: 'Hakkımızda',
+    contact: 'İletişim',
+    services: 'Hizmetler',
+    laws: 'Mevzuat',
+    bookConsultation: 'Danışmanlık Alın',
+    heroTitle: 'Ahmed El Sherbiny & Co.<br />Yeminli Mali Müşavirlik',
+    heroSubtitle: "Ahmed El Sherbiny & Co. Yeminli Mali Müşavirlik ve Bağımsız Denetim resmi web sitesine hoş geldiniz.",
+    getStarted: 'Daha Fazla Bilgi',
+    whyUsTitle: 'Neden Ahmed El Sherbiny?',
+    discoverIt: 'Keşfedin',
+    whyUsSubtitle: "Mısır vergi mevzuatı ve şirketler hukukunda 40 yılı aşkın uzmanlıkla işletmeniz için en doğru çözümleri sunuyoruz.",
+    strategiesTitle: 'Vergi Planlaması',
+    strategiesSubtitle: 'Yasal mevzuat çerçevesinde stratejik mali planlama ile vergi yükünüzü optimize ediyoruz.',
+    transparentTitle: 'Daima şeffaf,\ndaima güvenilir.',
+    transparentSubtitle: 'Büyük Mükellefler nezdinde teftiş yönetimi ve kurumsal finansal danışmanlık hizmetleri.',
+    tailoredTitle: 'Tamamen\nÖzelleştirilmiş',
+    tailoredSubtitle: "Mısır'da şirket kuruluşu ve yatırım süreçlerinizde güvenilir rehberiniz.",
+    fundedBy: 'Sektör liderlerinin ve öncü yatırımcıların\ngüvenilir çözüm ortağı.',
+    expertiseEyebrow: 'Uzmanlıklarımız',
+    expertiseTitle: 'Muhasebe & Denetim',
+    expertiseSubtitle: 'Mısır ve Uluslararası Standartlara (IFRS) tam uyumlu bağımsız denetim ve güvence hizmetleri.',
+    advisoryTitle: 'E-Vergi Sistemleri',
+    advisorySubtitle: 'E-Fatura, e-irsaliye ve dijital vergi beyannamelerinin eksiksiz takibi ve yönetimi.',
+    knowMore: 'Ayrıntılı Bilgi',
+    brandName: 'Ahmed El Sherbiny & Co.',
+    brandSub: 'Yeminli Mali Müşavirlik ve Bağımsız Denetim'
   }
 };
 
 const App = () => {
-  const [lang, setLang] = useState<'en' | 'ar'>('en');
+  const [lang, setLang] = useState<LangType>('ar');
   const [view, setView] = useState<'home' | 'about' | 'contact' | 'services' | 'laws'>('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  const t = translations[lang];
+  const t = translations[lang] || translations.ar;
   const isRtl = lang === 'ar';
 
   const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
@@ -104,9 +188,9 @@ const App = () => {
     return (
       <div className="pb-16 md:pb-0 min-h-screen bg-[#F5F5F5]">
         <About lang={lang} setView={setView} onBookConsultation={() => setIsModalOpen(true)} />
-        <MobileTabBar currentView={view} setView={setView} onOpenConsultation={() => setIsModalOpen(true)} isRtl={isRtl} />
-        <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} />
-        <Chatbot isRtl={isRtl} />
+        <MobileTabBar currentView={view} setView={setView} onOpenConsultation={() => setIsModalOpen(true)} lang={lang} />
+        <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} lang={lang} />
+        <Chatbot isRtl={isRtl} lang={lang} />
       </div>
     );
   }
@@ -115,9 +199,9 @@ const App = () => {
     return (
       <div className="pb-16 md:pb-0 min-h-screen bg-white">
         <Contact lang={lang} setView={setView} onBookConsultation={() => setIsModalOpen(true)} />
-        <MobileTabBar currentView={view} setView={setView} onOpenConsultation={() => setIsModalOpen(true)} isRtl={isRtl} />
-        <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} />
-        <Chatbot isRtl={isRtl} />
+        <MobileTabBar currentView={view} setView={setView} onOpenConsultation={() => setIsModalOpen(true)} lang={lang} />
+        <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} lang={lang} />
+        <Chatbot isRtl={isRtl} lang={lang} />
       </div>
     );
   }
@@ -126,9 +210,9 @@ const App = () => {
     return (
       <div className="pb-16 md:pb-0 min-h-screen bg-[#F5F5F5]">
         <Services lang={lang} setView={setView} onBookConsultation={() => setIsModalOpen(true)} />
-        <MobileTabBar currentView={view} setView={setView} onOpenConsultation={() => setIsModalOpen(true)} isRtl={isRtl} />
-        <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} />
-        <Chatbot isRtl={isRtl} />
+        <MobileTabBar currentView={view} setView={setView} onOpenConsultation={() => setIsModalOpen(true)} lang={lang} />
+        <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} lang={lang} />
+        <Chatbot isRtl={isRtl} lang={lang} />
       </div>
     );
   }
@@ -136,73 +220,73 @@ const App = () => {
   if (view === 'laws') {
     return (
       <div className="pb-16 md:pb-0 min-h-screen bg-[#F5F5F5]">
-        <Laws isRtl={isRtl} setView={setView} />
-        <MobileTabBar currentView={view} setView={setView} onOpenConsultation={() => setIsModalOpen(true)} isRtl={isRtl} />
-        <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} />
-        <Chatbot isRtl={isRtl} />
+        <Laws isRtl={isRtl} lang={lang} setView={setView} />
+        <MobileTabBar currentView={view} setView={setView} onOpenConsultation={() => setIsModalOpen(true)} lang={lang} />
+        <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} lang={lang} />
+        <Chatbot isRtl={isRtl} lang={lang} />
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col bg-[#F5F5F5] min-h-screen" dir={isRtl ? 'rtl' : 'ltr'}>
+    <div className="flex flex-col bg-[#F5F5F5] min-h-screen pb-16 md:pb-0" dir={isRtl ? 'rtl' : 'ltr'}>
       {/* Wrapper for Navbar + Hero */}
       <div className="h-screen flex flex-col overflow-hidden relative">
         {/* Navbar */}
-        <nav className="absolute top-0 left-0 right-0 z-20 px-6 py-5">
+        <nav className="absolute top-0 left-0 right-0 z-20 px-4 sm:px-6 py-4 sm:py-5">
           <div className="flex items-center justify-between max-w-[88rem] mx-auto">
-            <div className="flex items-center gap-3 cursor-pointer" onClick={() => setView('home')}>
-              <img src="/logo.png" alt="Ahmed El Sherbiny" className="h-10 md:h-12 w-auto object-contain" />
+            {/* Logo */}
+            <div className="flex items-center gap-2.5 sm:gap-3 cursor-pointer" onClick={() => setView('home')}>
+              <img src="/logo.png" alt="Ahmed El Sherbiny" className="h-9 sm:h-11 md:h-12 w-auto object-contain" />
               <div className="flex flex-col">
-                <span className="text-lg md:text-xl font-bold tracking-tight text-black leading-tight">
-                  {isRtl ? 'أحمد الشربيني وشركاه' : 'Ahmed El Sherbiny & Co.'}
+                <span className="text-base sm:text-lg md:text-xl font-bold tracking-tight text-black leading-tight">
+                  {t.brandName}
                 </span>
-                <span className="text-[11px] md:text-xs text-black/60 font-medium">
-                  {isRtl ? 'محاسبون ومراجعون قانونيون' : 'Certified Public Accountants & Auditors'}
+                <span className="text-[10px] sm:text-[11px] md:text-xs text-black/60 font-medium line-clamp-1">
+                  {t.brandSub}
                 </span>
               </div>
             </div>
             
-            <div className="hidden md:flex items-center gap-8">
-              <button onClick={() => setView('home')} className="text-base font-bold transition-colors text-black">
-                {isRtl ? 'الرئيسية' : 'Home'}
+            {/* Desktop Navigation Links */}
+            <div className="hidden lg:flex items-center gap-7">
+              <button onClick={() => setView('home')} className="text-sm md:text-base font-bold transition-colors text-black">
+                {t.home}
               </button>
-              <button onClick={() => setView('about')} className="text-base font-medium transition-colors text-gray-700 hover:text-black">
+              <button onClick={() => setView('about')} className="text-sm md:text-base font-medium transition-colors text-gray-700 hover:text-black">
                 {t.about}
               </button>
-              <button onClick={() => setView('services')} className="text-base font-medium transition-colors text-gray-700 hover:text-black">
+              <button onClick={() => setView('services')} className="text-sm md:text-base font-medium transition-colors text-gray-700 hover:text-black">
                 {t.services}
               </button>
-              <button onClick={() => setView('laws')} className="text-base font-medium transition-colors text-gray-700 hover:text-black">
+              <button onClick={() => setView('laws')} className="text-sm md:text-base font-medium transition-colors text-gray-700 hover:text-black">
                 {t.laws}
               </button>
-              <button onClick={() => setView('contact')} className="text-base font-medium transition-colors text-gray-700 hover:text-black">
+              <button onClick={() => setView('contact')} className="text-sm md:text-base font-medium transition-colors text-gray-700 hover:text-black">
                 {t.contact}
               </button>
             </div>
 
-            <div className="hidden md:flex items-center gap-4">
-              <button 
-                onClick={() => setLang(lang === 'en' ? 'ar' : 'en')} 
-                className="text-gray-700 hover:text-black font-medium transition-colors duration-200"
-              >
-                {lang === 'en' ? 'العربية' : 'EN'}
-              </button>
+            {/* Desktop Language Selector & Action Button */}
+            <div className="hidden md:flex items-center gap-3">
+              <LanguageSelector lang={lang} setLang={setLang} />
               <button 
                 onClick={() => setIsModalOpen(true)}
-                className="bg-black text-white text-base font-medium px-7 py-2.5 rounded-full hover:bg-gray-800 transition-colors duration-200"
+                className="bg-black text-white text-sm md:text-base font-medium px-6 py-2.5 rounded-full hover:bg-gray-800 transition-all duration-200 active:scale-95 shadow-md"
               >
                 {t.bookConsultation}
               </button>
             </div>
 
-            {/* Mobile Menu Toggle */}
-            <div className="md:hidden flex items-center gap-4">
-              <button onClick={() => setLang(lang === 'en' ? 'ar' : 'en')} className="text-gray-700 hover:text-black font-medium transition-colors duration-200">
-                {lang === 'en' ? 'العربية' : 'EN'}
-              </button>
-              <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-black">
-                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {/* Mobile Controls (Language + Hamburger) */}
+            <div className="md:hidden flex items-center gap-2">
+              <LanguageSelector lang={lang} setLang={setLang} />
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="w-10 h-10 rounded-full bg-white/90 shadow-sm border border-black/5 flex items-center justify-center text-black"
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
             </div>
           </div>
@@ -210,24 +294,34 @@ const App = () => {
 
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
-          <div className="absolute top-[80px] left-4 right-4 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl z-50 p-6 flex flex-col gap-4 border border-black/5 md:hidden animate-in slide-in-from-top-4">
-            <button onClick={() => { setView('home'); setIsMobileMenuOpen(false); }} className={`text-xl font-medium transition-colors text-black font-bold ${isRtl ? 'text-right' : 'text-left'}`}>
-              {isRtl ? 'الرئيسية' : 'Home'}
+          <div className="absolute top-[76px] left-4 right-4 bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl z-50 p-6 flex flex-col gap-4 border border-black/10 md:hidden animate-in slide-in-from-top-3">
+            {/* Language Segmented Bar inside mobile menu */}
+            <div className="pb-3 border-b border-black/5">
+              <div className="text-[11px] font-bold text-black/50 mb-2">
+                {isRtl ? 'اختر لغة العرض:' : 'Choose Language:'}
+              </div>
+              <LanguageSelector lang={lang} setLang={setLang} variant="mobile-bar" />
+            </div>
+
+            <button onClick={() => { setView('home'); setIsMobileMenuOpen(false); }} className={`text-lg font-bold transition-colors text-black ${isRtl ? 'text-right' : 'text-left'}`}>
+              {t.home}
             </button>
-            <button onClick={() => { setView('about'); setIsMobileMenuOpen(false); }} className={`text-xl font-medium transition-colors text-gray-700 hover:text-black ${isRtl ? 'text-right' : 'text-left'}`}>
+            <button onClick={() => { setView('about'); setIsMobileMenuOpen(false); }} className={`text-lg font-medium transition-colors text-gray-700 hover:text-black ${isRtl ? 'text-right' : 'text-left'}`}>
               {t.about}
             </button>
-            <button onClick={() => { setView('services'); setIsMobileMenuOpen(false); }} className={`text-xl font-medium transition-colors text-gray-700 hover:text-black ${isRtl ? 'text-right' : 'text-left'}`}>
+            <button onClick={() => { setView('services'); setIsMobileMenuOpen(false); }} className={`text-lg font-medium transition-colors text-gray-700 hover:text-black ${isRtl ? 'text-right' : 'text-left'}`}>
               {t.services}
             </button>
-            <button onClick={() => { setView('laws'); setIsMobileMenuOpen(false); }} className={`text-xl font-medium transition-colors text-gray-700 hover:text-black ${isRtl ? 'text-right' : 'text-left'}`}>
+            <button onClick={() => { setView('laws'); setIsMobileMenuOpen(false); }} className={`text-lg font-medium transition-colors text-gray-700 hover:text-black ${isRtl ? 'text-right' : 'text-left'}`}>
               {t.laws}
             </button>
-            <button onClick={() => { setView('contact'); setIsMobileMenuOpen(false); }} className={`text-xl font-medium transition-colors text-gray-700 hover:text-black ${isRtl ? 'text-right' : 'text-left'}`}>
+            <button onClick={() => { setView('contact'); setIsMobileMenuOpen(false); }} className={`text-lg font-medium transition-colors text-gray-700 hover:text-black ${isRtl ? 'text-right' : 'text-left'}`}>
               {t.contact}
             </button>
-            <hr className="border-black/5 my-2" />
-            <button onClick={() => { setIsModalOpen(true); setIsMobileMenuOpen(false); }} className="bg-black text-white text-base font-medium py-3 rounded-full hover:bg-gray-800 w-full">
+            
+            <hr className="border-black/5 my-1" />
+            
+            <button onClick={() => { setIsModalOpen(true); setIsMobileMenuOpen(false); }} className="bg-black text-white text-base font-bold py-3.5 rounded-2xl hover:bg-gray-800 w-full shadow-lg active:scale-98 transition-transform">
               {t.bookConsultation}
             </button>
           </div>
@@ -274,31 +368,28 @@ const App = () => {
         </section>
       </div>
 
-
-
       {/* Backed By Section */}
       <section className="bg-[#F5F5F5] px-6 pb-24">
-          {/* Trusted By Section */}
-          <div className="mt-32 pt-16 border-t border-black/5 text-center">
-            <h3 
-              className="text-black/60 text-lg md:text-xl font-medium mb-12 whitespace-pre-line"
-            >
-              {t.fundedBy}
-            </h3>
-            
-            <div className="w-full overflow-hidden" dir="ltr">
-              <div className="marquee-track-reverse">
-                {[...clientLogos, ...clientLogos].map((item, index) => (
-                  <div 
-                    key={index} 
-                    className="mx-12 shrink-0 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
-                  >
-                    <img src={item.img} alt={item.name} className="h-20 md:h-24 w-auto object-contain mix-blend-multiply" />
-                  </div>
-                ))}
-              </div>
+        <div className="mt-32 pt-16 border-t border-black/5 text-center">
+          <h3 
+            className="text-black/60 text-lg md:text-xl font-medium mb-12 whitespace-pre-line"
+          >
+            {t.fundedBy}
+          </h3>
+          
+          <div className="w-full overflow-hidden" dir="ltr">
+            <div className="marquee-track-reverse">
+              {[...clientLogos, ...clientLogos].map((item, index) => (
+                <div 
+                  key={index} 
+                  className="mx-12 shrink-0 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                >
+                  <img src={item.img} alt={item.name} className="h-20 md:h-24 w-auto object-contain mix-blend-multiply" />
+                </div>
+              ))}
             </div>
           </div>
+        </div>
       </section>
 
       {/* Use Cases Section */}
@@ -352,21 +443,22 @@ const App = () => {
           </div>
         </div>
       </section>
-      {/* Footer */}
-      <Footer isRtl={isRtl} setView={setView} />
+
+      {/* Universal Footer */}
+      <Footer isRtl={isRtl} lang={lang} setView={setView} />
 
       {/* Consultation Modal */}
-      <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} />
+      <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} lang={lang} />
 
       {/* Floating Legal Chatbot */}
-      <Chatbot isRtl={isRtl} />
+      <Chatbot isRtl={isRtl} lang={lang} />
 
       {/* Native Mobile App Tab Bar */}
       <MobileTabBar
         currentView={view}
         setView={setView}
         onOpenConsultation={() => setIsModalOpen(true)}
-        isRtl={isRtl}
+        lang={lang}
       />
     </div>
   );

@@ -19,17 +19,238 @@ import {
 } from "lucide-react";
 import { motion, useScroll, useTransform, useInView, useSpring } from "framer-motion";
 
+import type { LangType } from "./language-selector";
+
 interface AboutUsSectionProps {
   isRtl?: boolean;
+  lang?: LangType;
   onContactClick?: () => void;
 }
 
-export default function AboutUsSection({ isRtl = false, onContactClick }: AboutUsSectionProps) {
+const ABOUT_TEXT: Record<LangType, {
+  badge: string;
+  title: string;
+  intro: string;
+  founderBadge: string;
+  founderName: string;
+  founderTitle: string;
+  founderBio: string;
+  ctaTitle: string;
+  ctaSubtitle: string;
+  ctaButton: string;
+  stats: { label: string; value: number; suffix: string }[];
+  services: { title: string; description: string; position: 'left' | 'right' }[];
+}> = {
+  ar: {
+    badge: "عن المؤسسة وتاريخنا",
+    title: "أحمد الشربيني وشركاه",
+    intro: "نحن مؤسسة رائدة في المحاسبة القانونية والمراجعة والاستشارات الضريبية، نعمل بشغف وخبرة متوارثة تمتد لعقود لتمكين عملائنا من تحقيق النمو المالي المستدام وتأمين استثماراتهم وفقاً لأعلى المعايير.",
+    founderBadge: "المؤسس والمدير للشركة",
+    founderName: "أ. أحمد الشربيني",
+    founderTitle: "محاسب ومراجع قانوني مقيد وخبير ضرائب",
+    founderBio: "خبرة مهنية متفردة تمتد لأكثر من 40 عاماً في الفحص الضريبي، الاستشارات، وتأسيس كبرى الشركات في جمهورية مصر العربية.",
+    ctaTitle: "هل تبحث عن استشارة مالية أو ضريبية معتمدة؟",
+    ctaSubtitle: "تواصل مع فريقنا الآن لبحث ملفك الضريبي أو تأسيس شركتك بدقة وكفاءة واحترافية متناهية.",
+    ctaButton: "تواصل معنا الآن",
+    stats: [
+      { label: "شركة ومؤسسة كبرى", value: 500, suffix: "+" },
+      { label: "استشارة منجزة", value: 1200, suffix: "+" },
+      { label: "عاماً من الخبرة والريادة", value: 40, suffix: "+" },
+      { label: "التزام وموثوقية", value: 100, suffix: "%" }
+    ],
+    services: [
+      {
+        title: "التخطيط الضريبي",
+        description: "مساعدة العملاء على ترشيد عبء الضريبة وفقاً لأحكام القانون من خلال التخطيط المالي والاستفادة من كافة الإعفاءات والمزايا المتاحة.",
+        position: "left"
+      },
+      {
+        title: "الفحص والمنازعات",
+        description: "إنهاء أعمال الفحص الضريبي لشركات كبرى بمركز كبار الممولين منذ عام 1981 وحتى الآن بصورة نموذجية ومرضية للغاية.",
+        position: "left"
+      },
+      {
+        title: "الاستشارات والتقييم",
+        description: "تقييم القيمة العادلة لأسهم كبرى الشركات السياحية والفندقية كمستشار مالي مستقل واعتماد التقييمات دون أي تحفظات.",
+        position: "left"
+      },
+      {
+        title: "المحاسبة والمراجعة",
+        description: "تنفيذ عمليات المراجعة والتدقيق المالي وتطبيق المعايير المحاسبية المصرية والدولية لضمان دقة القوائم والشفافية.",
+        position: "right"
+      },
+      {
+        title: "تأسيس الشركات",
+        description: "استخراج كافة التراخيص والسجلات وتأسيس الكيانات الاستثمارية والشركات المساهمة وذات المسؤولية المحدودة بسرعة واحترافية.",
+        position: "right"
+      },
+      {
+        title: "الخدمات الإلكترونية",
+        description: "تقديم الإقرارات الضريبية إلكترونياً واستخراج المستندات الرقمية والفاتورة الإلكترونية بدقة متناهية وسرعة قياسية.",
+        position: "right"
+      }
+    ]
+  },
+  en: {
+    badge: "DISCOVER OUR FIRM",
+    title: "About Ahmed El Sherbiny & Co.",
+    intro: "A premier firm in certified accounting, auditing, and tax advisory. We leverage decades of seasoned expertise to empower clients with sustainable financial growth and legal compliance.",
+    founderBadge: "Founder & Managing Director",
+    founderName: "Mr. Ahmed El Sherbiny",
+    founderTitle: "Certified Public Accountant & Tax Consultant",
+    founderBio: "Over 40 years of trusted advisory in corporate restructuring, tax appeals, and audit leadership across Egypt.",
+    ctaTitle: "Looking for Certified Financial or Tax Advisory?",
+    ctaSubtitle: "Connect with our expert team to review your tax position or structure your company with speed and precision.",
+    ctaButton: "Get in Touch Today",
+    stats: [
+      { label: "Corporate Clients", value: 500, suffix: "+" },
+      { label: "Consultations Delivered", value: 1200, suffix: "+" },
+      { label: "Years of Experience", value: 40, suffix: "+" },
+      { label: "Success & Trust Rate", value: 100, suffix: "%" }
+    ],
+    services: [
+      {
+        title: "Tax Planning",
+        description: "Helping clients rationalize the tax burden according to the law through financial planning and utilizing all statutory exemptions.",
+        position: "left"
+      },
+      {
+        title: "Tax Inspection",
+        description: "Successfully resolving complex tax inspections for major corporations at the Large Taxpayers Center with top-tier results.",
+        position: "left"
+      },
+      {
+        title: "Advisory & Valuation",
+        description: "Independent fair value assessments and strategic financial restructuring accepted by official regulatory authorities.",
+        position: "left"
+      },
+      {
+        title: "Auditing & Assurance",
+        description: "Comprehensive auditing and assurance adhering strictly to Egyptian and International Financial Reporting Standards.",
+        position: "right"
+      },
+      {
+        title: "Company Formation",
+        description: "End-to-end company incorporation, commercial registrations, and licensing for local and international investors.",
+        position: "right"
+      },
+      {
+        title: "E-Services & Compliance",
+        description: "Digital tax return submissions, E-Invoicing integration, and real-time electronic compliance monitoring.",
+        position: "right"
+      }
+    ]
+  },
+  fr: {
+    badge: "DÉCOUVRIR NOTRE CABINET",
+    title: "Cabinet Ahmed El Sherbiny & Co.",
+    intro: "Cabinet leader en expertise comptable, audit financier et conseil fiscal en Égypte, fort de plus de 40 ans d'expérience aux côtés des plus grandes entreprises.",
+    founderBadge: "Fondateur & Directeur Général",
+    founderName: "M. Ahmed El Sherbiny",
+    founderTitle: "Expert-Comptable Agréé & Expert Fiscal",
+    founderBio: "Plus de 40 ans d'excellence en gestion des contentieux fiscaux et création de sociétés en Égypte.",
+    ctaTitle: "Besoin d'un Conseil Fiscal ou Comptable Certifié ?",
+    ctaSubtitle: "Prenez contact avec notre équipe pour structurer vos opérations et optimiser votre conformité fiscale.",
+    ctaButton: "Prendre Contact",
+    stats: [
+      { label: "Grandes Entreprises", value: 500, suffix: "+" },
+      { label: "Consultations Réalisées", value: 1200, suffix: "+" },
+      { label: "Ans d'Excellence", value: 40, suffix: "+" },
+      { label: "Taux de Confiance", value: 100, suffix: "%" }
+    ],
+    services: [
+      {
+        title: "Planification Fiscale",
+        description: "Optimisation de la charge fiscale en conformité avec la loi égyptienne et exploitation des exonérations légales.",
+        position: "left"
+      },
+      {
+        title: "Contrôle & Contentieux",
+        description: "Représentation et clôture des contrôles fiscaux auprès du Centre des Grands Contribuables.",
+        position: "left"
+      },
+      {
+        title: "Conseil & Évaluation",
+        description: "Évaluation de la juste valeur des actions et restructuration financière stratégique.",
+        position: "left"
+      },
+      {
+        title: "Audit & Révision Légale",
+        description: "Audit financier rigoureux selon les normes égyptiennes (EAS) et internationales (IFRS).",
+        position: "right"
+      },
+      {
+        title: "Création d'Entreprises",
+        description: "Constitution de sociétés, immatriculation au registre du commerce et autorisations d'investissement.",
+        position: "right"
+      },
+      {
+        title: "Services Numériques",
+        description: "Télédéclarations fiscales, intégration de la facturation électronique et conformité numérique.",
+        position: "right"
+      }
+    ]
+  },
+  tr: {
+    badge: "FİRMAMIZI TANIYIN",
+    title: "Ahmed El Sherbiny & Co.",
+    intro: "Mısır'da yeminli mali müşavirlik, bağımsız denetim ve vergi danışmanlığı alanında 40 yılı aşkın köklü tecrübemizle şirketlerin sürdürülebilir büyümesine öncülük ediyoruz.",
+    founderBadge: "Kurucu & Yönetici Ortak",
+    founderName: "Sn. Ahmed El Sherbiny",
+    founderTitle: "Yeminli Mali Müşavir & Vergi Uzmanı",
+    founderBio: "Mısır Vergi Dairesi ve Büyük Mükellefler nezdinde 40 yılı aşkın üst düzey danışmanlık ve denetim tecrübesi.",
+    ctaTitle: "Mali veya Vergi Danışmanlığına mı İhtiyacınız Var?",
+    ctaSubtitle: "Şirket kuruluşunuzu başlatmak veya vergi durumunuzu analiz etmek için uzman ekibimizle hemen görüşün.",
+    ctaButton: "Hemen İletişime Geçin",
+    stats: [
+      { label: "Kurumsal Müvekkil", value: 500, suffix: "+" },
+      { label: "Başarılı Danışmanlık", value: 1200, suffix: "+" },
+      { label: "Yıllık Köklü Deneyim", value: 40, suffix: "+" },
+      { label: "Müşteri Memnuniyeti", value: 100, suffix: "%" }
+    ],
+    services: [
+      {
+        title: "Vergi Planlaması",
+        description: "Mevzuata tam uyumlu stratejik mali planlama ile vergi yükünün optimize edilmesi ve muafiyet yönetimi.",
+        position: "left"
+      },
+      {
+        title: "Vergi Teftişi & İtirazlar",
+        description: "Büyük Mükellefler Merkezinde karmaşık vergi teftişlerinin ve komisyon süreçlerinin başarıyla sonuçlandırılması.",
+        position: "left"
+      },
+      {
+        title: "Mali Değerleme & Danışmanlık",
+        description: "Şirket değerlemeleri, durum tespiti (Due Diligence) ve kurumsal finansal yeniden yapılandırma.",
+        position: "left"
+      },
+      {
+        title: "Muhasebe & Bağımsız Denetim",
+        description: "Mısır ve Uluslararası Standartlara (IFRS) tam uyumlu bağımsız mali denetim ve güvence hizmetleri.",
+        position: "right"
+      },
+      {
+        title: "Şirket Kuruluşu",
+        description: "Yatırımcılar için Mısır'da şirket kuruluşu, ticari sicil ve faaliyet izinlerinin eksiksiz tamamlanması.",
+        position: "right"
+      },
+      {
+        title: "E-Vergi & E-Fatura",
+        description: "Elektronik vergi beyannameleri, E-Fatura entegrasyonu ve mevzuata tam dijital uyum takibi.",
+        position: "right"
+      }
+    ]
+  }
+};
+
+export default function AboutUsSection({ isRtl = false, lang = 'ar', onContactClick }: AboutUsSectionProps) {
   const [, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: false, amount: 0.1 });
   const isStatsInView = useInView(statsRef, { once: false, amount: 0.3 });
+
+  const t = ABOUT_TEXT[lang] || ABOUT_TEXT.en;
 
   // Parallax effect for decorative elements
   const { scrollYProgress } = useScroll({
@@ -66,69 +287,32 @@ export default function AboutUsSection({ isRtl = false, onContactClick }: AboutU
     },
   };
 
-  const services = [
-    {
-      icon: <Calculator className="w-5 h-5" />,
-      secondaryIcon: <Sparkles className={`w-3.5 h-3.5 absolute -top-1 ${isRtl ? '-left-1' : '-right-1'} text-black/40`} />,
-      title: isRtl ? "التخطيط الضريبي" : "Tax Planning",
-      description: isRtl
-        ? "مساعدة العملاء على ترشيد عبء الضريبة وفقاً لأحكام القانون من خلال التخطيط المالي والاستفادة من كافة الإعفاءات والمزايا المتاحة."
-        : "Helping clients rationalize the tax burden according to the law through financial planning and utilizing all statutory exemptions.",
-      position: "left",
-    },
-    {
-      icon: <Scale className="w-5 h-5" />,
-      secondaryIcon: <CheckCircle className={`w-3.5 h-3.5 absolute -top-1 ${isRtl ? '-left-1' : '-right-1'} text-black/40`} />,
-      title: isRtl ? "الفحص والمنازعات" : "Tax Inspection",
-      description: isRtl
-        ? "إنهاء أعمال الفحص الضريبي لشركات كبرى بمركز كبار الممولين منذ عام 1981 وحتى الآن بصورة نموذجية ومرضية للغاية."
-        : "Successfully resolving complex tax inspections for major corporations at the Large Taxpayers Center with top-tier results.",
-      position: "left",
-    },
-    {
-      icon: <Briefcase className="w-5 h-5" />,
-      secondaryIcon: <Star className={`w-3.5 h-3.5 absolute -top-1 ${isRtl ? '-left-1' : '-right-1'} text-black/40`} />,
-      title: isRtl ? "الاستشارات والتقييم" : "Advisory & Valuation",
-      description: isRtl
-        ? "تقييم القيمة العادلة لأسهم كبرى الشركات السياحية والفندقية كمستشار مالي مستقل واعتماد التقييمات دون أي تحفظات."
-        : "Independent fair value assessments and strategic financial restructuring accepted by official regulatory authorities.",
-      position: "left",
-    },
-    {
-      icon: <FileText className="w-5 h-5" />,
-      secondaryIcon: <Sparkles className={`w-3.5 h-3.5 absolute -top-1 ${isRtl ? '-left-1' : '-right-1'} text-black/40`} />,
-      title: isRtl ? "المحاسبة والمراجعة" : "Auditing & Assurance",
-      description: isRtl
-        ? "تنفيذ عمليات المراجعة والتدقيق المالي وتطبيق المعايير المحاسبية المصرية والدولية لضمان دقة القوائم والشفافية."
-        : "Comprehensive auditing and assurance adhering strictly to Egyptian and International Financial Reporting Standards.",
-      position: "right",
-    },
-    {
-      icon: <Building2 className="w-5 h-5" />,
-      secondaryIcon: <CheckCircle className={`w-3.5 h-3.5 absolute -top-1 ${isRtl ? '-left-1' : '-right-1'} text-black/40`} />,
-      title: isRtl ? "تأسيس الشركات" : "Company Formation",
-      description: isRtl
-        ? "استخراج كافة التراخيص والسجلات وتأسيس الكيانات الاستثمارية والشركات المساهمة وذات المسؤولية المحدودة بسرعة واحترافية."
-        : "End-to-end company incorporation, commercial registrations, and licensing for local and international investors.",
-      position: "right",
-    },
-    {
-      icon: <ShieldCheck className="w-5 h-5" />,
-      secondaryIcon: <Star className={`w-3.5 h-3.5 absolute -top-1 ${isRtl ? '-left-1' : '-right-1'} text-black/40`} />,
-      title: isRtl ? "الخدمات الإلكترونية" : "E-Services & Compliance",
-      description: isRtl
-        ? "تقديم الإقرارات الضريبية إلكترونياً واستخراج المستندات الرقمية والفاتورة الإلكترونية بدقة متناهية وسرعة قياسية."
-        : "Digital tax return submissions, E-Invoicing integration, and real-time electronic compliance monitoring.",
-      position: "right",
-    },
+  const serviceIcons = [
+    { icon: <Calculator className="w-5 h-5" />, sec: <Sparkles className={`w-3.5 h-3.5 absolute -top-1 ${isRtl ? '-left-1' : '-right-1'} text-black/40`} /> },
+    { icon: <Scale className="w-5 h-5" />, sec: <CheckCircle className={`w-3.5 h-3.5 absolute -top-1 ${isRtl ? '-left-1' : '-right-1'} text-black/40`} /> },
+    { icon: <Briefcase className="w-5 h-5" />, sec: <Star className={`w-3.5 h-3.5 absolute -top-1 ${isRtl ? '-left-1' : '-right-1'} text-black/40`} /> },
+    { icon: <FileText className="w-5 h-5" />, sec: <Sparkles className={`w-3.5 h-3.5 absolute -top-1 ${isRtl ? '-left-1' : '-right-1'} text-black/40`} /> },
+    { icon: <Building2 className="w-5 h-5" />, sec: <CheckCircle className={`w-3.5 h-3.5 absolute -top-1 ${isRtl ? '-left-1' : '-right-1'} text-black/40`} /> },
+    { icon: <ShieldCheck className="w-5 h-5" />, sec: <Star className={`w-3.5 h-3.5 absolute -top-1 ${isRtl ? '-left-1' : '-right-1'} text-black/40`} /> },
   ];
 
-  const stats = [
-    { icon: <Award className="w-6 h-6" />, value: 500, label: isRtl ? "شركة ومؤسسة كبرى" : "Corporate Clients", suffix: "+" },
-    { icon: <Users className="w-6 h-6" />, value: 1200, label: isRtl ? "استشارة منجزة" : "Consultations Delivered", suffix: "+" },
-    { icon: <Calendar className="w-6 h-6" />, value: 40, label: isRtl ? "عاماً من الخبرة والريادة" : "Years of Experience", suffix: "+" },
-    { icon: <TrendingUp className="w-6 h-6" />, value: 100, label: isRtl ? "التزام وموثوقية" : "Success & Trust Rate", suffix: "%" },
+  const services = t.services.map((s, idx) => ({
+    ...s,
+    icon: serviceIcons[idx]?.icon || <FileText className="w-5 h-5" />,
+    secondaryIcon: serviceIcons[idx]?.sec || null
+  }));
+
+  const statIcons = [
+    <Award className="w-6 h-6" />,
+    <Users className="w-6 h-6" />,
+    <Calendar className="w-6 h-6" />,
+    <TrendingUp className="w-6 h-6" />
   ];
+
+  const stats = t.stats.map((s, idx) => ({
+    icon: statIcons[idx] || <Award className="w-6 h-6" />,
+    ...s
+  }));
 
   return (
     <section
@@ -151,10 +335,10 @@ export default function AboutUsSection({ isRtl = false, onContactClick }: AboutU
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <Zap className="w-3.5 h-3.5 text-black" />
-            {isRtl ? "عن المؤسسة وتاريخنا" : "DISCOVER OUR FIRM"}
+            {t.badge}
           </motion.span>
           <h2 className="text-3xl md:text-5xl font-bold mb-4 text-center tracking-tight text-black">
-            {isRtl ? "أحمد الشربيني وشركاه" : "About Ahmed El Sherbiny & Co."}
+            {t.title}
           </h2>
           <motion.div
             className="w-20 h-1 bg-black rounded-full"
@@ -165,9 +349,7 @@ export default function AboutUsSection({ isRtl = false, onContactClick }: AboutU
         </motion.div>
 
         <motion.p className="text-center max-w-3xl mx-auto mb-16 text-black/70 text-base md:text-lg leading-relaxed font-normal" variants={itemVariants}>
-          {isRtl
-            ? "نحن مؤسسة رائدة في المحاسبة القانونية والمراجعة والاستشارات الضريبية، نعمل بشغف وخبرة متوارثة تمتد لعقود لتمكين عملائنا من تحقيق النمو المالي المستدام وتأمين استثماراتهم وفقاً لأعلى المعايير."
-            : "A premier firm in certified accounting, auditing, and tax advisory. We leverage decades of seasoned expertise to empower clients with sustainable financial growth and legal compliance."}
+          {t.intro}
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative items-center">
@@ -210,13 +392,16 @@ export default function AboutUsSection({ isRtl = false, onContactClick }: AboutU
                     {/* Framed Founder & Managing Director Badge */}
                     <div className="bg-white text-black font-extrabold text-xs md:text-sm px-4 py-2 rounded-2xl shadow-2xl w-fit mb-3 border-2 border-white/80 flex items-center gap-2">
                       <ShieldCheck className="w-4 h-4 text-black" />
-                      <span>{isRtl ? "المؤسس والمدير للشركة" : "Founder & Managing Director"}</span>
+                      <span>{t.founderBadge}</span>
                     </div>
                     <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-1 tracking-tight drop-shadow-md">
-                      {isRtl ? "أ. أحمد الشربيني" : "Ahmed El Sherbiny"}
+                      {t.founderName}
                     </h3>
-                    <p className="text-xs md:text-sm text-white/80 font-medium leading-relaxed drop-shadow-sm">
-                      {isRtl ? "محاسب ومراجع قانوني وخبير ضرائب معتمد" : "Certified Public Accountant & Senior Tax Consultant"}
+                    <p className="text-xs md:text-sm text-white/80 font-medium leading-relaxed drop-shadow-sm mb-1">
+                      {t.founderTitle}
+                    </p>
+                    <p className="text-[11px] text-white/60 leading-tight">
+                      {t.founderBio}
                     </p>
                   </div>
                 </div>
@@ -296,19 +481,19 @@ export default function AboutUsSection({ isRtl = false, onContactClick }: AboutU
         >
           <div className="flex-1 text-center md:text-start">
             <h3 className="text-2xl md:text-3xl font-bold mb-2">
-              {isRtl ? "هل أنت مستعد لتأمين وتطوير أعمالك؟" : "Ready to secure and grow your business?"}
+              {t.ctaTitle}
             </h3>
             <p className="text-white/70 text-sm md:text-base">
-              {isRtl ? "دعنا نبني معاً نظاماً مالياً وضريبياً قوياً ومستداماً." : "Let's build a robust, compliant financial structure together."}
+              {t.ctaSubtitle}
             </p>
           </div>
           <motion.button
             onClick={onContactClick}
-            className="bg-white hover:bg-neutral-100 text-black px-8 py-4 rounded-full flex items-center gap-2 font-bold transition-all shadow-lg hover:scale-105"
+            className="bg-white hover:bg-neutral-100 text-black px-8 py-4 rounded-full flex items-center gap-2 font-bold transition-all shadow-lg hover:scale-105 active:scale-95"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span>{isRtl ? "احجز استشارتك الآن" : "Book a Consultation"}</span>
+            <span>{t.ctaButton}</span>
             {isRtl ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
           </motion.button>
         </motion.div>

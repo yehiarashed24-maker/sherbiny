@@ -19,7 +19,9 @@ interface ServiceItem {
   client: string;
 }
 
-const SERVICES_CARDS: { ar: ServiceItem[]; en: ServiceItem[] } = {
+import type { LangType } from './components/ui/language-selector';
+
+const SERVICES_CARDS: Record<LangType, ServiceItem[]> = {
   ar: [
     {
       id: '01',
@@ -113,11 +115,140 @@ const SERVICES_CARDS: { ar: ServiceItem[]; en: ServiceItem[] } = {
       bullets: ['E-Invoicing & E-Receipts', 'Digital Tax Return Filing', 'Automated Regulatory Portals'],
       client: 'DIGITAL TAX COMPLIANCE'
     }
+  ],
+  fr: [
+    {
+      id: '01',
+      category: 'Audit & Assurance',
+      title: 'Audit & Révision Légale',
+      shortDesc: 'Audit financier rigoureux certifié selon les normes égyptiennes et internationales (IFRS).',
+      cardNumber: '9021 8842 1040 0019',
+      bullets: ['Audit Externe & Interne', 'Évaluation du Contrôle Interne', 'Analyse des Risques Financiers'],
+      client: 'AHMED EL SHERBINY AUDIT'
+    },
+    {
+      id: '02',
+      category: 'Conseil Financier',
+      title: 'Évaluation & Restructuration',
+      shortDesc: "Due diligence financière, évaluation d'entreprises, études de faisabilité et restructuration du capital.",
+      cardNumber: '5120 7733 9035 4412',
+      bullets: ["Audits d'Acquisition (Due Diligence)", 'Évaluation de la Juste Valeur', 'Restructuration Financière & Dettes'],
+      client: 'FINANCIAL ADVISORY GROUP'
+    },
+    {
+      id: '03',
+      category: 'Stratégie Fiscale',
+      title: 'Planification & Contentieux Fiscal',
+      shortDesc: 'Gestion des contrôles auprès du Centre des Grands Contribuables et défense devant les comités de recours.',
+      cardNumber: '4441 5567 1223 2468',
+      bullets: ['Règlement des Contrôles Fiscaux', 'Défense en Commission de Recours', 'Optimisation Fiscale Légale'],
+      client: 'TAX PLANNING & DEFENSE'
+    },
+    {
+      id: '04',
+      category: "Création d'Entreprise",
+      title: 'Constitution de Sociétés',
+      shortDesc: "Création de filiales étrangères, sociétés par actions, SARL, et obtention des agréments d'investissement.",
+      cardNumber: '5375 8891 2234 7713',
+      bullets: ['Création SA, SARL & Filiales', 'Augmentations de Capital', 'Registres du Commerce & Licences'],
+      client: 'CORPORATE INCORPORATION'
+    },
+    {
+      id: '05',
+      category: 'Services Numériques',
+      title: 'Facturation Électronique',
+      shortDesc: 'Intégration au portail fiscal gouvernemental égyptien, e-facturation et télédéclarations automatisées.',
+      cardNumber: '4232 8908 1121 4892',
+      bullets: ['Facturation & E-Reçus', 'Télédéclarations Fiscales', 'Enregistrement Portails Publics'],
+      client: 'DIGITAL TAX COMPLIANCE'
+    }
+  ],
+  tr: [
+    {
+      id: '01',
+      category: 'Muhasebe & Denetim',
+      title: 'Mali Denetim ve Güvence',
+      shortDesc: 'Mısır ve Uluslararası Standartlara (IFRS) tam uyumlu bağımsız denetim ve şeffaf mali tablolar.',
+      cardNumber: '9021 8842 1040 0019',
+      bullets: ['Bağımsız Dış ve İç Denetim', 'İç Kontrol Sistem Değerlemesi', 'Mali Risk Analizi'],
+      client: 'AHMED EL SHERBINY AUDIT'
+    },
+    {
+      id: '02',
+      category: 'Mali Danışmanlık',
+      title: 'Değerleme ve Yeniden Yapılandırma',
+      shortDesc: 'Durum tespiti (Due Diligence), şirket değerlemeleri, fizibilite etütleri ve kurumsal finansal danışmanlık.',
+      cardNumber: '5120 7733 9035 4412',
+      bullets: ['Durum Tespiti (Due Diligence)', 'Gerçeğe Uygun Değer Tespiti', 'Sermaye ve Borç Yapılandırması'],
+      client: 'FINANCIAL ADVISORY GROUP'
+    },
+    {
+      id: '03',
+      category: 'Vergi Stratejisi',
+      title: 'Vergi Planlaması ve İtirazlar',
+      shortDesc: 'Büyük Mükellefler nezdinde teftişlerin sonuçlandırılması, uzlaşma komisyonları ve vergi optimizasyonu.',
+      cardNumber: '4441 5567 1223 2468',
+      bullets: ['Vergi Teftiş ve Uzlaşmaları', 'İtiraz Komisyonu Temsili', 'Stratejik Vergi Planlaması'],
+      client: 'TAX PLANNING & DEFENSE'
+    },
+    {
+      id: '04',
+      category: 'Şirket Kuruluşu',
+      title: 'Şirket Kuruluş ve Değişiklikleri',
+      shortDesc: 'Yabancı şube, Anonim Şirket, Limited Şirket kuruluşu, yatırım teşvikleri ve ticari sicil işlemleri.',
+      cardNumber: '5375 8891 2234 7713',
+      bullets: ['Tüm Şirket Türlerinin Kuruluşu', 'Sermaye Artırımı ve Tadiller', 'Ticari Sicil ve İzinler'],
+      client: 'CORPORATE INCORPORATION'
+    },
+    {
+      id: '05',
+      category: 'E-Vergi Sistemleri',
+      title: 'E-Fatura ve Dijital Uyum',
+      shortDesc: 'Mısır Vergi Dairesi E-Fatura ve E-İrsaliye entegrasyonu, otomatik beyanname yönetimi.',
+      cardNumber: '4232 8908 1121 4892',
+      bullets: ['E-Fatura & E-Makbuz Sistemi', 'Dijital Beyanname Gönderimi', 'Resmi Portallara Kayıt'],
+      client: 'DIGITAL TAX COMPLIANCE'
+    }
   ]
 };
 
+const SERVICES_UI_TEXT: Record<LangType, { home: string; book: string; badge: string; title: string; subtitle: string; capabilities: string }> = {
+  ar: {
+    home: 'الرئيسية',
+    book: 'احجز استشارة',
+    badge: 'خدماتنا المتخصصة',
+    title: 'الخدمات والاستشارات',
+    subtitle: 'اسحب أو مرر بالماوس لتصفح البطاقات التفاعلية لخدماتنا',
+    capabilities: 'تفاصيل الخدمة'
+  },
+  en: {
+    home: 'Home',
+    book: 'Book Consultation',
+    badge: 'OUR CORE SPECIALTIES',
+    title: 'Services & Advisory',
+    subtitle: 'Scroll or drag to explore our interactive specialty cards',
+    capabilities: 'Key Capabilities'
+  },
+  fr: {
+    home: 'Accueil',
+    book: 'Réserver une Consultation',
+    badge: 'NOS SPÉCIALITÉS',
+    title: 'Services & Conseil',
+    subtitle: 'Faites défiler pour explorer nos cartes interactives',
+    capabilities: 'Points Clés'
+  },
+  tr: {
+    home: 'Ana Sayfa',
+    book: 'Danışmanlık Alın',
+    badge: 'UZMANLIK ALANLARIMIZ',
+    title: 'Hizmetler ve Danışmanlık',
+    subtitle: 'İnteraktif hizmet kartlarımızı keşfetmek için kaydırın',
+    capabilities: 'Hizmet Detayları'
+  }
+};
+
 interface ServicesProps {
-  lang: 'en' | 'ar';
+  lang: LangType;
   setView: (view: 'home' | 'about' | 'contact' | 'services' | 'laws') => void;
   onBookConsultation?: () => void;
 }
@@ -125,7 +256,8 @@ interface ServicesProps {
 export default function Services({ lang, setView, onBookConsultation }: ServicesProps) {
   const isRtl = lang === 'ar';
   const BackIcon = isRtl ? ArrowRight : ArrowLeft;
-  const servicesList = SERVICES_CARDS[lang];
+  const servicesList = SERVICES_CARDS[lang] || SERVICES_CARDS.en;
+  const uiText = SERVICES_UI_TEXT[lang] || SERVICES_UI_TEXT.en;
   const cardCount = servicesList.length;
 
   const cardsRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -341,23 +473,23 @@ export default function Services({ lang, setView, onBookConsultation }: Services
             className="pointer-events-auto inline-flex items-center gap-2 bg-white/80 hover:bg-white backdrop-blur-xl px-5 py-2.5 rounded-full border border-black/5 shadow-md text-black transition-all duration-200"
           >
             <BackIcon className="w-5 h-5" />
-            <span className="font-semibold text-sm">{isRtl ? 'الرئيسية' : 'Home'}</span>
+            <span className="font-semibold text-sm">{uiText.home}</span>
           </button>
 
           <div className="pointer-events-none text-center">
             <h1 className="text-xl md:text-2xl font-bold tracking-tight text-black">
-              {isRtl ? 'خدماتنا المهنية' : 'Our Professional Services'}
+              {uiText.title}
             </h1>
             <p className="text-xs text-black/60 hidden sm:block font-medium">
-              {isRtl ? 'أحمد الشربيني وشركاه - محاسبون ومراجعون قانونيون' : 'Ahmed El Sherbiny & Co. Certified Public Accountants'}
+              {uiText.subtitle}
             </p>
           </div>
 
           <button 
             onClick={handleConsultation}
-            className="pointer-events-auto bg-black text-white px-5 py-2.5 rounded-full text-xs md:text-sm font-bold hover:bg-black/80 transition-all shadow-md hover:scale-105"
+            className="pointer-events-auto bg-black text-white px-5 py-2.5 rounded-full text-xs md:text-sm font-bold hover:bg-black/80 transition-all shadow-md hover:scale-105 active:scale-95"
           >
-            {isRtl ? 'احجز استشارة' : 'Book Consultation'}
+            {uiText.book}
           </button>
         </div>
       </nav>
@@ -365,7 +497,7 @@ export default function Services({ lang, setView, onBookConsultation }: Services
       {/* Floating Bottom Helper */}
       <div className="absolute bottom-6 inset-x-6 z-40 flex items-center justify-center pointer-events-none">
         <div className="bg-white/90 backdrop-blur-xl border border-black/10 px-5 py-2.5 rounded-full text-xs font-semibold text-black/80 shadow-xl flex items-center gap-2">
-          <span>{isRtl ? '🖱️ حرّك بالماوس أو مرّر (Scroll) لتصفح كروت الخدمات' : '🖱️ Move mouse or scroll to explore service cards'}</span>
+          <span>{uiText.subtitle}</span>
         </div>
       </div>
 

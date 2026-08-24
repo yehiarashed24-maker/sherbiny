@@ -1,9 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
 import { MessageSquare, X, Send, Bot, Loader2, Sparkles, PhoneCall } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import type { LangType } from './language-selector';
 
 interface ChatbotProps {
-  isRtl: boolean;
+  isRtl?: boolean;
+  lang?: LangType;
 }
 
 type Message = {
@@ -11,23 +13,68 @@ type Message = {
   content: string;
 };
 
-export default function Chatbot({ isRtl }: ChatbotProps) {
+const CHAT_TEXT: Record<LangType, {
+  greeting: string;
+  quickPrompts: string[];
+  thinking: string;
+  placeholder: string;
+  hotline: string;
+  subTitle: string;
+}> = {
+  ar: {
+    greeting: 'مرحباً بك! أنا **AhmedSherbiny AI** 🤖، المستشار الذكي لشركة **أحمد الشربيني وشركاه**. كيف يمكنني مساعدتك اليوم في استشاراتك القانونية، الضريبية، وتأسيس الشركات؟',
+    quickPrompts: ['من هو أ. أحمد الشربيني؟', 'تأسيس شركة جديدة', 'الفحص والطعن الضريبي', 'الفاتورة الإلكترونية', 'أرقام وعناوين الفروع'],
+    thinking: 'جاري التفكير وصياغة الاستشارة...',
+    placeholder: 'اسأل AhmedSherbiny AI أي استشارة قانونية أو ضريبية...',
+    hotline: 'الخط الساخن للمكتب:',
+    subTitle: 'المستشار الذكي - أحمد الشربيني وشركاه'
+  },
+  en: {
+    greeting: 'Welcome! I am **AhmedSherbiny AI** 🤖, your smart advisor for **Ahmed El Sherbiny & Co.** How can I assist you today with corporate, tax, and accounting inquiries in Egypt?',
+    quickPrompts: ['Who is Ahmed El Sherbiny?', 'Company Formation', 'Tax Inspection & Appeals', 'E-Invoicing System', 'Office Branches & Contacts'],
+    thinking: 'AhmedSherbiny AI is analyzing...',
+    placeholder: 'Ask AhmedSherbiny AI any legal or tax question...',
+    hotline: 'Direct Hotline:',
+    subTitle: 'Smart Legal & Tax Advisor'
+  },
+  fr: {
+    greeting: 'Bienvenue ! Je suis **AhmedSherbiny AI** 🤖, le conseiller intelligent du cabinet **Ahmed El Sherbiny & Co.** Comment puis-je vous guider aujourd’hui pour vos projets en Égypte ?',
+    quickPrompts: ['Qui est Ahmed El Sherbiny ?', "Création d'Entreprise", 'Contrôle & Contentieux Fiscal', 'Facturation Électronique', 'Agences & Coordonnées'],
+    thinking: 'AhmedSherbiny AI analyse votre demande...',
+    placeholder: 'Posez votre question fiscale ou juridique à AhmedSherbiny AI...',
+    hotline: 'Hotline Directe :',
+    subTitle: 'Conseiller Fiscal & Juridique IA'
+  },
+  tr: {
+    greeting: "Hoş geldiniz! Ben **AhmedSherbiny AI** 🤖, **Ahmed El Sherbiny & Co.** akıllı mali ve vergi danışmanıyım. Mısır'daki şirket kuruluşu ve vergi süreçlerinizde nasıl yardımcı olabilirim?",
+    quickPrompts: ['Ahmed El Sherbiny Kimdir?', 'Şirket Kuruluşu', 'Vergi Teftişi ve İtirazlar', 'E-Fatura Sistemi', 'Şubeler ve İletişim'],
+    thinking: 'AhmedSherbiny AI yanıt hazırlıyor...',
+    placeholder: "AhmedSherbiny AI'a vergi veya şirket sorularınızı sorun...",
+    hotline: 'Doğrudan Danışma Hattı:',
+    subTitle: 'Akıllı Mali ve Vergi Danışmanı'
+  }
+};
+
+export default function Chatbot({ isRtl = false, lang = 'ar' }: ChatbotProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const t = CHAT_TEXT[lang] || CHAT_TEXT.en;
+
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'model',
-      content: isRtl
-        ? 'مرحباً بك! أنا **AhmedSherbiny AI** 🤖، المستشار الذكي لشركة **أحمد الشربيني وشركاه**. كيف يمكنني مساعدتك اليوم في استشاراتك القانونية، الضريبية، وتأسيس الشركات؟'
-        : 'Welcome! I am **AhmedSherbiny AI** 🤖, your legal & tax assistant for **Ahmed El Sherbiny & Co.** How can I assist you today with corporate, tax, and accounting inquiries?'
+      content: t.greeting
     }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const quickPrompts = isRtl
-    ? ['من هو أ. أحمد الشربيني؟', 'تأسيس شركة جديدة', 'الفحص والطعن الضريبي', 'الفاتورة الإلكترونية', 'أرقام وعناوين الفروع']
-    : ['Who is Ahmed El Sherbiny?', 'Company Formation', 'Tax Inspection & Appeals', 'E-Invoicing System', 'Office Branches & Contacts'];
+  // Update greeting if language changes and no conversation has occurred yet
+  useEffect(() => {
+    if (messages.length === 1 && messages[0].role === 'model') {
+      setMessages([{ role: 'model', content: t.greeting }]);
+    }
+  }, [lang, t.greeting]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -55,7 +102,8 @@ export default function Chatbot({ isRtl }: ChatbotProps) {
         body: JSON.stringify({
           messages,
           userMessage,
-          isRtl
+          isRtl,
+          lang
         })
       });
 
@@ -129,7 +177,7 @@ export default function Chatbot({ isRtl }: ChatbotProps) {
                 </span>
               </div>
               <p className="text-xs text-white/70">
-                {isRtl ? 'المستشار الذكي - أحمد الشربيني وشركاه' : 'Smart Legal & Tax Advisor'}
+                {t.subTitle}
               </p>
             </div>
           </div>
@@ -171,7 +219,7 @@ export default function Chatbot({ isRtl }: ChatbotProps) {
               <div className="bg-white rounded-2xl rounded-bl-sm px-4 py-3 shadow-sm border border-black/5 flex items-center gap-2 text-neutral-600">
                 <Loader2 className="w-4 h-4 animate-spin text-amber-600" />
                 <span className="text-xs font-medium">
-                  {isRtl ? 'جاري التفكير وصياغة الاستشارة...' : 'AhmedSherbiny AI is analyzing...'}
+                  {t.thinking}
                 </span>
               </div>
             </div>
@@ -181,7 +229,7 @@ export default function Chatbot({ isRtl }: ChatbotProps) {
 
         {/* Quick Suggestion Chips */}
         <div className="px-3 py-2 bg-neutral-100/80 border-t border-black/5 flex gap-1.5 overflow-x-auto no-scrollbar">
-          {quickPrompts.map((prompt, idx) => (
+          {t.quickPrompts.map((prompt, idx) => (
             <button
               key={idx}
               onClick={() => sendQuery(prompt)}
@@ -198,7 +246,7 @@ export default function Chatbot({ isRtl }: ChatbotProps) {
         <div className="px-4 py-1.5 bg-amber-50 border-t border-amber-100 flex items-center justify-between text-xs text-amber-950 font-medium">
           <span className="flex items-center gap-1.5">
             <PhoneCall className="w-3.5 h-3.5 text-amber-600" />
-            {isRtl ? 'الخط الساخن للمكتب:' : 'Direct Hotline:'}
+            {t.hotline}
           </span>
           <a
             href="tel:+201223233620"
@@ -216,7 +264,7 @@ export default function Chatbot({ isRtl }: ChatbotProps) {
               type="text"
               value={input}
               onChange={e => setInput(e.target.value)}
-              placeholder={isRtl ? 'اسأل AhmedSherbiny AI أي استشارة قانونية أو ضريبية...' : 'Ask AhmedSherbiny AI any legal or tax question...'}
+              placeholder={t.placeholder}
               className="flex-1 bg-neutral-100 border border-transparent rounded-full px-4 py-2.5 text-sm focus:outline-none focus:border-black/30 focus:bg-white transition-all rtl:text-right"
               dir="auto"
               disabled={isLoading}

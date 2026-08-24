@@ -1,47 +1,58 @@
-import { Home, Briefcase, Scale, PhoneCall, CalendarPlus, UserCheck } from 'lucide-react';
+import { Home, Briefcase, Scale, PhoneCall, CalendarPlus } from 'lucide-react';
+import type { LangType } from './language-selector';
 
 interface MobileTabBarProps {
   currentView: 'home' | 'about' | 'contact' | 'services' | 'laws';
   setView: (view: 'home' | 'about' | 'contact' | 'services' | 'laws') => void;
   onOpenConsultation: () => void;
-  isRtl: boolean;
+  lang: LangType;
 }
+
+const TAB_LABELS: Record<LangType, { home: string; services: string; book: string; laws: string; contact: string }> = {
+  ar: { home: 'الرئيسية', services: 'الخدمات', book: 'حجز استشارة', laws: 'القوانين', contact: 'تواصل' },
+  en: { home: 'Home', services: 'Services', book: 'Book', laws: 'Laws', contact: 'Contact' },
+  fr: { home: 'Accueil', services: 'Services', book: 'Réserver', laws: 'Lois', contact: 'Contact' },
+  tr: { home: 'Ana Sayfa', services: 'Hizmetler', book: 'Danışmanlık', laws: 'Mevzuat', contact: 'İletişim' }
+};
 
 export default function MobileTabBar({
   currentView,
   setView,
   onOpenConsultation,
-  isRtl
+  lang
 }: MobileTabBarProps) {
+  const isRtl = lang === 'ar';
+  const labels = TAB_LABELS[lang] || TAB_LABELS.en;
+
   const tabs = [
     {
       id: 'home' as const,
-      label: isRtl ? 'الرئيسية' : 'Home',
+      label: labels.home,
       icon: Home,
       action: () => setView('home')
     },
     {
       id: 'services' as const,
-      label: isRtl ? 'الخدمات' : 'Services',
+      label: labels.services,
       icon: Briefcase,
       action: () => setView('services')
     },
     {
       id: 'book' as const,
-      label: isRtl ? 'حجز استشارة' : 'Book',
+      label: labels.book,
       icon: CalendarPlus,
       isSpecial: true,
       action: onOpenConsultation
     },
     {
       id: 'laws' as const,
-      label: isRtl ? 'القوانين' : 'Laws',
+      label: labels.laws,
       icon: Scale,
       action: () => setView('laws')
     },
     {
       id: 'contact' as const,
-      label: isRtl ? 'تواصل' : 'Contact',
+      label: labels.contact,
       icon: PhoneCall,
       action: () => setView('contact')
     }

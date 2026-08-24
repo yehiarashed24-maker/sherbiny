@@ -1,17 +1,26 @@
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import AboutUsSection from './components/ui/about-us-section';
 import Footer from './components/ui/footer';
+import type { LangType } from './components/ui/language-selector';
 
 interface AboutProps {
-  lang: 'en' | 'ar';
+  lang: LangType;
   setView: (view: 'home' | 'about' | 'contact' | 'services' | 'laws') => void;
   onBookConsultation?: () => void;
 }
+
+const NAV_TEXT: Record<LangType, { home: string; book: string }> = {
+  ar: { home: 'الرئيسية', book: 'احجز استشارة' },
+  en: { home: 'Home', book: 'Book Consultation' },
+  fr: { home: 'Accueil', book: 'Réserver une Consultation' },
+  tr: { home: 'Ana Sayfa', book: 'Danışmanlık Alın' }
+};
 
 export default function About({ lang, setView, onBookConsultation }: AboutProps) {
   const isRtl = lang === 'ar';
   const BackIcon = isRtl ? ArrowRight : ArrowLeft;
   const handleConsultation = onBookConsultation || (() => setView('contact'));
+  const t = NAV_TEXT[lang] || NAV_TEXT.en;
 
   return (
     <div className="min-h-screen bg-[#F5F5F5] text-black font-sans selection:bg-black selection:text-white" dir={isRtl ? 'rtl' : 'ltr'}>
@@ -23,15 +32,15 @@ export default function About({ lang, setView, onBookConsultation }: AboutProps)
             className="pointer-events-auto inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-5 py-2.5 rounded-full border border-black/5 shadow-md text-black/80 hover:text-black hover:bg-white transition-all duration-200"
           >
             <BackIcon className="w-5 h-5" />
-            <span className="font-semibold text-sm">{isRtl ? 'الرئيسية' : 'Home'}</span>
+            <span className="font-semibold text-sm">{t.home}</span>
           </button>
           
           <div className="pointer-events-auto flex items-center gap-3">
             <button 
               onClick={handleConsultation}
-              className="bg-black text-white px-6 py-2.5 rounded-full text-xs md:text-sm font-bold hover:bg-black/80 transition-colors shadow-md"
+              className="bg-black text-white px-6 py-2.5 rounded-full text-xs md:text-sm font-bold hover:bg-black/80 transition-colors shadow-md active:scale-95"
             >
-              {isRtl ? 'احجز استشارة' : 'Book Consultation'}
+              {t.book}
             </button>
           </div>
         </div>
@@ -39,11 +48,11 @@ export default function About({ lang, setView, onBookConsultation }: AboutProps)
 
       {/* Main Animated About Section */}
       <div className="pt-12">
-        <AboutUsSection isRtl={isRtl} onContactClick={handleConsultation} />
+        <AboutUsSection isRtl={isRtl} lang={lang} onContactClick={handleConsultation} />
       </div>
 
       {/* Universal Footer */}
-      <Footer isRtl={isRtl} setView={setView} />
+      <Footer isRtl={isRtl} lang={lang} setView={setView} />
     </div>
   );
 }
