@@ -14,7 +14,7 @@ export default function About({ lang, setView, onBookConsultation }: AboutProps)
   const handleConsultation = onBookConsultation || (() => setView('contact'));
 
   return (
-    <div className="min-h-screen bg-[#F6F5F2] text-black font-sans selection:bg-black selection:text-white" dir={isRtl ? 'rtl' : 'ltr'}>
+    <div className="min-h-screen bg-[#F5F5F5] text-black font-sans selection:bg-black selection:text-white" dir={isRtl ? 'rtl' : 'ltr'}>
       {/* Fixed Navbar with Back Button */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between pointer-events-none">
         <div className="max-w-[88rem] mx-auto w-full flex items-center justify-between">

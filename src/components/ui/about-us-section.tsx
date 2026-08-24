@@ -134,44 +134,9 @@ export default function AboutUsSection({ isRtl = false, onContactClick }: AboutU
     <section
       id="about-section"
       ref={sectionRef}
-      className="w-full py-20 px-4 bg-[#F5F5F5] text-black overflow-hidden relative font-sans"
+      className="w-full py-16 px-4 bg-[#F5F5F5] text-black overflow-hidden relative font-sans"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      {/* Decorative background elements */}
-      <motion.div
-        className="absolute top-20 left-10 w-72 h-72 rounded-full bg-black/[0.02] blur-3xl"
-        style={{ y: y1, rotate: rotate1 }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-black/[0.02] blur-3xl"
-        style={{ y: y2, rotate: rotate2 }}
-      />
-      <motion.div
-        className="absolute top-1/2 left-1/4 w-3 h-3 rounded-full bg-black/10"
-        animate={{
-          y: [0, -15, 0],
-          opacity: [0.3, 0.7, 0.3],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-        }}
-      />
-      <motion.div
-        className="absolute bottom-1/3 right-1/4 w-4 h-4 rounded-full bg-black/10"
-        animate={{
-          y: [0, 15, 0],
-          opacity: [0.3, 0.7, 0.3],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-          delay: 1,
-        }}
-      />
-
       <motion.div
         className="container mx-auto max-w-6xl relative z-10"
         initial="hidden"

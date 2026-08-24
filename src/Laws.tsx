@@ -53,9 +53,9 @@ export default function Laws({ isRtl, setView }: LawsProps) {
   const IconBack = isRtl ? ArrowRight : ArrowLeft;
 
   return (
-    <div className={`min-h-screen bg-[#F6F5F2] ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
+    <div className={`min-h-screen bg-[#F5F5F5] ${isRtl ? 'rtl' : 'ltr'}`} dir={isRtl ? 'rtl' : 'ltr'}>
       {/* Navigation Bar */}
-      <nav className="fixed w-full z-50 bg-[#F6F5F2]/80 backdrop-blur-md border-b border-black/5 transition-all duration-300">
+      <nav className="fixed w-full z-50 bg-[#F5F5F5]/80 backdrop-blur-md border-b border-black/5 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
           <button 
             onClick={() => setView('home')}
