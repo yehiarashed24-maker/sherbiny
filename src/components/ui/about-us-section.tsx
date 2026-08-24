@@ -32,6 +32,7 @@ const ABOUT_TEXT: Record<LangType, {
   title: string;
   intro: string;
   founderBadge: string;
+  founderPrefix: string;
   founderName: string;
   founderTitle: string;
   founderBio: string;
@@ -46,7 +47,8 @@ const ABOUT_TEXT: Record<LangType, {
     title: "أحمد الشربيني وشركاه",
     intro: "نحن مؤسسة رائدة في المحاسبة القانونية والمراجعة والاستشارات الضريبية، نعمل بشغف وخبرة متوارثة تمتد لعقود لتمكين عملائنا من تحقيق النمو المالي المستدام وتأمين استثماراتهم وفقاً لأعلى المعايير.",
     founderBadge: "المؤسس والمدير للشركة",
-    founderName: "المحاسب القانوني أحمد الشربيني",
+    founderPrefix: "المحاسب القانوني",
+    founderName: "أحمد الشربيني",
     founderTitle: "محاسب ومراجع قانوني مقيد وخبير ضرائب",
     founderBio: "خبرة مهنية متفردة تمتد لأكثر من 40 عاماً في الفحص الضريبي، الاستشارات، وتأسيس كبرى الشركات في جمهورية مصر العربية.",
     ctaTitle: "هل تبحث عن استشارة مالية أو ضريبية معتمدة؟",
@@ -96,8 +98,9 @@ const ABOUT_TEXT: Record<LangType, {
     title: "About Ahmed El Sherbiny & Co.",
     intro: "A premier firm in certified accounting, auditing, and tax advisory. We leverage decades of seasoned expertise to empower clients with sustainable financial growth and legal compliance.",
     founderBadge: "Founder & Managing Director",
-    founderName: "CPA Ahmed El Sherbiny",
-    founderTitle: "Certified Public Accountant & Tax Consultant",
+    founderPrefix: "Certified Public Accountant",
+    founderName: "Ahmed El Sherbiny",
+    founderTitle: "Tax Consultant & Independent Financial Advisor",
     founderBio: "Over 40 years of trusted advisory in corporate restructuring, tax appeals, and audit leadership across Egypt.",
     ctaTitle: "Looking for Certified Financial or Tax Advisory?",
     ctaSubtitle: "Connect with our expert team to review your tax position or structure your company with speed and precision.",
@@ -146,7 +149,8 @@ const ABOUT_TEXT: Record<LangType, {
     title: "Cabinet Ahmed El Sherbiny & Co.",
     intro: "Cabinet leader en expertise comptable, audit financier et conseil fiscal en Égypte, fort de plus de 40 ans d'expérience aux côtés des plus grandes entreprises.",
     founderBadge: "Fondateur & Directeur Général",
-    founderName: "Expert-Comptable Ahmed El Sherbiny",
+    founderPrefix: "Expert-Comptable",
+    founderName: "Ahmed El Sherbiny",
     founderTitle: "Expert-Comptable Agréé & Expert Fiscal",
     founderBio: "Plus de 40 ans d'excellence en gestion des contentieux fiscaux et création de sociétés en Égypte.",
     ctaTitle: "Besoin d'un Conseil Fiscal ou Comptable Certifié ?",
@@ -196,7 +200,8 @@ const ABOUT_TEXT: Record<LangType, {
     title: "Ahmed El Sherbiny & Co.",
     intro: "Mısır'da yeminli mali müşavirlik, bağımsız denetim ve vergi danışmanlığı alanında 40 yılı aşkın köklü tecrübemizle şirketlerin sürdürülebilir büyümesine öncülük ediyoruz.",
     founderBadge: "Kurucu & Yönetici Ortak",
-    founderName: "YMM Ahmed El Sherbiny",
+    founderPrefix: "Yeminli Mali Müşavir",
+    founderName: "Ahmed El Sherbiny",
     founderTitle: "Yeminli Mali Müşavir & Vergi Uzmanı",
     founderBio: "Mısır Vergi Dairesi ve Büyük Mükellefler nezdinde 40 yılı aşkın üst düzey danışmanlık ve denetim tecrübesi.",
     ctaTitle: "Mali veya Vergi Danışmanlığına mı İhtiyacınız Var?",
@@ -394,9 +399,14 @@ export default function AboutUsSection({ isRtl = false, lang = 'ar', onContactCl
                       <ShieldCheck className="w-4 h-4 text-black" />
                       <span>{t.founderBadge}</span>
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-extrabold text-white mb-1 tracking-tight drop-shadow-md">
-                      {t.founderName}
-                    </h3>
+                    <div className="mb-1.5">
+                      <span className="inline-block text-xs sm:text-sm font-bold text-amber-300/95 tracking-wide mb-0.5">
+                        {t.founderPrefix}
+                      </span>
+                      <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight drop-shadow-md">
+                        {t.founderName}
+                      </h3>
+                    </div>
                     <p className="text-xs md:text-sm text-white/80 font-medium leading-relaxed drop-shadow-sm mb-1">
                       {t.founderTitle}
                     </p>
