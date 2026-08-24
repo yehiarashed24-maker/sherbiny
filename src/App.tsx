@@ -121,10 +121,15 @@ const App = () => {
         <nav className="absolute top-0 left-0 right-0 z-20 px-6 py-5">
           <div className="flex items-center justify-between max-w-[88rem] mx-auto">
             <div className="flex items-center gap-3 cursor-pointer" onClick={() => setView('home')}>
-              <LogoIcon className="w-7 h-7 text-black" />
-              <span className="text-2xl font-medium tracking-tight text-black">
-                {isRtl ? 'أحمد الشربيني' : 'Ahmed El Sherbiny'}
-              </span>
+              <img src="/logo.png" alt="Ahmed El Sherbiny" className="h-10 md:h-12 w-auto object-contain" />
+              <div className="flex flex-col">
+                <span className="text-lg md:text-xl font-bold tracking-tight text-black leading-tight">
+                  {isRtl ? 'أحمد الشربيني وشركاه' : 'Ahmed El Sherbiny & Co.'}
+                </span>
+                <span className="text-[11px] md:text-xs text-black/60 font-medium">
+                  {isRtl ? 'محاسبون ومراجعون قانونيون' : 'Certified Public Accountants & Auditors'}
+                </span>
+              </div>
             </div>
             
             <div className="hidden md:flex items-center gap-8">

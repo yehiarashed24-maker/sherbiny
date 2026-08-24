@@ -12,13 +12,19 @@ export default function Footer({ isRtl, setView }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="col-span-1 md:col-span-1 flex flex-col items-start">
-            <h3 className="text-2xl font-bold mb-4">
-              {isRtl ? 'أحمد الشربيني' : 'Ahmed El Sherbiny'}
+            <div className="flex items-center gap-3 mb-4 bg-white/10 p-2.5 rounded-2xl backdrop-blur-sm">
+              <img src="/logo.png" alt="Ahmed El Sherbiny" className="h-10 w-auto object-contain brightness-0 invert" />
+            </div>
+            <h3 className="text-xl font-bold mb-1">
+              {isRtl ? 'أحمد الشربيني وشركاه' : 'Ahmed El Sherbiny & Co.'}
             </h3>
+            <p className="text-xs text-white/50 mb-4 font-medium">
+              {isRtl ? 'محاسبون ومراجعون قانونيون' : 'Certified Public Accountants & Auditors'}
+            </p>
             <p className="text-white/60 mb-6 max-w-sm text-sm leading-relaxed">
               {isRtl
-                ? 'مكتب أحمد الشربينى وشركاه محاسبون قانونيون، خبراء في تقديم الاستشارات المالية، المراجعة المحاسبية وتأسيس الشركات لضمان نموك المالي بأمان.'
-                : 'Ahmed El Sherbiny & Co. Certified Public Accountants. Experts in financial consulting, auditing, and company formation.'}
+                ? 'مكتب أحمد الشربينى وشركاه محاسبون ومراجعون قانونيون، خبراء في تقديم الاستشارات المالية، المراجعة المحاسبية وتأسيس الشركات لضمان نموك المالي بأمان.'
+                : 'Ahmed El Sherbiny & Co. Certified Public Accountants and Auditors. Experts in financial consulting, auditing, and company formation.'}
             </p>
           </div>
 
