@@ -332,8 +332,8 @@ export default function Chatbot({ isRtl }: ChatbotProps) {
 
     let assistantResponse = '';
 
-    // If a valid Gemini API key is present, try Gemini API first
-    if (GEMINI_API_KEY && GEMINI_API_KEY.startsWith('AIzaSy')) {
+    // If a Gemini API key is present, call Google Gemini AI API directly
+    if (GEMINI_API_KEY) {
       try {
         const conversationHistory = messages.slice(1).map(msg => ({
           role: msg.role === 'model' ? 'model' : 'user',
