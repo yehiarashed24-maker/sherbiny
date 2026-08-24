@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowLeft, ArrowRight, MapPin, Phone, Mail, Clock, Send, ExternalLink, MessageCircle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, MapPin, Phone, Mail, Clock, Send, ExternalLink, MessageCircle, QrCode } from 'lucide-react';
 import Footer from './components/ui/footer';
 import type { LangType } from './components/ui/language-selector';
 
@@ -80,6 +80,9 @@ const CONTACT_INFO: Record<LangType, {
   emails: string[];
   openMap: string;
   callNow: string;
+  qrBadge: string;
+  qrTitle: string;
+  qrDesc: string;
   form: { name: string; email: string; phone: string; message: string; submit: string };
   back: string;
 }> = {
@@ -94,6 +97,9 @@ const CONTACT_INFO: Record<LangType, {
     emails: ['Sherbiny.co@gmail.com', 'A.elsherbiny@yahoo.com'],
     openMap: 'Open in Google Maps',
     callNow: 'Call',
+    qrBadge: 'Instant Contact QR Code',
+    qrTitle: 'Scan to Save Contact',
+    qrDesc: 'Scan with your smartphone camera to instantly save Ahmed El Sherbiny & Co. official contact details.',
     form: {
       name: 'Full Name',
       email: 'Email Address',
@@ -114,6 +120,9 @@ const CONTACT_INFO: Record<LangType, {
     emails: ['Sherbiny.co@gmail.com', 'A.elsherbiny@yahoo.com'],
     openMap: 'فتح الموقع في خرائط Google',
     callNow: 'اتصال',
+    qrBadge: 'حفظ بيانات التواصل الفوري',
+    qrTitle: 'امسح الرمز ضوئياً (Scan QR)',
+    qrDesc: 'امسح الكود بكاميرا هاتفك لحفظ أرقام وعناوين مكتب أحمد الشربيني وشركاه مباشرة في جهات اتصالك.',
     form: {
       name: 'الاسم الكامل',
       email: 'البريد الإلكتروني',
@@ -134,6 +143,9 @@ const CONTACT_INFO: Record<LangType, {
     emails: ['Sherbiny.co@gmail.com', 'A.elsherbiny@yahoo.com'],
     openMap: 'Ouvrir dans Google Maps',
     callNow: 'Appeler',
+    qrBadge: 'QR Code de Contact Immédiat',
+    qrTitle: 'Scannez pour Enregistrer le Contact',
+    qrDesc: "Scannez avec l'appareil photo de votre smartphone pour enregistrer directement les coordonnées du cabinet.",
     form: {
       name: 'Nom Complet',
       email: 'Adresse Email',
@@ -145,7 +157,7 @@ const CONTACT_INFO: Record<LangType, {
   },
   tr: {
     title: 'İletişime Geçin',
-    subtitle: "Mısır'daki mali müşavirlik, şirket kuruluşu ve vergi danışmanlığı hizmetlerimiz hakkında sorularınız için bize ulaşın.",
+    subtitle: "Mısır'daki mali müşavirlik, şirket kuruluşu ve vergi danışmanlığı خدماتlerimiz hakkında sorularınız için bize ulaşın.",
     workingHoursTitle: 'Çalışma Saatleri',
     workingHours: 'Cumartesi - Perşembe: 09:00 - 21:00. Ekibimiz sorularınıza en geç 4 saat içinde dönüş sağlamaktadır.',
     branchesTitle: 'Şubelerimiz ve Adreslerimiz',
@@ -154,6 +166,9 @@ const CONTACT_INFO: Record<LangType, {
     emails: ['Sherbiny.co@gmail.com', 'A.elsherbiny@yahoo.com'],
     openMap: "Google Haritalar'da Aç",
     callNow: 'Ara',
+    qrBadge: 'Hızlı İletişim Karekodu',
+    qrTitle: 'Karekod ile İletişim Bilgilerini Kaydedin',
+    qrDesc: "Ahmed El Sherbiny & Co. iletişim bilgilerini doğrudan rehberinize kaydetmek için akıllı telefonunuzla tarayın.",
     form: {
       name: 'Ad Soyad',
       email: 'E-posta Adresi',
@@ -430,6 +445,27 @@ export default function Contact({ lang, setView, onBookConsultation }: ContactPr
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* QR Code Quick Save Card */}
+            <div className="pl-13 rtl:pl-0 rtl:pr-13">
+              <div className="bg-gradient-to-br from-neutral-900 to-black text-white p-6 sm:p-7 rounded-3xl shadow-xl border border-white/10 flex flex-col sm:flex-row items-center gap-6">
+                <div className="bg-white p-3 rounded-2xl shadow-lg shrink-0 flex items-center justify-center border-2 border-white/80">
+                  <img src="/qr-code.png" alt="Office Contact QR Code" className="w-28 h-28 sm:w-32 sm:h-32 object-contain" />
+                </div>
+                <div className="text-center sm:text-start flex flex-col items-center sm:items-start">
+                  <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-bold mb-2.5 border border-amber-400/30">
+                    <QrCode className="w-3.5 h-3.5" />
+                    <span>{t.qrBadge}</span>
+                  </div>
+                  <h4 className="text-lg sm:text-xl font-bold text-white mb-1.5 tracking-tight">
+                    {t.qrTitle}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-white/70 leading-relaxed max-w-sm">
+                    {t.qrDesc}
+                  </p>
+                </div>
               </div>
             </div>
 
