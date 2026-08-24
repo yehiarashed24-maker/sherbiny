@@ -1,9 +1,10 @@
 import { ArrowLeft, ArrowRight, MousePointer2 } from 'lucide-react';
 import SocialCards from './components/ui/card-fan-carousel';
+import Footer from './components/ui/footer';
 
 interface ServicesProps {
   lang: 'en' | 'ar';
-  onBack: () => void;
+  setView: (view: 'home' | 'about' | 'contact' | 'services' | 'laws') => void;
 }
 
 const SERVICES_DATA = {
@@ -238,7 +239,7 @@ const SERVICES_DATA = {
   ]
 };
 
-const Services = ({ lang, onBack }: ServicesProps) => {
+const Services = ({ lang, setView }: ServicesProps) => {
   const isRtl = lang === 'ar';
   const services = SERVICES_DATA[lang];
   const BackIcon = isRtl ? ArrowRight : ArrowLeft;
@@ -278,7 +279,7 @@ const Services = ({ lang, onBack }: ServicesProps) => {
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between pointer-events-none">
         <div className="max-w-[88rem] mx-auto w-full flex items-center justify-between">
           <button 
-            onClick={onBack} 
+            onClick={() => setView('home')} 
             className="pointer-events-auto inline-flex items-center gap-2 bg-white/60 backdrop-blur-md px-5 py-2.5 rounded-full border border-black/5 shadow-sm text-black/70 hover:text-black transition-colors duration-200"
           >
             <BackIcon className="w-5 h-5" />
@@ -310,6 +311,7 @@ const Services = ({ lang, onBack }: ServicesProps) => {
       <div className="w-full bg-[#F6F5F2] pt-2 pb-24 overflow-hidden flex justify-center">
         <SocialCards cards={carouselCards} />
       </div>
+      <Footer isRtl={isRtl} setView={setView} />
     </div>
   );
 };

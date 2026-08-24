@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ArrowLeft, ArrowRight, MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import Footer from './components/ui/footer';
 
 const CONTACT_INFO = {
   en: {
@@ -52,7 +53,12 @@ const CONTACT_INFO = {
   }
 };
 
-export default function Contact({ lang, onBack }: { lang: 'en' | 'ar', onBack: () => void }) {
+interface ContactProps {
+  lang: 'en' | 'ar';
+  setView: (view: 'home' | 'about' | 'contact' | 'services' | 'laws') => void;
+}
+
+export default function Contact({ lang, setView }: ContactProps) {
   const isRtl = lang === 'ar';
   const BackIcon = isRtl ? ArrowRight : ArrowLeft;
   const t = CONTACT_INFO[lang];
@@ -74,7 +80,10 @@ export default function Contact({ lang, onBack }: { lang: 'en' | 'ar', onBack: (
       {/* Navbar/Header area */}
       <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-black/5">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <button onClick={onBack} className="inline-flex items-center gap-2 text-black/70 hover:text-black transition-colors duration-200">
+          <button 
+            onClick={() => setView('home')} 
+            className="inline-flex items-center gap-2 text-black/70 hover:text-black transition-colors duration-200"
+          >
             <BackIcon className="w-5 h-5" />
             <span className="font-medium text-lg">{t.back}</span>
           </button>
@@ -205,6 +214,7 @@ export default function Contact({ lang, onBack }: { lang: 'en' | 'ar', onBack: (
           </div>
         </div>
       </div>
+      <Footer isRtl={isRtl} setView={setView} />
     </div>
   );
 }

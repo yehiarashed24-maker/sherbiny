@@ -24,7 +24,12 @@ const ABOUT_INFO = {
   ]
 };
 
-export default function About({ lang, onBack }: { lang: 'en' | 'ar', onBack: () => void }) {
+interface AboutProps {
+  lang: 'en' | 'ar';
+  setView: (view: 'home' | 'about' | 'contact' | 'services' | 'laws') => void;
+}
+
+export default function About({ lang, setView }: AboutProps) {
   const isRtl = lang === 'ar';
   const BackIcon = isRtl ? ArrowRight : ArrowLeft;
   
@@ -90,7 +95,7 @@ export default function About({ lang, onBack }: { lang: 'en' | 'ar', onBack: () 
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('mouseleave', handleMouseLeave);
       window.removeEventListener('wheel', handleWheel);
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
@@ -187,7 +192,7 @@ export default function About({ lang, onBack }: { lang: 'en' | 'ar', onBack: () 
 
     frameId.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frameId.current);
-  }, [metrics, renderLoop]);
+  }, [metrics]);
 
   const thicknessLayers = [-1.47, -0.73, 0, 0.73, 1.47];
 
@@ -196,7 +201,10 @@ export default function About({ lang, onBack }: { lang: 'en' | 'ar', onBack: () 
       
       {/* Back Button Overlay */}
       <div className="absolute top-6 left-6 z-[100]">
-        <button onClick={onBack} className="inline-flex items-center gap-2 text-black/70 hover:text-black transition-colors duration-200">
+        <button 
+          onClick={() => setView('home')} 
+          className="pointer-events-auto inline-flex items-center gap-2 bg-white/60 backdrop-blur-md px-5 py-2.5 rounded-full border border-black/5 shadow-sm text-black/70 hover:text-black transition-colors duration-200"
+        >
           <BackIcon className="w-5 h-5" />
           <span className="font-medium text-lg">{isRtl ? 'العودة' : 'Back'}</span>
         </button>

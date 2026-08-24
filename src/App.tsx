@@ -5,6 +5,7 @@ import Contact from './Contact';
 import Services from './Services';
 import Laws from './Laws';
 import Chatbot from './components/ui/chatbot';
+import Footer from './components/ui/footer';
 
 const LogoIcon = ({ className }: { className?: string }) => (
   <svg
@@ -97,15 +98,15 @@ const App = () => {
   ];
 
   if (view === 'about') {
-    return <About lang={lang} onBack={() => setView('home')} />;
+    return <About lang={lang} setView={setView} />;
   }
 
   if (view === 'contact') {
-    return <Contact lang={lang} onBack={() => setView('home')} />;
+    return <Contact lang={lang} setView={setView} />;
   }
 
   if (view === 'services') {
-    return <Services lang={lang} onBack={() => setView('home')} />;
+    return <Services lang={lang} setView={setView} />;
   }
   
   if (view === 'laws') {
@@ -385,6 +386,8 @@ const App = () => {
           </div>
         </div>
       </section>
+      {/* Footer */}
+      <Footer isRtl={isRtl} setView={setView} />
 
       {/* Floating Legal Chatbot */}
       <Chatbot isRtl={isRtl} />
