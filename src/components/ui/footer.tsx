@@ -91,6 +91,57 @@ const FOOTER_TEXT: Record<LangType, {
     mansoura: 'Mansura (Sabit)',
     whatsapp: 'Ana WhatsApp',
     rights: 'Tüm hakları saklıdır.'
+  },
+  ja: {
+    name: 'アハメド・エル・シェルビニ事務所',
+    sub: '公認会計士および監査人',
+    desc: 'Ahmed El Sherbiny & Co. Certified Public Accountants and Auditors. Experts in financial consulting, auditing, and company formation in Egypt.',
+    quickLinks: 'クイックリンク',
+    home: 'ホーム',
+    about: '私たちについて',
+    services: 'サービス',
+    laws: '法律',
+    contact: 'お問い合わせ',
+    address: '59 Media City - Agouza, Cairo',
+    cairo: 'カイロオフィス',
+    mobile: 'モバイル2',
+    mansoura: 'マンスーラオフィス',
+    whatsapp: 'メインのWhatsApp',
+    rights: '全著作権所有。'
+  },
+  zh: {
+    name: '艾哈迈德·谢尔比尼公司',
+    sub: '注册会计师和审计师',
+    desc: 'Ahmed El Sherbiny & Co. Certified Public Accountants and Auditors. Experts in financial consulting, auditing, and company formation in Egypt.',
+    quickLinks: '快速链接',
+    home: '首页',
+    about: '关于我们',
+    services: '服务',
+    laws: '法律',
+    contact: '联系我们',
+    address: '59 Media City - Agouza, Cairo',
+    cairo: '开罗办公室',
+    mobile: '手机2',
+    mansoura: '曼苏拉办公室',
+    whatsapp: '主要WhatsApp',
+    rights: '版权所有。'
+  },
+  ko: {
+    name: '아흐메드 엘 셰르비니 주식회사',
+    sub: '공인 회계사 및 감사관',
+    desc: 'Ahmed El Sherbiny & Co. Certified Public Accountants and Auditors. Experts in financial consulting, auditing, and company formation in Egypt.',
+    quickLinks: '빠른 링크',
+    home: '홈',
+    about: '회사 소개',
+    services: '서비스',
+    laws: '법률',
+    contact: '문의하기',
+    address: '59 Media City - Agouza, Cairo',
+    cairo: '카이로 사무소',
+    mobile: '모바일 2',
+    mansoura: '만수라 사무소',
+    whatsapp: '기본 WhatsApp',
+    rights: '모든 권리 보유.'
   }
 };
 

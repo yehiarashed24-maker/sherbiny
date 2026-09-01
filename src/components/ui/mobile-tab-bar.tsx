@@ -12,7 +12,10 @@ const TAB_LABELS: Record<LangType, { home: string; services: string; book: strin
   ar: { home: 'الرئيسية', services: 'الخدمات', book: 'حجز استشارة', laws: 'القوانين', contact: 'تواصل' },
   en: { home: 'Home', services: 'Services', book: 'Book', laws: 'Laws', contact: 'Contact' },
   fr: { home: 'Accueil', services: 'Services', book: 'Réserver', laws: 'Lois', contact: 'Contact' },
-  tr: { home: 'Ana Sayfa', services: 'Hizmetler', book: 'Danışmanlık', laws: 'Mevzuat', contact: 'İletişim' }
+  tr: { home: 'Ana Sayfa', services: 'Hizmetler', book: 'Danışmanlık', laws: 'Mevzuat', contact: 'İletişim' },
+  ja: { home: 'ホーム', services: 'サービス', book: '予約', laws: '法律', contact: '連絡先' },
+  zh: { home: '首页', services: '服务', book: '预约', laws: '法律', contact: '联系我们' },
+  ko: { home: '홈', services: '서비스', book: '예약', laws: '법률', contact: '연락처' }
 };
 
 export default function MobileTabBar({

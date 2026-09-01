@@ -52,6 +52,30 @@ const CHAT_TEXT: Record<LangType, {
     placeholder: "AhmedSherbiny AI'a vergi veya şirket sorularınızı sorun...",
     hotline: 'Doğrudan Danışma Hattı:',
     subTitle: 'Akıllı Mali ve Vergi Danışmanı'
+  },
+  ja: {
+    greeting: 'ようこそ！私は**アハメド・シェルビニ AI** 🤖、**アハメド・エル・シェルビニ事務所**のスマートアドバイザーです。本日はエジプトでの法人、税務、会計についてどのようなご質問がありますか？',
+    quickPrompts: ['アハメド・エル・シェルビニとは？', '会社設立', '税務調査と不服申し立て', '電子請求書システム', 'オフィス支店と連絡先'],
+    thinking: 'AhmedSherbiny AI が分析中...',
+    placeholder: 'アハメド・シェルビニ AI に法的または税務上の質問をしてください...',
+    hotline: '直通ホットライン:',
+    subTitle: 'スマートな法的および税務アドバイザー'
+  },
+  zh: {
+    greeting: '欢迎！我是**AhmedSherbiny AI** 🤖，您在**艾哈迈德·谢尔比尼公司**的智能顾问。今天我能为您在埃及的企业、税务和会计咨询提供什么帮助？',
+    quickPrompts: ['艾哈迈德·谢尔比尼是谁？', '公司成立', '税务稽查与上诉', '电子发票系统', '办公分部与联系方式'],
+    thinking: 'AhmedSherbiny AI 正在分析...',
+    placeholder: '向 AhmedSherbiny AI 提出任何法律或税务问题...',
+    hotline: '直拨热线：',
+    subTitle: '智能法律与税务顾问'
+  },
+  ko: {
+    greeting: '환영합니다! 저는 **AhmedSherbiny AI** 🤖, **아흐메드 엘 셰르비니 주식회사**의 스마트 자문입니다. 오늘 이집트에서의 기업, 세무, 회계 문의와 관련하여 어떻게 도와드릴까요?',
+    quickPrompts: ['아흐메드 엘 셰르비니는 누구인가?', '회사 설립', '세무 조사 및 불복', '전자 세금계산서 시스템', '지점 및 연락처'],
+    thinking: 'AhmedSherbiny AI가 분석 중입니다...',
+    placeholder: 'AhmedSherbiny AI에게 법률 또는 세무 관련 질문을 하세요...',
+    hotline: '직통 핫라인:',
+    subTitle: '스마트 법률 및 세무 자문'
   }
 };
 

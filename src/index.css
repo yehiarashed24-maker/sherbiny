@@ -72,7 +72,7 @@ html, body {
 .marquee-track-reverse {
   display: flex;
   width: max-content;
-  animation: marquee-reverse 25s linear infinite;
+  animation: marquee-reverse 50s linear infinite;
 }
 
 @keyframes marquee-reverse {

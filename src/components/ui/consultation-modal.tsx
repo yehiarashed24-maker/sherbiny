@@ -133,6 +133,84 @@ const MODAL_TEXT: Record<LangType, {
     successDesc: 'Ahmed El Sherbiny & Co. ile iletişime geçtiğiniz için teşekkür ederiz. Danışmanımız en kısa sürede sizinle iletişime geçecektir.',
     hotline: 'Doğrudan Hat & WhatsApp:',
     doneBtn: 'Tamam'
+  },
+  ja: {
+    badge: '無料相談',
+    title: '相談を予約する',
+    subtitle: '詳細をご記入ください。シニア財務コンサルタントが最適なロードマップを作成するためにご連絡いたします。',
+    nameLabel: 'フルネーム *',
+    namePlaceholder: 'お名前または会社名を入力してください',
+    phoneLabel: '電話 / WhatsApp *',
+    phonePlaceholder: '+20 1XXXXXXXXX',
+    serviceLabel: 'サービスの種類',
+    services: {
+      tax: '税務と査察',
+      audit: '監査と会計',
+      incorporation: '会社設立',
+      advisory: '財務アドバイザリー',
+      other: 'Other'
+    },
+    emailLabel: 'メール（任意）',
+    notesLabel: '備考 / ご希望の時間帯',
+    notesPlaceholder: 'お問い合わせの簡単な詳細や、連絡に都合の良い時間帯をお知らせください...',
+    submit: '確認して相談を予約する',
+    submitting: 'リクエストを送信中...',
+    successTitle: 'リクエストを受け付けました！',
+    successDesc: 'Ahmed El Sherbiny & Co. にお問い合わせいただきありがとうございます。アドバイザーがすぐに電話または WhatsApp でご連絡いたします。',
+    hotline: 'Direct Hotline & WhatsApp:',
+    doneBtn: 'Done'
+  },
+  zh: {
+    badge: '免费咨询',
+    title: '预约咨询',
+    subtitle: '填写您的详细信息，我们的高级财务顾问将与您联系，为您量身定制理想的路线图。',
+    nameLabel: '全名 *',
+    namePlaceholder: '输入您的姓名或公司名称',
+    phoneLabel: '电话 / WhatsApp *',
+    phonePlaceholder: '+20 1XXXXXXXXX',
+    serviceLabel: '服务类型',
+    services: {
+      tax: '税务与视察',
+      audit: '审计与会计',
+      incorporation: '公司成立',
+      advisory: '财务咨询',
+      other: 'Other'
+    },
+    emailLabel: '电子邮件（可选）',
+    notesLabel: '附加说明 / 首选时间',
+    notesPlaceholder: '分享关于您咨询的简要详情或最佳通话时间...',
+    submit: '确认并预约咨询',
+    submitting: '正在提交您的请求...',
+    successTitle: '请求已成功接收！',
+    successDesc: '感谢您联系艾哈迈德·谢尔比尼公司。我们的顾问将很快通过电话或 WhatsApp 与您联系。',
+    hotline: 'Direct Hotline & WhatsApp:',
+    doneBtn: 'Done'
+  },
+  ko: {
+    badge: '무료 상담',
+    title: '상담 예약',
+    subtitle: '세부 정보를 입력하시면 당사의 수석 재무 컨설턴트가 귀하에게 이상적인 로드맵을 맞춤화하기 위해 연락을 드릴 것입니다.',
+    nameLabel: '성명 *',
+    namePlaceholder: '이름이나 회사명을 입력하세요',
+    phoneLabel: '전화 / WhatsApp *',
+    phonePlaceholder: '+20 1XXXXXXXXX',
+    serviceLabel: '서비스 유형',
+    services: {
+      tax: '세무 및 조사',
+      audit: '감사 및 회계',
+      incorporation: '회사 설립',
+      advisory: '재무 자문',
+      other: 'Other'
+    },
+    emailLabel: '이메일 (선택)',
+    notesLabel: '추가 메모 / 선호 시간',
+    notesPlaceholder: '문의 사항에 대한 간단한 세부 정보나 가장 전화하기 좋은 시간을 공유해 주세요...',
+    submit: '확인 및 상담 예약',
+    submitting: '요청을 제출 중입니다...',
+    successTitle: '요청이 성공적으로 접수되었습니다!',
+    successDesc: '아흐메드 엘 셰르비니 주식회사에 문의해 주셔서 감사합니다. 저희 자문이 곧 전화나 WhatsApp으로 연락을 드릴 것입니다.',
+    hotline: 'Direct Hotline & WhatsApp:',
+    doneBtn: 'Done'
   }
 };
 

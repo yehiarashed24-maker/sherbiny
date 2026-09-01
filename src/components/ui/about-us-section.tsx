@@ -245,6 +245,159 @@ const ABOUT_TEXT: Record<LangType, {
         position: "right"
       }
     ]
+  },
+  ja: {
+    badge: "DISCOVER OUR FIRM",
+    title: "About Ahmed El Sherbiny & Co.",
+    intro: "公認会計、監査、税務アドバイザリーのトップクラスの企業。数十年にわたる豊富な専門知識を活用して、持続可能な財務成長と法令順守によりクライアントに力を与えます。",
+    founderBadge: "創設者およびマネージングディレクター",
+    founderPrefix: "公認会計士",
+    founderName: "アハメド・エル・シェルビニ",
+    founderTitle: "税務コンサルタントおよび独立財務アドバイザー",
+    founderBio: "エジプト全土での企業再編、税務不服申し立て、監査のリーダーシップにおいて40年以上の信頼されるアドバイザリー。",
+    ctaTitle: "公認財務または税務アドバイザリーをお探しですか？",
+    ctaSubtitle: "当社の専門家チームにご連絡いただき、税務状況を確認するか、迅速かつ正確に会社を構成してください。",
+    ctaButton: "今すぐお問い合わせ",
+    stats: [
+      { label: "法人クライアント", value: 500, suffix: "+" },
+      { label: "提供したコンサルティング", value: 1200, suffix: "+" },
+      { label: "経験年数", value: 40, suffix: "+" },
+      { label: "成功と信頼の率", value: 100, suffix: "%" }
+    ],
+    services: [
+      {
+        title: "タックスプランニング",
+        description: "財務計画とすべての法定免除の活用を通じて、法律に従って税負担を合理化するクライアントを支援します。",
+        position: "left"
+      },
+      {
+        title: "税務調査",
+        description: "トップクラスの結果で大企業納税者センターでの大企業の複雑な税務調査を成功裏に解決。",
+        position: "left"
+      },
+      {
+        title: "アドバイザリーと評価",
+        description: "公式規制当局に承認された独立した公正価値評価と戦略的財務再編。",
+        position: "left"
+      },
+      {
+        title: "監査と保証",
+        description: "エジプトおよび国際財務報告基準に厳格に準拠した包括的な監査と保証。",
+        position: "right"
+      },
+      {
+        title: "会社設立",
+        description: "地元および海外の投資家向けのエンドツーエンドの法人設立、商業登録、およびライセンス供与。",
+        position: "right"
+      },
+      {
+        title: "電子サービスとコンプライアンス",
+        description: "デジタル確定申告の送信、電子請求書の統合、リアルタイムの電子コンプライアンス監視。",
+        position: "right"
+      }
+    ]
+  },
+  zh: {
+    badge: "DISCOVER OUR FIRM",
+    title: "About Ahmed El Sherbiny & Co.",
+    intro: "认证会计、审计和税务咨询的一流公司。我们利用数十年的丰富专业知识，赋予客户可持续的财务增长和法律合规性。",
+    founderBadge: "创始人兼董事总经理",
+    founderPrefix: "注册会计师",
+    founderName: "艾哈迈德·谢尔比尼",
+    founderTitle: "税务顾问与独立财务顾问",
+    founderBio: "在埃及各地的企业重组、税务上诉和审计领导方面拥有40多年的可信赖咨询经验。",
+    ctaTitle: "寻找认证财务或税务咨询？",
+    ctaSubtitle: "联系我们的专家团队，快速准确地审查您的税务状况或重组您的公司。",
+    ctaButton: "立即联系我们",
+    stats: [
+      { label: "企业客户", value: 500, suffix: "+" },
+      { label: "提供的咨询", value: 1200, suffix: "+" },
+      { label: "经验年数", value: 40, suffix: "+" },
+      { label: "成功与信任率", value: 100, suffix: "%" }
+    ],
+    services: [
+      {
+        title: "税务筹划",
+        description: "帮助客户通过财务规划和利用所有法定豁免，根据法律合理化税收负担。",
+        position: "left"
+      },
+      {
+        title: "税务稽查",
+        description: "在大型纳税人中心成功解决大公司的复杂税务稽查，并取得一流成果。",
+        position: "left"
+      },
+      {
+        title: "咨询与估值",
+        description: "官方监管机构接受的独立公允价值评估和战略财务重组。",
+        position: "left"
+      },
+      {
+        title: "审计与鉴证",
+        description: "严格遵守埃及和国际财务报告准则的全面审计和鉴证。",
+        position: "right"
+      },
+      {
+        title: "公司成立",
+        description: "为本地和国际投资者提供端到端的公司注册、商业登记和许可。",
+        position: "right"
+      },
+      {
+        title: "电子服务与合规",
+        description: "数字纳税申报提交、电子发票集成和实时电子合规监控。",
+        position: "right"
+      }
+    ]
+  },
+  ko: {
+    badge: "DISCOVER OUR FIRM",
+    title: "About Ahmed El Sherbiny & Co.",
+    intro: "공인 회계, 감사 및 세무 자문 분야의 최고 기업. 수십 년의 풍부한 전문 지식을 활용하여 고객에게 지속 가능한 재정적 성장과 법적 규정 준수를 지원합니다.",
+    founderBadge: "설립자 및 전무이사",
+    founderPrefix: "공인 회계사",
+    founderName: "아흐메드 엘 셰르비니",
+    founderTitle: "세무 컨설턴트 및 독립 재무 고문",
+    founderBio: "이집트 전역의 기업 구조조정, 조세 불복 및 감사 리더십 분야에서 40년 이상의 신뢰받는 자문.",
+    ctaTitle: "공인 재무 또는 세무 자문을 찾고 계십니까?",
+    ctaSubtitle: "세무 상태를 검토하거나 빠르고 정확하게 회사를 구성하려면 당사 전문가 팀과 연결하십시오.",
+    ctaButton: "지금 문의하기",
+    stats: [
+      { label: "기업 고객", value: 500, suffix: "+" },
+      { label: "제공된 상담", value: 1200, suffix: "+" },
+      { label: "경력 기간", value: 40, suffix: "+" },
+      { label: "성공 및 신뢰도", value: 100, suffix: "%" }
+    ],
+    services: [
+      {
+        title: "세무 계획",
+        description: "재무 계획 및 모든 법정 면제 활용을 통해 법률에 따라 고객의 세금 부담을 합리화하도록 돕습니다.",
+        position: "left"
+      },
+      {
+        title: "세무 조사",
+        description: "대기업 납세자 센터에서 대기업의 복잡한 세무 조사를 최고 수준의 결과로 성공적으로 해결합니다.",
+        position: "left"
+      },
+      {
+        title: "자문 및 평가",
+        description: "공식 규제 당국이 인정한 독립적인 공정 가치 평가 및 전략적 재무 구조조정.",
+        position: "left"
+      },
+      {
+        title: "감사 및 인증",
+        description: "이집트 및 국제 재무 보고 기준을 엄격히 준수하는 포괄적인 감사 및 인증.",
+        position: "right"
+      },
+      {
+        title: "회사 설립",
+        description: "현지 및 국제 투자자를 위한 엔드투엔드 법인 설립, 상업 등록 및 라이선스 발급.",
+        position: "right"
+      },
+      {
+        title: "전자 서비스 및 규정 준수",
+        description: "디지털 세금 신고서 제출, 전자 세금계산서 통합 및 실시간 전자 규정 준수 모니터링.",
+        position: "right"
+      }
+    ]
   }
 };
 

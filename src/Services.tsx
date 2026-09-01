@@ -244,6 +244,30 @@ const SERVICES_UI_TEXT: Record<LangType, { home: string; book: string; badge: st
     title: 'Hizmetler ve Danışmanlık',
     subtitle: 'İnteraktif hizmet kartlarımızı keşfetmek için kaydırın',
     capabilities: 'Hizmet Detayları'
+  },
+  ja: {
+    home: 'ホーム',
+    book: '相談を予約',
+    badge: 'OUR CORE SPECIALTIES',
+    title: 'サービスとアドバイザリー',
+    subtitle: 'スクロールまたはドラッグして、インタラクティブな専門分野カードを探索してください',
+    capabilities: '主な能力'
+  },
+  zh: {
+    home: '首页',
+    book: '预约咨询',
+    badge: 'OUR CORE SPECIALTIES',
+    title: '服务与咨询',
+    subtitle: '滚动或拖动以探索我们的交互式特色卡片',
+    capabilities: '关键能力'
+  },
+  ko: {
+    home: '홈',
+    book: '상담 예약',
+    badge: 'OUR CORE SPECIALTIES',
+    title: '서비스 및 자문',
+    subtitle: '스크롤하거나 드래그하여 대화형 특수 카드를 탐색하세요',
+    capabilities: '주요 역량'
   }
 };
 

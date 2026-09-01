@@ -68,7 +68,7 @@ const DIRECT_PHONES: { label: Record<LangType, string>; phone: string; isPrimary
       ar: 'الرقم الأساسي / واتساب',
       en: 'Primary / WhatsApp',
       fr: 'Numéro Principal / WhatsApp',
-      tr: 'Ana Hat / WhatsApp'
+      tr: 'Ana Hat / WhatsApp', ja: 'メイン / WhatsApp', zh: '主要 / WhatsApp', ko: '기본 / WhatsApp'
     },
     phone: '+20 122 323 3620',
     isPrimary: true
@@ -78,7 +78,7 @@ const DIRECT_PHONES: { label: Record<LangType, string>; phone: string; isPrimary
       ar: 'القاهرة (أرضي)',
       en: 'Cairo Office',
       fr: 'Le Caire (Fixe)',
-      tr: 'Kahire (Sabit)'
+      tr: 'Kahire (Sabit)', ja: 'カイロオフィス', zh: '开罗办公室', ko: '카이로 사무소'
     },
     phone: '+20 2 3347 0139'
   },
@@ -87,7 +87,7 @@ const DIRECT_PHONES: { label: Record<LangType, string>; phone: string; isPrimary
       ar: 'المحمول الثاني',
       en: 'Mobile 2',
       fr: 'Mobile 2',
-      tr: 'Mobil Hat 2'
+      tr: 'Mobil Hat 2', ja: 'モバイル2', zh: '手机2', ko: '모바일 2'
     },
     phone: '+20 106 616 2823'
   },
@@ -96,7 +96,7 @@ const DIRECT_PHONES: { label: Record<LangType, string>; phone: string; isPrimary
       ar: 'المنصورة (أرضي)',
       en: 'Mansoura Office',
       fr: 'Mansourah (Fixe)',
-      tr: 'Mansura (Sabit)'
+      tr: 'Mansura (Sabit)', ja: 'マンスーラオフィス', zh: '曼苏拉办公室', ko: '만수라 사무소'
     },
     phone: '+20 50 2269 057'
   }
@@ -210,6 +210,75 @@ const CONTACT_INFO: Record<LangType, {
       submit: 'Mesajı Gönder'
     },
     back: 'Geri'
+  },
+  ja: {
+    title: 'お問い合わせ',
+    subtitle: '当社の財務および税務コンサルティングサービスに関するご質問にお答えします。お問い合わせいただければ、迅速に回答いたします。',
+    workingHoursTitle: 'Working Hours',
+    workingHours: 'Questions? Fill out this form and we will get back to you as soon as possible! Our team responds to inquiries within 4 hours. Working hours are Saturday to Thursday from 9 AM to 9 PM.',
+    branchesTitle: 'Our Branches',
+    phonesTitle: 'Direct Phone Lines',
+    emailTitle: 'Email Us',
+    emails: ['Sherbiny.co@gmail.com', 'A.elsherbiny@yahoo.com'],
+    openMap: 'Open in Google Maps',
+    callNow: 'Call',
+    qrBadge: 'Instant Contact QR Code',
+    qrTitle: 'Scan to Save Contact',
+    qrDesc: 'Scan with your smartphone camera to instantly save Ahmed El Sherbiny & Co. official contact details.',
+    form: {
+      name: 'Full Name',
+      email: 'Email Address',
+      phone: 'Phone Number',
+      message: 'Your Message',
+      submit: 'Send Message'
+    },
+    back: 'Back'
+  },
+  zh: {
+    title: '联系我们',
+    subtitle: '我们在这里回答您关于我们财务和税务咨询服务的任何问题。联系我们，我们将迅速回复。',
+    workingHoursTitle: 'Working Hours',
+    workingHours: 'Questions? Fill out this form and we will get back to you as soon as possible! Our team responds to inquiries within 4 hours. Working hours are Saturday to Thursday from 9 AM to 9 PM.',
+    branchesTitle: 'Our Branches',
+    phonesTitle: 'Direct Phone Lines',
+    emailTitle: 'Email Us',
+    emails: ['Sherbiny.co@gmail.com', 'A.elsherbiny@yahoo.com'],
+    openMap: 'Open in Google Maps',
+    callNow: 'Call',
+    qrBadge: 'Instant Contact QR Code',
+    qrTitle: 'Scan to Save Contact',
+    qrDesc: 'Scan with your smartphone camera to instantly save Ahmed El Sherbiny & Co. official contact details.',
+    form: {
+      name: 'Full Name',
+      email: 'Email Address',
+      phone: 'Phone Number',
+      message: 'Your Message',
+      submit: 'Send Message'
+    },
+    back: 'Back'
+  },
+  ko: {
+    title: '문의하기',
+    subtitle: '당사의 재무 및 세무 컨설팅 서비스에 대해 궁금한 점이 있으시면 답변해 드리겠습니다. 저희에게 연락하시면 신속하게 답변해 드리겠습니다.',
+    workingHoursTitle: 'Working Hours',
+    workingHours: 'Questions? Fill out this form and we will get back to you as soon as possible! Our team responds to inquiries within 4 hours. Working hours are Saturday to Thursday from 9 AM to 9 PM.',
+    branchesTitle: 'Our Branches',
+    phonesTitle: 'Direct Phone Lines',
+    emailTitle: 'Email Us',
+    emails: ['Sherbiny.co@gmail.com', 'A.elsherbiny@yahoo.com'],
+    openMap: 'Open in Google Maps',
+    callNow: 'Call',
+    qrBadge: 'Instant Contact QR Code',
+    qrTitle: 'Scan to Save Contact',
+    qrDesc: 'Scan with your smartphone camera to instantly save Ahmed El Sherbiny & Co. official contact details.',
+    form: {
+      name: 'Full Name',
+      email: 'Email Address',
+      phone: 'Phone Number',
+      message: 'Your Message',
+      submit: 'Send Message'
+    },
+    back: 'Back'
   }
 };
 
