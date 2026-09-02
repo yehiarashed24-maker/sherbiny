@@ -398,6 +398,57 @@ const ABOUT_TEXT: Record<LangType, {
         position: "right"
       }
     ]
+  },
+  es: {
+    badge: "DESCUBRE NUESTRA FIRMA",
+    title: "Acerca de Ahmed El Sherbiny & Co.",
+    intro: "Una firma líder en contabilidad certificada, auditoría y asesoramiento fiscal. Aprovechamos décadas de experiencia comprobada para empoderar a los clientes con un crecimiento financiero sostenible y cumplimiento legal.",
+    founderBadge: "Fundador y Director General",
+    founderPrefix: "Contador Público Certificado",
+    founderName: "Ahmed El Sherbiny",
+    founderTitle: "Consultor Fiscal y Asesor Financiero Independiente",
+    founderBio: "Más de 40 años de asesoramiento confiable en reestructuración corporativa, apelaciones fiscales y liderazgo de auditoría en todo Egipto.",
+    ctaTitle: "¿Buscas Asesoría Financiera o Fiscal Certificada?",
+    ctaSubtitle: "Conéctate con nuestro equipo de expertos para revisar tu situación fiscal o estructurar tu empresa con rapidez y precisión.",
+    ctaButton: "Contáctanos Hoy",
+    stats: [
+      { label: "Clientes Corporativos", value: 500, suffix: "+" },
+      { label: "Consultas Entregadas", value: 1200, suffix: "+" },
+      { label: "Años de Experiencia", value: 40, suffix: "+" },
+      { label: "Tasa de Éxito y Confianza", value: 100, suffix: "%" }
+    ],
+    services: [
+      {
+        title: "Planificación Fiscal",
+        description: "Ayudamos a los clientes a racionalizar la carga fiscal de acuerdo con la ley a través de la planificación financiera y la utilización de todas las exenciones legales.",
+        position: "left"
+      },
+      {
+        title: "Inspección Fiscal",
+        description: "Resolución exitosa de complejas inspecciones fiscales para grandes corporaciones en el Centro de Grandes Contribuyentes con resultados de primer nivel.",
+        position: "left"
+      },
+      {
+        title: "Asesoría y Valoración",
+        description: "Evaluaciones independientes del valor razonable y reestructuración financiera estratégica aceptadas por las autoridades reguladoras oficiales.",
+        position: "left"
+      },
+      {
+        title: "Auditoría y Aseguramiento",
+        description: "Auditoría integral y aseguramiento adhiriéndose estrictamente a las Normas Internacionales y Egipcias de Información Financiera.",
+        position: "right"
+      },
+      {
+        title: "Formación de Empresas",
+        description: "Incorporación integral de empresas, registros comerciales y licencias para inversores locales e internacionales.",
+        position: "right"
+      },
+      {
+        title: "Servicios Electrónicos",
+        description: "Envío digital de declaraciones de impuestos, integración de facturación electrónica y monitoreo de cumplimiento electrónico en tiempo real.",
+        position: "right"
+      }
+    ]
   }
 };
 
@@ -418,8 +469,6 @@ export default function AboutUsSection({ isRtl = false, lang = 'ar', onContactCl
 
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -40]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, 40]);
-  const rotate1 = useTransform(scrollYProgress, [0, 1], [0, 15]);
-  const rotate2 = useTransform(scrollYProgress, [0, 1], [0, -15]);
 
   useEffect(() => {
     setIsVisible(true);
@@ -670,10 +719,7 @@ interface ServiceItemProps {
   secondaryIcon?: React.ReactNode;
   title: string;
   description: string;
-  variants: {
-    hidden: { opacity: number; y?: number };
-    visible: { opacity: number; y?: number; transition: { duration: number; ease: string } };
-  };
+  variants: any;
   delay: number;
   direction: "left" | "right";
   isRtl?: boolean;

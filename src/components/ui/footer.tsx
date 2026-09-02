@@ -142,6 +142,23 @@ const FOOTER_TEXT: Record<LangType, {
     mansoura: '만수라 사무소',
     whatsapp: '기본 WhatsApp',
     rights: '모든 권리 보유.'
+  },
+  es: {
+    name: 'Ahmed El Sherbiny & Co.',
+    sub: 'Contadores Públicos y Auditores',
+    desc: 'Ahmed El Sherbiny & Co. Contadores Públicos y Auditores. Expertos en consultoría financiera, auditoría y formación de empresas en Egipto.',
+    quickLinks: 'Enlaces Rápidos',
+    home: 'Inicio',
+    about: 'Acerca de',
+    services: 'Servicios',
+    laws: 'Leyes',
+    contact: 'Contáctanos',
+    address: '59 Media City - Agouza, El Cairo',
+    cairo: 'Oficina de El Cairo',
+    mobile: 'Móvil 2',
+    mansoura: 'Oficina de Mansoura',
+    whatsapp: 'WhatsApp Principal',
+    rights: 'Todos los derechos reservados.'
   }
 };
 

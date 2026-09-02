@@ -31,7 +31,7 @@ export default async function handler(req: Request) {
   }
 
   try {
-    const { messages, userMessage } = await req.json();
+    const { messages, userMessage } = (await req.json()) as any;
 
     if (!userMessage || typeof userMessage !== 'string') {
       return new Response(JSON.stringify({ error: 'Invalid input' }), { status: 400 });
@@ -65,7 +65,7 @@ export default async function handler(req: Request) {
       return new Response(JSON.stringify({ error: 'Gemini upstream error' }), { status: 502 });
     }
 
-    const data = await response.json();
+    const data = (await response.json()) as any;
     const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
 
     return new Response(JSON.stringify({ reply }), {

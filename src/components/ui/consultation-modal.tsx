@@ -211,6 +211,32 @@ const MODAL_TEXT: Record<LangType, {
     successDesc: '아흐메드 엘 셰르비니 주식회사에 문의해 주셔서 감사합니다. 저희 자문이 곧 전화나 WhatsApp으로 연락을 드릴 것입니다.',
     hotline: 'Direct Hotline & WhatsApp:',
     doneBtn: 'Done'
+  },
+  es: {
+    badge: 'Consulta Gratuita',
+    title: 'Reserva una Consulta',
+    subtitle: 'Completa tus datos y nuestro consultor financiero senior se comunicará para diseñar la hoja de ruta ideal para ti.',
+    nameLabel: 'Nombre Completo *',
+    namePlaceholder: 'Ingresa tu nombre o empresa',
+    phoneLabel: 'Teléfono / WhatsApp *',
+    phonePlaceholder: '+20 1XXXXXXXXX',
+    serviceLabel: 'Tipo de Servicio',
+    services: {
+      tax: 'Impuestos e Inspección',
+      audit: 'Auditoría y Contabilidad',
+      incorporation: 'Formación de Empresas',
+      advisory: 'Asesoría Financiera',
+      other: 'Otro'
+    },
+    emailLabel: 'Correo Electrónico (Opcional)',
+    notesLabel: 'Notas Adicionales / Horario Preferido',
+    notesPlaceholder: 'Comparte detalles breves sobre tu consulta o el mejor momento para llamar...',
+    submit: 'Confirmar y Reservar Consulta',
+    submitting: 'Enviando tu solicitud...',
+    successTitle: '¡Solicitud Recibida con Éxito!',
+    successDesc: 'Gracias por contactar a Ahmed El Sherbiny & Co. Nuestro asesor te contactará vía telefónica o WhatsApp en breve.',
+    hotline: 'Línea Directa y WhatsApp:',
+    doneBtn: 'Hecho'
   }
 };
 

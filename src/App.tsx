@@ -250,6 +250,36 @@ const translations: Record<LangType, {
     knowMore: '더 알아보기',
     brandName: '아흐메드 엘 셰르비니 주식회사',
     brandSub: '공인 회계사 및 감사관'
+  },
+  es: {
+    nav: ['Inicio', 'Acerca de', 'Servicios', 'Leyes', 'Contacto'],
+    home: 'Inicio',
+    about: 'Acerca de',
+    contact: 'Contacto',
+    services: 'Servicios',
+    laws: 'Leyes',
+    bookConsultation: 'Reservar Consulta',
+    heroTitle: 'Ahmed El Sherbiny & Co.<br />Contadores Públicos',
+    heroSubtitle: 'Bienvenido al sitio web oficial de Ahmed El Sherbiny & Co. Contadores Públicos y Auditores. Te ayudamos a navegar el éxito financiero.',
+    getStarted: 'Leer más',
+    whyUsTitle: '¿Por qué Ahmed El Sherbiny?',
+    discoverIt: 'Descúbrelo',
+    whyUsSubtitle: 'Nuestra firma ofrece servicios de consultoría experta con un profundo conocimiento de los sistemas tributarios para lograr los mejores resultados adaptados a nuestros clientes.',
+    strategiesTitle: 'Planificación Fiscal',
+    strategiesSubtitle: 'Ayudamos a los clientes a racionalizar la carga fiscal de acuerdo con la ley a través de una sólida planificación financiera.',
+    transparentTitle: 'Siempre transparente,\nsiempre confiable.',
+    transparentSubtitle: 'Inspecciones fiscales supervisadas y consultoría administrativa y financiera integral, todo en un tiempo récord.',
+    tailoredTitle: 'Totalmente\npersonalizado',
+    tailoredSubtitle: 'Deja de adivinar. Deja que Ahmed El Sherbiny se encargue de la formación de tu empresa y la planificación financiera en Egipto.',
+    fundedBy: 'Con la confianza de socios de primer nivel\ny líderes con visión de futuro.',
+    expertiseEyebrow: 'Nuestros Servicios',
+    expertiseTitle: 'Contabilidad y Auditoría',
+    expertiseSubtitle: 'Nuestro equipo está altamente calificado y experimentado para ejecutar servicios de auditoría financiera aplicando normas de auditoría egipcias e internacionales.',
+    advisoryTitle: 'Servicios Electrónicos',
+    advisorySubtitle: 'Manejamos tus declaraciones de impuestos electrónicamente, permitiéndote acceder a tu registro fiscal digital dentro de 24 horas.',
+    knowMore: 'Saber más',
+    brandName: 'Ahmed El Sherbiny & Co.',
+    brandSub: 'Contadores Públicos y Auditores'
   }
 };
 

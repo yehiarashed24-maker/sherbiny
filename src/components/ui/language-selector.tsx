@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Globe, ChevronDown, Check } from 'lucide-react';
 
-export type LangType = 'ar' | 'en' | 'fr' | 'tr' | 'ja' | 'zh' | 'ko';
+export type LangType = 'ar' | 'en' | 'fr' | 'tr' | 'ja' | 'zh' | 'ko' | 'es';
 
 export const LANGUAGES: {
   id: LangType;
@@ -16,7 +16,8 @@ export const LANGUAGES: {
   { id: 'tr', name: 'Turkish', nativeName: 'Türkçe', flag: '🇹🇷', dir: 'ltr' },
   { id: 'ja', name: 'Japanese', nativeName: '日本語', flag: '🇯🇵', dir: 'ltr' },
   { id: 'zh', name: 'Chinese', nativeName: '中文', flag: '🇨🇳', dir: 'ltr' },
-  { id: 'ko', name: 'Korean', nativeName: '한국어', flag: '🇰🇷', dir: 'ltr' }
+  { id: 'ko', name: 'Korean', nativeName: '한국어', flag: '🇰🇷', dir: 'ltr' },
+  { id: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸', dir: 'ltr' }
 ];
 
 interface LanguageSelectorProps {

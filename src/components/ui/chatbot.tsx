@@ -76,6 +76,14 @@ const CHAT_TEXT: Record<LangType, {
     placeholder: 'AhmedSherbiny AI에게 법률 또는 세무 관련 질문을 하세요...',
     hotline: '직통 핫라인:',
     subTitle: '스마트 법률 및 세무 자문'
+  },
+  es: {
+    greeting: '¡Bienvenido! Soy **AhmedSherbiny AI** 🤖, tu asesor inteligente para **Ahmed El Sherbiny & Co.** ¿Cómo puedo ayudarte hoy con tus consultas corporativas, fiscales y contables en Egipto?',
+    quickPrompts: ['¿Quién es Ahmed El Sherbiny?', 'Formación de Empresas', 'Inspección Fiscal y Apelaciones', 'Sistema de Facturación Electrónica', 'Sucursales y Contacto'],
+    thinking: 'AhmedSherbiny AI está analizando...',
+    placeholder: 'Haz a AhmedSherbiny AI cualquier pregunta legal o fiscal...',
+    hotline: 'Línea Directa:',
+    subTitle: 'Asesor Inteligente Legal y Fiscal'
   }
 };
 

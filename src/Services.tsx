@@ -209,6 +209,53 @@ const SERVICES_CARDS: Record<LangType, ServiceItem[]> = {
       bullets: ['E-Fatura & E-Makbuz Sistemi', 'Dijital Beyanname Gönderimi', 'Resmi Portallara Kayıt'],
       client: 'DIGITAL TAX COMPLIANCE'
     }
+  ],
+  es: [
+    {
+      id: '01',
+      category: 'Auditoría y Aseguramiento',
+      title: 'Auditoría Financiera y Revisión',
+      shortDesc: 'Auditoría integral adhiriéndose estrictamente a las Normas Internacionales y Egipcias de Información Financiera.',
+      cardNumber: '9021 8842 1040 0019',
+      bullets: ['Auditoría Externa e Interna', 'Evaluación de Control Interno', 'Evaluación y Análisis de Riesgos'],
+      client: 'AHMED EL SHERBINY AUDIT'
+    },
+    {
+      id: '02',
+      category: 'Asesoría Financiera',
+      title: 'Valoración y Reestructuración',
+      shortDesc: 'Due diligence, valoración corporativa, planes de reestructuración y estudios de viabilidad de inversiones estratégicas.',
+      cardNumber: '5120 7733 9035 4412',
+      bullets: ['Revisiones de Due Diligence', 'Valoración Corporativa de Valor Razonable', 'Reestructuración de Deuda y Capital'],
+      client: 'FINANCIAL ADVISORY GROUP'
+    },
+    {
+      id: '03',
+      category: 'Estrategia Fiscal',
+      title: 'Planificación Fiscal y Resolución',
+      shortDesc: 'Resolución de inspecciones fiscales de alto riesgo, resolución de disputas y optimización legal de la carga fiscal.',
+      cardNumber: '4441 5567 1223 2468',
+      bullets: ['Liquidaciones de Inspección Fiscal', 'Defensa del Comité de Apelaciones', 'Planificación Fiscal Estratégica'],
+      client: 'TAX PLANNING & DEFENSE'
+    },
+    {
+      id: '04',
+      category: 'Formación de Empresas',
+      title: 'Incorporación Corporativa',
+      shortDesc: 'Establecimiento integral de empresas, configuración de sucursales extranjeras, registros comerciales y licencias.',
+      cardNumber: '5375 8891 2234 7713',
+      bullets: ['Configuración de Sociedad Anónima y LLC', 'Aumento de Capital y Enmiendas', 'Licencias y Registros Comerciales'],
+      client: 'CORPORATE INCORPORATION'
+    },
+    {
+      id: '05',
+      category: 'Sistemas Digitales',
+      title: 'Facturación Electrónica',
+      shortDesc: 'Integración completa con portales gubernamentales de facturación electrónica y cumplimiento fiscal electrónico.',
+      cardNumber: '4232 8908 1121 4892',
+      bullets: ['Facturación y Recibos Electrónicos', 'Presentación Digital de Declaraciones', 'Portales Regulatorios Automatizados'],
+      client: 'DIGITAL TAX COMPLIANCE'
+    }
   ]
 };
 
@@ -268,6 +315,14 @@ const SERVICES_UI_TEXT: Record<LangType, { home: string; book: string; badge: st
     title: '서비스 및 자문',
     subtitle: '스크롤하거나 드래그하여 대화형 특수 카드를 탐색하세요',
     capabilities: '주요 역량'
+  },
+  es: {
+    home: 'Inicio',
+    book: 'Reservar Consulta',
+    badge: 'NUESTRAS ESPECIALIDADES',
+    title: 'Servicios y Asesoría',
+    subtitle: 'Desplázate o arrastra para explorar nuestras tarjetas interactivas',
+    capabilities: 'Capacidades Clave'
   }
 };
 

@@ -59,6 +59,20 @@ const BRANCHES: Record<LangType, { city: string; address: string; phones: string
       phones: ['+20 50 2269 057'],
       mapUrl: 'https://www.google.com/maps/search/?api=1&query=Al+Hegaz+Tower+Tamyouhi+Square+Mansoura'
     }
+  ],
+  es: [
+    {
+      city: 'El Cairo (Sede Central)',
+      address: '59 Media City - Agouza, El Cairo',
+      phones: ['+20 2 3347 0139', '+20 106 616 2823'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=59+Media+City%2C+Agouza%2C+Giza%2C+Cairo'
+    },
+    {
+      city: 'Mansoura',
+      address: 'Torre Al Hegaz - Plaza Tamyouhi',
+      phones: ['+20 50 2269 057'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=Al+Hegaz+Tower+Tamyouhi+Square+Mansoura'
+    }
   ]
 };
 
@@ -68,7 +82,7 @@ const DIRECT_PHONES: { label: Record<LangType, string>; phone: string; isPrimary
       ar: 'الرقم الأساسي / واتساب',
       en: 'Primary / WhatsApp',
       fr: 'Numéro Principal / WhatsApp',
-      tr: 'Ana Hat / WhatsApp', ja: 'メイン / WhatsApp', zh: '主要 / WhatsApp', ko: '기본 / WhatsApp'
+      tr: 'Ana Hat / WhatsApp', ja: 'メイン / WhatsApp', zh: '主要 / WhatsApp', ko: '기본 / WhatsApp', es: 'Principal / WhatsApp'
     },
     phone: '+20 122 323 3620',
     isPrimary: true
@@ -78,7 +92,7 @@ const DIRECT_PHONES: { label: Record<LangType, string>; phone: string; isPrimary
       ar: 'القاهرة (أرضي)',
       en: 'Cairo Office',
       fr: 'Le Caire (Fixe)',
-      tr: 'Kahire (Sabit)', ja: 'カイロオフィス', zh: '开罗办公室', ko: '카이로 사무소'
+      tr: 'Kahire (Sabit)', ja: 'カイロオフィス', zh: '开罗办公室', ko: '카이로 사무소', es: 'Oficina El Cairo'
     },
     phone: '+20 2 3347 0139'
   },
@@ -87,7 +101,7 @@ const DIRECT_PHONES: { label: Record<LangType, string>; phone: string; isPrimary
       ar: 'المحمول الثاني',
       en: 'Mobile 2',
       fr: 'Mobile 2',
-      tr: 'Mobil Hat 2', ja: 'モバイル2', zh: '手机2', ko: '모바일 2'
+      tr: 'Mobil Hat 2', ja: 'モバイル2', zh: '手机2', ko: '모바일 2', es: 'Móvil 2'
     },
     phone: '+20 106 616 2823'
   },
@@ -96,7 +110,7 @@ const DIRECT_PHONES: { label: Record<LangType, string>; phone: string; isPrimary
       ar: 'المنصورة (أرضي)',
       en: 'Mansoura Office',
       fr: 'Mansourah (Fixe)',
-      tr: 'Mansura (Sabit)', ja: 'マンスーラオフィス', zh: '曼苏拉办公室', ko: '만수라 사무소'
+      tr: 'Mansura (Sabit)', ja: 'マンスーラオフィス', zh: '曼苏拉办公室', ko: '만수라 사무소', es: 'Oficina Mansoura'
     },
     phone: '+20 50 2269 057'
   }
@@ -279,6 +293,29 @@ const CONTACT_INFO: Record<LangType, {
       submit: 'Send Message'
     },
     back: 'Back'
+  },
+  es: {
+    title: 'Ponte en Contacto',
+    subtitle: 'Estamos aquí para responder cualquier pregunta sobre nuestros servicios de consultoría financiera y fiscal. Contáctanos y responderemos pronto.',
+    workingHoursTitle: 'Horario de Trabajo',
+    workingHours: '¿Preguntas? ¡Completa este formulario y nos pondremos en contacto contigo lo antes posible! Nuestro equipo responde a las consultas en 4 horas. El horario de trabajo es de Sábado a Jueves de 9 AM a 9 PM.',
+    branchesTitle: 'Nuestras Sucursales',
+    phonesTitle: 'Líneas Telefónicas Directas',
+    emailTitle: 'Envíanos un Correo',
+    emails: ['Sherbiny.co@gmail.com', 'A.elsherbiny@yahoo.com'],
+    openMap: 'Abrir en Google Maps',
+    callNow: 'Llamar',
+    qrBadge: 'Código QR de Contacto Inmediato',
+    qrTitle: 'Escanea para Guardar Contacto',
+    qrDesc: 'Escanea con la cámara de tu smartphone para guardar los datos de contacto oficiales de Ahmed El Sherbiny & Co.',
+    form: {
+      name: 'Nombre Completo',
+      email: 'Dirección de Correo',
+      phone: 'Número de Teléfono',
+      message: 'Tu Mensaje',
+      submit: 'Enviar Mensaje'
+    },
+    back: 'Atrás'
   }
 };
 

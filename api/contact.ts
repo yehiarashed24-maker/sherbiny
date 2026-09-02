@@ -10,7 +10,7 @@ export default async function handler(req: Request) {
   }
 
   try {
-    const data = await req.json();
+    const data = (await req.json()) as any;
 
     // Anti-bot honeypot check
     if (data._gotcha || data.bot_field) {
