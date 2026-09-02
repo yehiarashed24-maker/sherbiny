@@ -103,10 +103,13 @@ export default function Chatbot({ isRtl = false, lang = 'ar' }: ChatbotProps) {
 
   // Update greeting if language changes and no conversation has occurred yet
   useEffect(() => {
-    if (messages.length === 1 && messages[0].role === 'model') {
-      setMessages([{ role: 'model', content: t.greeting }]);
-    }
-  }, [lang, t.greeting]);
+    setMessages(prev => {
+      if (prev.length === 1 && prev[0].role === 'model') {
+        return [{ role: 'model', content: t.greeting }];
+      }
+      return prev;
+    });
+  }, [t.greeting]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });

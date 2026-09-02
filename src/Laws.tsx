@@ -162,7 +162,7 @@ export default function Laws({ isRtl = false, lang = 'ar', setView }: LawsProps)
                     <section.icon className="w-5 h-5" />
                   </div>
                   <h2 className="text-xl font-bold text-black">
-                    {section.title[lang] || section.title.en}
+                    {(section.title as Record<string, string>)[lang] || section.title.ar || section.title.en}
                   </h2>
                 </div>
 
@@ -176,7 +176,7 @@ export default function Laws({ isRtl = false, lang = 'ar', setView }: LawsProps)
                       className="group flex items-center justify-between p-3.5 rounded-xl hover:bg-neutral-50 border border-black/5 transition-all duration-200"
                     >
                       <span className="text-xs sm:text-sm font-medium text-black/80 group-hover:text-black leading-relaxed">
-                        {link.text[lang] || link.text.en}
+                        {(link.text as Record<string, string>)[lang] || link.text.ar || link.text.en}
                       </span>
                       <ExternalLink className="w-4 h-4 text-black/30 group-hover:text-black transition-colors shrink-0 ml-2 rtl:ml-0 rtl:mr-2" />
                     </a>

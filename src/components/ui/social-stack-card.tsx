@@ -6,12 +6,77 @@ interface SocialStackCardProps {
   isRtl?: boolean;
 }
 
+const CARD_TEXT: Record<LangType, { title: string; hover: string }> = {
+  ar: { title: 'منصاتنا', hover: 'مرر المؤشر للاستعراض' },
+  en: { title: 'Socials', hover: 'Hover to explore' },
+  fr: { title: 'Réseaux', hover: 'Survolez pour explorer' },
+  tr: { title: 'Sosyal', hover: 'Keşfetmek için üzerine gelin' },
+  ja: { title: 'ソーシャル', hover: 'カーソルを合わせて探索' },
+  zh: { title: '社交媒体', hover: '悬停以浏览' },
+  ko: { title: '소셜', hover: '탐색하려면 마우스를 올리세요' },
+  es: { title: 'Redes', hover: 'Pasa el cursor para explorar' }
+};
+
+const LAYER_NAMES: Record<string, Record<LangType, string>> = {
+  instagram: {
+    ar: 'إنستغرام',
+    en: 'Instagram',
+    fr: 'Instagram',
+    tr: 'Instagram',
+    ja: 'インスタグラム',
+    zh: 'Instagram',
+    ko: '인스타그램',
+    es: 'Instagram'
+  },
+  twitter: {
+    ar: 'منصة إكس',
+    en: 'X (Twitter)',
+    fr: 'X (Twitter)',
+    tr: 'X (Twitter)',
+    ja: 'X（旧Twitter）',
+    zh: 'X (Twitter)',
+    ko: 'X (트위터)',
+    es: 'X (Twitter)'
+  },
+  linkedin: {
+    ar: 'لينكد إن',
+    en: 'LinkedIn',
+    fr: 'LinkedIn',
+    tr: 'LinkedIn',
+    ja: 'リンクトイン',
+    zh: '领英 (LinkedIn)',
+    ko: '링크드인',
+    es: 'LinkedIn'
+  },
+  facebook: {
+    ar: 'فيسبوك',
+    en: 'Facebook',
+    fr: 'Facebook',
+    tr: 'Facebook',
+    ja: 'フェイスブック',
+    zh: 'Facebook',
+    ko: '페이스북',
+    es: 'Facebook'
+  },
+  whatsapp: {
+    ar: 'واتساب',
+    en: 'WhatsApp',
+    fr: 'WhatsApp',
+    tr: 'WhatsApp',
+    ja: 'WhatsApp',
+    zh: 'WhatsApp',
+    ko: '왓츠앱',
+    es: 'WhatsApp'
+  }
+};
+
 export default function SocialStackCard({ lang = 'ar', isRtl = true }: SocialStackCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
-  const title = 'Socials';
+  const cardText = CARD_TEXT[lang] || CARD_TEXT.en;
+  const title = cardText.title;
 
   // IntersectionObserver: On mobile/scroll, automatically open the card when scrolled into view
   useEffect(() => {
@@ -183,7 +248,7 @@ export default function SocialStackCard({ lang = 'ar', isRtl = true }: SocialSta
                 }}
                 onMouseEnter={(e) => {
                   e.stopPropagation();
-                  setActiveTooltip(lang === 'ar' ? layer.arName : layer.name);
+                  setActiveTooltip(LAYER_NAMES[layer.id]?.[lang] || layer.name);
                 }}
                 onMouseLeave={() => setActiveTooltip(null)}
                 className={`absolute border-2 shadow-lg transition-all duration-500 ease-out flex ${
@@ -203,12 +268,12 @@ export default function SocialStackCard({ lang = 'ar', isRtl = true }: SocialSta
                   zIndex: layer.zIndex,
                   transitionDelay: isOpen ? `${index * 40}ms` : `${(layers.length - 1 - index) * 25}ms`
                 }}
-                aria-label={layer.name}
+                aria-label={LAYER_NAMES[layer.id]?.[lang] || layer.name}
               >
                 {/* Exposed Corner Icon */}
                 <div
                   className={`p-1 rounded-lg transition-transform duration-300 ${
-                    activeTooltip === (lang === 'ar' ? layer.arName : layer.name) ? 'scale-125' : 'hover:scale-110'
+                    activeTooltip === (LAYER_NAMES[layer.id]?.[lang] || layer.name) ? 'scale-125' : 'hover:scale-110'
                   }`}
                 >
                   {layer.icon}
@@ -221,7 +286,7 @@ export default function SocialStackCard({ lang = 'ar', isRtl = true }: SocialSta
         {/* Bottom Subtle Indicator */}
         <div className={`relative z-20 transition-opacity duration-300 text-center pointer-events-none ${isOpen ? 'opacity-0' : 'opacity-85'}`}>
           <span className="text-[10px] sm:text-[11px] font-semibold text-white/90 bg-black/25 backdrop-blur-md px-3 py-1 rounded-full border border-white/15 shadow-sm">
-            {isRtl ? 'مرر المؤشر للاستعراض' : 'Hover to explore'}
+            {cardText.hover}
           </span>
         </div>
       </div>

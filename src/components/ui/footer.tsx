@@ -22,6 +22,7 @@ const FOOTER_TEXT: Record<LangType, {
   mobile: string;
   mansoura: string;
   whatsapp: string;
+  chat: string;
   rights: string;
 }> = {
   ar: {
@@ -39,6 +40,7 @@ const FOOTER_TEXT: Record<LangType, {
     mobile: 'المحمول الثاني',
     mansoura: 'المنصورة (أرضي)',
     whatsapp: 'الواتساب الأساسي',
+    chat: 'محادثة',
     rights: 'جميع الحقوق محفوظة.'
   },
   en: {
@@ -56,12 +58,13 @@ const FOOTER_TEXT: Record<LangType, {
     mobile: 'Mobile 2',
     mansoura: 'Mansoura Office',
     whatsapp: 'Primary WhatsApp',
+    chat: 'Chat',
     rights: 'All rights reserved.'
   },
   fr: {
     name: 'Ahmed El Sherbiny & Co.',
     sub: 'Experts-Comptables & Commissaires aux Comptes',
-    desc: "Cabinet d'expertise comptable, d'audit financier et de conseil fiscal stratégique en Égypte.",
+    desc: "Cabinet d'expertise comptable, d'audit financier et de conseil fiscal stratégique en Égypte pour assurer votre croissance financière en toute sécurité.",
     quickLinks: 'Liens Rapides',
     home: 'Accueil',
     about: 'À Propos',
@@ -73,6 +76,7 @@ const FOOTER_TEXT: Record<LangType, {
     mobile: 'Mobile 2',
     mansoura: 'Mansourah (Fixe)',
     whatsapp: 'WhatsApp Principal',
+    chat: 'Discuter',
     rights: 'Tous droits réservés.'
   },
   tr: {
@@ -90,57 +94,61 @@ const FOOTER_TEXT: Record<LangType, {
     mobile: 'Mobil Hat 2',
     mansoura: 'Mansura (Sabit)',
     whatsapp: 'Ana WhatsApp',
+    chat: 'Sohbet',
     rights: 'Tüm hakları saklıdır.'
   },
   ja: {
     name: 'アハメド・エル・シェルビニ事務所',
     sub: '公認会計士および監査人',
-    desc: 'Ahmed El Sherbiny & Co. Certified Public Accountants and Auditors. Experts in financial consulting, auditing, and company formation in Egypt.',
+    desc: 'アハメド・エル・シェルビニ公認会計士・監査法人。エジプトにおける財務コンサルティング、会計監査、会社設立の専門家として、お客様の安全な成長を支援します。',
     quickLinks: 'クイックリンク',
     home: 'ホーム',
     about: '私たちについて',
     services: 'サービス',
     laws: '法律',
     contact: 'お問い合わせ',
-    address: '59 Media City - Agouza, Cairo',
+    address: 'カイロ、アグーザ、メディアシティ59',
     cairo: 'カイロオフィス',
     mobile: 'モバイル2',
     mansoura: 'マンスーラオフィス',
     whatsapp: 'メインのWhatsApp',
+    chat: 'チャット',
     rights: '全著作権所有。'
   },
   zh: {
     name: '艾哈迈德·谢尔比尼公司',
     sub: '注册会计师和审计师',
-    desc: 'Ahmed El Sherbiny & Co. Certified Public Accountants and Auditors. Experts in financial consulting, auditing, and company formation in Egypt.',
+    desc: '艾哈迈德·谢尔比尼会计师事务所，公认会计师与审计师。埃及财务咨询、会计审计及公司设立领域的专家，全力守护您的财富增长。',
     quickLinks: '快速链接',
     home: '首页',
     about: '关于我们',
     services: '服务',
     laws: '法律',
     contact: '联系我们',
-    address: '59 Media City - Agouza, Cairo',
+    address: '开罗阿古扎媒体城59号',
     cairo: '开罗办公室',
     mobile: '手机2',
     mansoura: '曼苏拉办公室',
     whatsapp: '主要WhatsApp',
+    chat: '聊天',
     rights: '版权所有。'
   },
   ko: {
     name: '아흐메드 엘 셰르비니 주식회사',
     sub: '공인 회계사 및 감사관',
-    desc: 'Ahmed El Sherbiny & Co. Certified Public Accountants and Auditors. Experts in financial consulting, auditing, and company formation in Egypt.',
+    desc: '아흐메드 엘 셰르비니 공인회계사 및 감사 법인. 이집트 내 재무 컨설팅, 회계 감사 및 회사 설립 전문 기업으로 고객의 안전한 금융 성장을 지원합니다.',
     quickLinks: '빠른 링크',
     home: '홈',
     about: '회사 소개',
     services: '서비스',
     laws: '법률',
     contact: '문의하기',
-    address: '59 Media City - Agouza, Cairo',
+    address: '카이로 아구자 미디어 시티 59번지',
     cairo: '카이로 사무소',
     mobile: '모바일 2',
     mansoura: '만수라 사무소',
     whatsapp: '기본 WhatsApp',
+    chat: '채팅',
     rights: '모든 권리 보유.'
   },
   es: {
@@ -158,6 +166,7 @@ const FOOTER_TEXT: Record<LangType, {
     mobile: 'Móvil 2',
     mansoura: 'Oficina de Mansoura',
     whatsapp: 'WhatsApp Principal',
+    chat: 'Chat',
     rights: 'Todos los derechos reservados.'
   }
 };
@@ -285,7 +294,7 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
                   </div>
                 </div>
                 <span className="text-[11px] font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full border border-emerald-400/20 group-hover:bg-emerald-400 group-hover:text-black transition-colors shrink-0">
-                  {isRtl ? 'محادثة' : 'Chat'}
+                  {t.chat}
                 </span>
               </a>
 

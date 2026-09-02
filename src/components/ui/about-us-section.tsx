@@ -453,7 +453,6 @@ const ABOUT_TEXT: Record<LangType, {
 };
 
 export default function AboutUsSection({ isRtl = false, lang = 'ar', onContactClick }: AboutUsSectionProps) {
-  const [, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: false, amount: 0.1 });
@@ -469,10 +468,6 @@ export default function AboutUsSection({ isRtl = false, lang = 'ar', onContactCl
 
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -40]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, 40]);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -510,10 +505,10 @@ export default function AboutUsSection({ isRtl = false, lang = 'ar', onContactCl
   }));
 
   const statIcons = [
-    <Award className="w-6 h-6" />,
-    <Users className="w-6 h-6" />,
-    <Calendar className="w-6 h-6" />,
-    <TrendingUp className="w-6 h-6" />
+    <Award key="award" className="w-6 h-6" />,
+    <Users key="users" className="w-6 h-6" />,
+    <Calendar key="calendar" className="w-6 h-6" />,
+    <TrendingUp key="trend" className="w-6 h-6" />
   ];
 
   const stats = t.stats.map((s, idx) => ({

@@ -256,6 +256,147 @@ const SERVICES_CARDS: Record<LangType, ServiceItem[]> = {
       bullets: ['Facturación y Recibos Electrónicos', 'Presentación Digital de Declaraciones', 'Portales Regulatorios Automatizados'],
       client: 'DIGITAL TAX COMPLIANCE'
     }
+  ],
+  ja: [
+    {
+      id: '01',
+      category: '監査およびアシュアランス',
+      title: '財務監査およびレビュー',
+      shortDesc: 'エジプトおよび国際財務報告基準（IFRS）に厳格に準拠した包括的な会計監査を実施します。',
+      cardNumber: '9021 8842 1040 0019',
+      bullets: ['外部監査および内部監査', '内部統制システムの評価', '財務リスクの分析および評価'],
+      client: 'AHMED EL SHERBINY AUDIT'
+    },
+    {
+      id: '02',
+      category: '財務アドバイザリー',
+      title: '企業評価および事業再編',
+      shortDesc: 'デューデリジェンス、企業価値評価、事業再編計画、および戦略的投資の実現可能性調査を提供します。',
+      cardNumber: '5120 7733 9035 4412',
+      bullets: ['財務デューデリジェンス (Due Diligence)', '公正価値による企業価値評価', '資本構成の見直しおよび再編'],
+      client: 'FINANCIAL ADVISORY GROUP'
+    },
+    {
+      id: '03',
+      category: '税務戦略',
+      title: '税務計画および税務紛争解決',
+      shortDesc: '大口納税者センターでの税務調査の完了、異議申し立て委員会での弁護、合法的な節税計画を支援します。',
+      cardNumber: '4441 5567 1223 2468',
+      bullets: ['税務調査および紛争の解決', '不服申し立て委員会での対応', '戦略的タックスプランニング'],
+      client: 'TAX PLANNING & DEFENSE'
+    },
+    {
+      id: '04',
+      category: '会社設立',
+      title: '法人設立および企業再編',
+      shortDesc: 'エジプトにおける株式会社、合同会社、外国支店の設立、および投資ライセンスの取得を迅速に行います。',
+      cardNumber: '5375 8891 2234 7713',
+      bullets: ['あらゆる形態の法人設立手続き', '増資・減資および定款変更', '商業登記および各種営業許可の取得'],
+      client: 'CORPORATE INCORPORATION'
+    },
+    {
+      id: '05',
+      category: '電子税務サービス',
+      title: '電子インボイスおよびデジタル税務申告',
+      shortDesc: '電子請求書・電子領収書システムへの接続、および電子税務申告書の作成と提出を正確に代行します。',
+      cardNumber: '4232 8908 1121 4892',
+      bullets: ['電子インボイス・レシートシステム連携', 'オンライン税務申告の代行', '政府ポータルへの登録・管理'],
+      client: 'DIGITAL TAX COMPLIANCE'
+    }
+  ],
+  zh: [
+    {
+      id: '01',
+      category: '审计与鉴证',
+      title: '财务审计与核算',
+      shortDesc: '严格遵循埃及及国际财务报告准则（IFRS），提供全面的财务报表审计与会计核查服务。',
+      cardNumber: '9021 8842 1040 0019',
+      bullets: ['外部与内部审计', '内部控制体系评估', '财务风险分析与评估'],
+      client: 'AHMED EL SHERBINY AUDIT'
+    },
+    {
+      id: '02',
+      category: '财务咨询',
+      title: '企业估值与重组',
+      shortDesc: '提供尽职调查（Due Diligence）、企业估值、重组规划以及战略投资可行性研究。',
+      cardNumber: '5120 7733 9035 4412',
+      bullets: ['尽职调查与审查', '公允价值企业估值', '债务与资本结构重组'],
+      client: 'FINANCIAL ADVISORY GROUP'
+    },
+    {
+      id: '03',
+      category: '税务筹划',
+      title: '税务规划与争议解决',
+      shortDesc: '办理大纳税人中心税务稽查结案、税务争议与上诉委员会答辩，依法合理降低税收负担。',
+      cardNumber: '4441 5567 1223 2468',
+      bullets: ['税务稽查与争议和解', '上诉委员会申诉答辩', '战略税务合规筹划'],
+      client: 'TAX PLANNING & DEFENSE'
+    },
+    {
+      id: '04',
+      category: '公司设立',
+      title: '公司设立与变更',
+      shortDesc: '设立股份公司、有限责任公司、外国公司分支机构，办理各类商业登记与投资许可证。',
+      cardNumber: '5375 8891 2234 7713',
+      bullets: ['各类企业法律形式设立', '增资、减资及章程修改', '商业登记与行政许可办理'],
+      client: 'CORPORATE INCORPORATION'
+    },
+    {
+      id: '05',
+      category: '电子税务',
+      title: '电子发票与数字化合规',
+      shortDesc: '接入埃及税务局电子发票和电子收据系统，精准编制并提交数字化纳税申报表。',
+      cardNumber: '4232 8908 1121 4892',
+      bullets: ['电子发票与电子收据系统对接', '数字化纳税申报代办', '政府监管门户注册管理'],
+      client: 'DIGITAL TAX COMPLIANCE'
+    }
+  ],
+  ko: [
+    {
+      id: '01',
+      category: '감사 및 보증',
+      title: '재무 감사 및 검토',
+      shortDesc: '이집트 및 국제 회계 기준(IFRS)을 엄격히 준수하여 종합적인 재무제표 감사 및 검토를 수행합니다.',
+      cardNumber: '9021 8842 1040 0019',
+      bullets: ['외부 및 내부 감사', '내부 통제 시스템 평가', '재무 위험 분석 및 평가'],
+      client: 'AHMED EL SHERBINY AUDIT'
+    },
+    {
+      id: '02',
+      category: '재무 자문',
+      title: '기업 가치 평가 및 구조 조정',
+      shortDesc: '실사(Due Diligence), 공정가치 기업 평가, 구조 조정 계획 및 전략적 투자 타당성 조사를 제공합니다.',
+      cardNumber: '5120 7733 9035 4412',
+      bullets: ['재무 실사(Due Diligence)', '공정가치 기업 평가', '자본 구조 및 부채 재조정'],
+      client: 'FINANCIAL ADVISORY GROUP'
+    },
+    {
+      id: '03',
+      category: '세무 전략',
+      title: '세무 계획 및 조세 불복 해결',
+      shortDesc: '대형 납세자 센터 세무 조사 완료, 조세 불복 위원회 변호 및 법률에 따른 합법적 세 부담 완화.',
+      cardNumber: '4441 5567 1223 2468',
+      bullets: ['세무 조사 종결 및 분쟁 해결', '조세 불복 위원회 대리', '전략적 세무 계획 수립'],
+      client: 'TAX PLANNING & DEFENSE'
+    },
+    {
+      id: '04',
+      category: '회사 설립',
+      title: '법인 설립 및 기업 변경',
+      shortDesc: '주식회사, 유한회사, 외국 기업 지사 설립 및 사업자등록증, 투자 인허가 취득을 신속하게 진행합니다.',
+      cardNumber: '5375 8891 2234 7713',
+      bullets: ['모든 형태의 법인 설립 절차', '자본금 증감 및 정관 변경', '상업등기 및 투자 인허가 발급'],
+      client: 'CORPORATE INCORPORATION'
+    },
+    {
+      id: '05',
+      category: '전자 세무 시스템',
+      title: '전자세금계산서 및 디지털 세무 신고',
+      shortDesc: '전자세금계산서 및 전자영수증 시스템 연동, 디지털 세무 신고서의 정확한 작성 및 제출 대행.',
+      cardNumber: '4232 8908 1121 4892',
+      bullets: ['전자세금계산서·영수증 연동', '전자 세무 신고 대행', '정부 포털 등록 및 관리'],
+      client: 'DIGITAL TAX COMPLIANCE'
+    }
   ]
 };
 
@@ -335,8 +476,8 @@ interface ServicesProps {
 export default function Services({ lang, setView, onBookConsultation }: ServicesProps) {
   const isRtl = lang === 'ar';
   const BackIcon = isRtl ? ArrowRight : ArrowLeft;
-  const servicesList = SERVICES_CARDS[lang] || SERVICES_CARDS.en;
-  const uiText = SERVICES_UI_TEXT[lang] || SERVICES_UI_TEXT.en;
+  const servicesList = SERVICES_CARDS[lang] || SERVICES_CARDS.ar || SERVICES_CARDS.en;
+  const uiText = SERVICES_UI_TEXT[lang] || SERVICES_UI_TEXT.ar || SERVICES_UI_TEXT.en;
   const cardCount = servicesList.length;
 
   const cardsRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -529,15 +670,20 @@ export default function Services({ lang, setView, onBookConsultation }: Services
     }
   };
 
+  const renderLoopRef = useRef(renderLoop);
+  useEffect(() => {
+    renderLoopRef.current = renderLoop;
+  });
+
   useEffect(() => {
     const tick = () => {
-      renderLoop();
+      renderLoopRef.current();
       frameId.current = requestAnimationFrame(tick);
     };
 
     frameId.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frameId.current);
-  }, [metrics]);
+  }, []);
 
   const handleConsultation = onBookConsultation || (() => setView('contact'));
 
@@ -703,7 +849,7 @@ export default function Services({ lang, setView, onBookConsultation }: Services
                   <div className="space-y-1.5 pt-1">
                     <div className="inline-flex items-center gap-1 text-[10px] text-white/60 font-semibold mb-1">
                       <ShieldCheck className="w-3 h-3 text-white" />
-                      <span>{isRtl ? 'تفاصيل الخدمة' : 'Key Capabilities'}</span>
+                      <span>{uiText.capabilities}</span>
                     </div>
                     <ul className="space-y-1.5 text-[10px] sm:text-xs text-white/90 leading-tight">
                       {service.bullets.map((b, idx) => (

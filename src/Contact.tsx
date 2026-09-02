@@ -73,6 +73,48 @@ const BRANCHES: Record<LangType, { city: string; address: string; phones: string
       phones: ['+20 50 2269 057'],
       mapUrl: 'https://www.google.com/maps/search/?api=1&query=Al+Hegaz+Tower+Tamyouhi+Square+Mansoura'
     }
+  ],
+  ja: [
+    {
+      city: 'カイロ（本部）',
+      address: 'カイロ、アグーザ、メディアシティ59',
+      phones: ['+20 2 3347 0139', '+20 106 616 2823'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=59+Media+City%2C+Agouza%2C+Giza%2C+Cairo'
+    },
+    {
+      city: 'マンスーラ',
+      address: 'アル・ヘガズタワー - タムユーヒ広場',
+      phones: ['+20 50 2269 057'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=Al+Hegaz+Tower+Tamyouhi+Square+Mansoura'
+    }
+  ],
+  zh: [
+    {
+      city: '开罗（总部）',
+      address: '开罗阿古扎媒体城59号',
+      phones: ['+20 2 3347 0139', '+20 106 616 2823'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=59+Media+City%2C+Agouza%2C+Giza%2C+Cairo'
+    },
+    {
+      city: '曼苏拉',
+      address: '阿尔赫加斯大厦 - 塔姆尤希广场',
+      phones: ['+20 50 2269 057'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=Al+Hegaz+Tower+Tamyouhi+Square+Mansoura'
+    }
+  ],
+  ko: [
+    {
+      city: '카이로 (본사)',
+      address: '카이로 아구자 미디어 시티 59번지',
+      phones: ['+20 2 3347 0139', '+20 106 616 2823'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=59+Media+City%2C+Agouza%2C+Giza%2C+Cairo'
+    },
+    {
+      city: '만수라',
+      address: '알 헤가즈 타워 - 탐유히 광장',
+      phones: ['+20 50 2269 057'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=Al+Hegaz+Tower+Tamyouhi+Square+Mansoura'
+    }
   ]
 };
 
@@ -227,72 +269,72 @@ const CONTACT_INFO: Record<LangType, {
   },
   ja: {
     title: 'お問い合わせ',
-    subtitle: '当社の財務および税務コンサルティングサービスに関するご質問にお答えします。お問い合わせいただければ、迅速に回答いたします。',
-    workingHoursTitle: 'Working Hours',
-    workingHours: 'Questions? Fill out this form and we will get back to you as soon as possible! Our team responds to inquiries within 4 hours. Working hours are Saturday to Thursday from 9 AM to 9 PM.',
-    branchesTitle: 'Our Branches',
-    phonesTitle: 'Direct Phone Lines',
-    emailTitle: 'Email Us',
+    subtitle: '財務および税務コンサルティングサービスに関するご質問にお答えします。お問い合わせいただければ、迅速に回答いたします。',
+    workingHoursTitle: '営業時間',
+    workingHours: 'ご質問ですか？このフォームにご記入いただければ、できるだけ早くご連絡いたします。通常4時間以内に回答いたします。営業日は土曜日から木曜日（午前9時〜午後9時）です。',
+    branchesTitle: '支店と住所',
+    phonesTitle: '直通電話番号',
+    emailTitle: 'メールでのお問い合わせ',
     emails: ['Sherbiny.co@gmail.com', 'A.elsherbiny@yahoo.com'],
-    openMap: 'Open in Google Maps',
-    callNow: 'Call',
-    qrBadge: 'Instant Contact QR Code',
-    qrTitle: 'Scan to Save Contact',
-    qrDesc: 'Scan with your smartphone camera to instantly save Ahmed El Sherbiny & Co. official contact details.',
+    openMap: 'Google マップで開く',
+    callNow: '電話する',
+    qrBadge: '即時連絡先 QR コード',
+    qrTitle: 'スキャンして連絡先を保存',
+    qrDesc: 'スマートフォンのカメラでスキャンして、アハメド・エル・シェルビニ事務所の公式連絡先を保存してください。',
     form: {
-      name: 'Full Name',
-      email: 'Email Address',
-      phone: 'Phone Number',
-      message: 'Your Message',
-      submit: 'Send Message'
+      name: '氏名',
+      email: 'メールアドレス',
+      phone: '電話番号',
+      message: 'メッセージ内容',
+      submit: 'メッセージを送信'
     },
-    back: 'Back'
+    back: '戻る'
   },
   zh: {
     title: '联系我们',
-    subtitle: '我们在这里回答您关于我们财务和税务咨询服务的任何问题。联系我们，我们将迅速回复。',
-    workingHoursTitle: 'Working Hours',
-    workingHours: 'Questions? Fill out this form and we will get back to you as soon as possible! Our team responds to inquiries within 4 hours. Working hours are Saturday to Thursday from 9 AM to 9 PM.',
-    branchesTitle: 'Our Branches',
-    phonesTitle: 'Direct Phone Lines',
-    emailTitle: 'Email Us',
+    subtitle: '我们随时为您解答关于财务与税务咨询服务的任何疑问。欢迎垂询，我们将尽快为您回复。',
+    workingHoursTitle: '工作时间',
+    workingHours: '有疑问？请填写此表单，我们将尽快与您联系！我们通常在4小时内答复。工作时间为周六至周四上午9:00至晚上21:00。',
+    branchesTitle: '分支机构与地址',
+    phonesTitle: '直拨电话专线',
+    emailTitle: '电子邮件',
     emails: ['Sherbiny.co@gmail.com', 'A.elsherbiny@yahoo.com'],
-    openMap: 'Open in Google Maps',
-    callNow: 'Call',
-    qrBadge: 'Instant Contact QR Code',
-    qrTitle: 'Scan to Save Contact',
-    qrDesc: 'Scan with your smartphone camera to instantly save Ahmed El Sherbiny & Co. official contact details.',
+    openMap: '在谷歌地图中打开',
+    callNow: '立即拨打',
+    qrBadge: '即时名片二维码',
+    qrTitle: '扫码保存联系方式',
+    qrDesc: '使用手机相机扫描二维码，即可将艾哈迈德·谢尔比尼事务所官方联系方式保存至通讯录。',
     form: {
-      name: 'Full Name',
-      email: 'Email Address',
-      phone: 'Phone Number',
-      message: 'Your Message',
-      submit: 'Send Message'
+      name: '您的全名',
+      email: '电子邮箱',
+      phone: '联系电话',
+      message: '留言内容',
+      submit: '发送留言'
     },
-    back: 'Back'
+    back: '返回'
   },
   ko: {
     title: '문의하기',
-    subtitle: '당사의 재무 및 세무 컨설팅 서비스에 대해 궁금한 점이 있으시면 답변해 드리겠습니다. 저희에게 연락하시면 신속하게 답변해 드리겠습니다.',
-    workingHoursTitle: 'Working Hours',
-    workingHours: 'Questions? Fill out this form and we will get back to you as soon as possible! Our team responds to inquiries within 4 hours. Working hours are Saturday to Thursday from 9 AM to 9 PM.',
-    branchesTitle: 'Our Branches',
-    phonesTitle: 'Direct Phone Lines',
-    emailTitle: 'Email Us',
+    subtitle: '당사의 재무 및 세무 컨설팅 서비스에 대해 궁금한 점이 있으시면 문의해 주십시오. 신속하게 답변해 드리겠습니다.',
+    workingHoursTitle: '업무 시간',
+    workingHours: '궁금한 점이 있으신가요? 이 양식을 작성해 주시면 최대한 신속히 연락드리겠습니다! 보통 4시간 이내에 답변을 드립니다. 근무 시간은 토요일부터 목요일(오전 9시~오후 9시)입니다.',
+    branchesTitle: '지점 및 위치',
+    phonesTitle: '직통 전화 상담',
+    emailTitle: '이메일 문의',
     emails: ['Sherbiny.co@gmail.com', 'A.elsherbiny@yahoo.com'],
-    openMap: 'Open in Google Maps',
-    callNow: 'Call',
-    qrBadge: 'Instant Contact QR Code',
-    qrTitle: 'Scan to Save Contact',
-    qrDesc: 'Scan with your smartphone camera to instantly save Ahmed El Sherbiny & Co. official contact details.',
+    openMap: 'Google 지도에서 보기',
+    callNow: '전화 걸기',
+    qrBadge: '즉시 연락처 QR 코드',
+    qrTitle: '스캔하여 연락처 저장',
+    qrDesc: '스마트폰 카메라로 스캔하여 아흐메드 엘 셰르비니 법인의 공식 연락처를 바로 저장하세요.',
     form: {
-      name: 'Full Name',
-      email: 'Email Address',
-      phone: 'Phone Number',
-      message: 'Your Message',
-      submit: 'Send Message'
+      name: '성함',
+      email: '이메일 주소',
+      phone: '전화번호',
+      message: '문의 내용',
+      submit: '메시지 전송'
     },
-    back: 'Back'
+    back: '뒤로가기'
   },
   es: {
     title: 'Ponte en Contacto',
@@ -319,6 +361,80 @@ const CONTACT_INFO: Record<LangType, {
   }
 };
 
+const CONTACT_UI_STRINGS: Record<LangType, {
+  sendError: string;
+  connError: string;
+  successMsg: string;
+  sending: string;
+  chatWhatsApp: string;
+  bookConsultation: string;
+}> = {
+  ar: {
+    sendError: 'حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.',
+    connError: 'حدث خطأ في الاتصال، يرجى المحاولة لاحقاً.',
+    successMsg: '✅ تم إرسال رسالتك بنجاح وسنقوم بالرد عليك في أقرب وقت!',
+    sending: 'جاري الإرسال...',
+    chatWhatsApp: 'تواصل عبر الواتساب',
+    bookConsultation: 'احجز استشارة'
+  },
+  en: {
+    sendError: 'Error sending message, please try again.',
+    connError: 'Connection error, please try again later.',
+    successMsg: '✅ Your message was sent successfully! We will get back to you shortly.',
+    sending: 'Sending...',
+    chatWhatsApp: 'Chat on WhatsApp',
+    bookConsultation: 'Book Consultation'
+  },
+  fr: {
+    sendError: 'Une erreur est survenue lors de l’envoi. Veuillez réessayer.',
+    connError: 'Erreur de connexion, veuillez réessayer ultérieurement.',
+    successMsg: '✅ Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.',
+    sending: 'Envoi en cours...',
+    chatWhatsApp: 'Contacter sur WhatsApp',
+    bookConsultation: 'Réserver une Consultation'
+  },
+  tr: {
+    sendError: 'Gönderim sırasında bir hata oluştu, lütfen tekrar deneyin.',
+    connError: 'Bağlantı hatası, lütfen daha sonra tekrar deneyin.',
+    successMsg: '✅ Mesajınız başarıyla gönderildi! En kısa sürede sizinle iletişime geçeceğiz.',
+    sending: 'Gönderiliyor...',
+    chatWhatsApp: "WhatsApp'tan Yazın",
+    bookConsultation: 'Danışmanlık Alın'
+  },
+  ja: {
+    sendError: '送信中にエラーが発生しました。もう一度お試しください。',
+    connError: '接続エラーが発生しました。後でもう一度お試しください。',
+    successMsg: '✅ メッセージが正常に送信されました！折り返しご連絡いたします。',
+    sending: '送信中...',
+    chatWhatsApp: 'WhatsAppでチャット',
+    bookConsultation: '相談を予約'
+  },
+  zh: {
+    sendError: '发送时出错，请重试。',
+    connError: '网络连接错误，请稍后再试。',
+    successMsg: '✅ 您的留言已成功发送！我们将尽快回复您。',
+    sending: '发送中...',
+    chatWhatsApp: '通过WhatsApp联系',
+    bookConsultation: '预约咨询'
+  },
+  ko: {
+    sendError: '전송 중 오류가 발생했습니다. 다시 시도해 주세요.',
+    connError: '연결 오류가 발생했습니다. 나중에 다시 시도해 주세요.',
+    successMsg: '✅ 메시지가 성공적으로 전송되었습니다! 곧 연락드리겠습니다.',
+    sending: '전송 중...',
+    chatWhatsApp: 'WhatsApp으로 문의',
+    bookConsultation: '상담 예약'
+  },
+  es: {
+    sendError: 'Error al enviar el mensaje, por favor inténtalo de nuevo.',
+    connError: 'Error de conexión, por favor inténtalo más tarde.',
+    successMsg: '✅ ¡Tu mensaje fue enviado con éxito! Nos comunicaremos contigo a la brevedad.',
+    sending: 'Enviando...',
+    chatWhatsApp: 'Chatear en WhatsApp',
+    bookConsultation: 'Reservar Consulta'
+  }
+};
+
 interface ContactProps {
   lang: LangType;
   setView: (view: 'home' | 'about' | 'contact' | 'services' | 'laws') => void;
@@ -328,8 +444,9 @@ interface ContactProps {
 export default function Contact({ lang, setView, onBookConsultation }: ContactProps) {
   const isRtl = lang === 'ar';
   const BackIcon = isRtl ? ArrowRight : ArrowLeft;
-  const t = CONTACT_INFO[lang];
-  const branches = BRANCHES[lang];
+  const t = CONTACT_INFO[lang] || CONTACT_INFO.ar || CONTACT_INFO.en;
+  const ui = CONTACT_UI_STRINGS[lang] || CONTACT_UI_STRINGS.ar || CONTACT_UI_STRINGS.en;
+  const branches = BRANCHES[lang] || BRANCHES.ar || BRANCHES.en;
 
   const [formState, setFormState] = useState({ name: '', email: '', phone: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -358,11 +475,11 @@ export default function Contact({ lang, setView, onBookConsultation }: ContactPr
         setFormState({ name: '', email: '', phone: '', message: '' });
         setTimeout(() => setIsSuccess(false), 8000);
       } else {
-        alert(isRtl ? 'حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.' : 'Error sending message, please try again.');
+        alert(ui.sendError);
       }
     } catch (err) {
       console.error('Contact form error:', err);
-      alert(isRtl ? 'حدث خطأ في الاتصال، يرجى المحاولة لاحقاً.' : 'Connection error, please try again later.');
+      alert(ui.connError);
     } finally {
       setIsSubmitting(false);
     }
@@ -385,6 +502,15 @@ export default function Contact({ lang, setView, onBookConsultation }: ContactPr
             <BackIcon className="w-5 h-5" />
             <span className="font-medium text-lg">{t.back}</span>
           </button>
+
+          {onBookConsultation && (
+            <button 
+              onClick={onBookConsultation}
+              className="bg-black text-white px-5 py-2 rounded-full text-xs sm:text-sm font-bold hover:bg-black/80 transition-colors shadow-md active:scale-95"
+            >
+              {ui.bookConsultation}
+            </button>
+          )}
         </div>
       </div>
 
@@ -403,7 +529,7 @@ export default function Contact({ lang, setView, onBookConsultation }: ContactPr
             <form onSubmit={handleSubmit} className="space-y-6">
               {isSuccess && (
                 <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-2xl text-emerald-800 text-sm font-semibold flex items-center gap-2.5 animate-fadeIn">
-                  <span>{isRtl ? '✅ تم إرسال رسالتك بنجاح وسنقوم بالرد عليك في أقرب وقت!' : '✅ Your message was sent successfully! We will get back to you shortly.'}</span>
+                  <span>{ui.successMsg}</span>
                 </div>
               )}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -452,7 +578,7 @@ export default function Contact({ lang, setView, onBookConsultation }: ContactPr
                 disabled={isSubmitting}
                 className="w-full sm:w-auto bg-black text-white px-8 py-4 rounded-xl font-medium hover:bg-black/80 transition-colors inline-flex justify-center items-center gap-2 disabled:opacity-60"
               >
-                <span>{isSubmitting ? (isRtl ? 'جاري الإرسال...' : 'Sending...') : t.form.submit}</span>
+                <span>{isSubmitting ? ui.sending : t.form.submit}</span>
                 <Send className={`w-4 h-4 ${isRtl ? 'rotate-180' : ''}`} />
               </button>
             </form>
@@ -508,7 +634,7 @@ export default function Contact({ lang, setView, onBookConsultation }: ContactPr
                     className="inline-flex items-center gap-2 mt-2 px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 text-xs font-bold hover:bg-emerald-100 transition-colors"
                   >
                     <MessageCircle className="w-4 h-4" />
-                    <span>{isRtl ? 'تواصل عبر الواتساب' : 'Chat on WhatsApp'}</span>
+                    <span>{ui.chatWhatsApp}</span>
                   </a>
                 </div>
               </div>

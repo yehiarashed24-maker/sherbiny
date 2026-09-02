@@ -42,6 +42,7 @@ export default async function handler(req: Request) {
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (err) {
+    console.error('Contact API error:', err);
     return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500 });
   }
 }
