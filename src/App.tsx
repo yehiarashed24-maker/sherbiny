@@ -181,19 +181,6 @@ const App = () => {
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
           <div className="absolute top-[68px] sm:top-[76px] left-3 right-3 sm:left-4 sm:right-4 bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl z-50 p-5 sm:p-6 flex flex-col gap-3.5 sm:gap-4 border border-black/10 md:hidden animate-in slide-in-from-top-3 max-h-[85vh] overflow-y-auto">
-            {/* Language Segmented Bar inside mobile menu */}
-            <div className="pb-3 border-b border-black/5">
-              <div className="text-[11px] font-bold text-black/50 mb-2">
-                {t.chooseLang}
-              </div>
-              <LanguageSelector 
-                lang={lang} 
-                setLang={setLang} 
-                variant="mobile-bar" 
-                onSelect={() => setIsMobileMenuOpen(false)} 
-              />
-            </div>
-
             <button onClick={() => { setView('home'); setIsMobileMenuOpen(false); }} className={`text-lg font-bold transition-colors text-black ${isRtl ? 'text-right' : 'text-left'}`}>
               {t.home}
             </button>
