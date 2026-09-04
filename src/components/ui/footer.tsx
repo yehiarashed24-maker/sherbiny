@@ -218,11 +218,11 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
           
           {/* Brand Column (4 cols) */}
           <div className="lg:col-span-4 flex flex-col items-start">
-            <div className="flex items-center gap-3 mb-5 bg-[#122e20]/80 p-2.5 rounded-2xl backdrop-blur-sm border border-[#235338]/60 shadow-lg">
+            <div className="flex items-center gap-3 mb-5 bg-[#122e20]/90 p-2.5 sm:p-3 rounded-2xl backdrop-blur-sm border border-[#d4af37]/35 shadow-lg shadow-black/20 group hover:border-[#d4af37]/60 transition-all duration-300">
               <img
-                src={lang === 'ar' ? '/logo.png' : '/logo-en.png'}
+                src={lang === 'ar' ? '/logo-gold.png' : '/logo-en-gold.png'}
                 alt={t.name}
-                className="h-10 w-auto object-contain brightness-0 invert"
+                className="h-10 sm:h-11 w-auto object-contain filter drop-shadow group-hover:scale-105 transition-transform duration-300"
               />
             </div>
             <h3 className="text-xl sm:text-2xl font-bold mb-1.5 tracking-tight text-white">
