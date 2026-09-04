@@ -420,9 +420,6 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
                   alt="Ahmed Elsherbiny"
                   className="h-10 sm:h-12 w-auto object-contain filter drop-shadow group-hover:scale-105 transition-transform duration-300"
                 />
-                <span className="text-[11px] text-amber-200/70 tracking-widest uppercase font-serif mt-1">
-                  Cairo • Mansoura
-                </span>
               </div>
             </div>
           </div>
@@ -430,13 +427,10 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[#1e4632]/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-start">
+        <div className="pt-8 border-t border-[#1e4632]/50 flex items-center justify-center text-center">
           <p className="text-white/60 text-xs sm:text-sm font-medium">
             © {new Date().getFullYear()} {t.name}. {t.rights}
           </p>
-          <div className="flex items-center gap-6 text-xs text-white/50">
-            <span>Cairo • Mansoura • Egypt</span>
-          </div>
         </div>
       </div>
     </footer>
