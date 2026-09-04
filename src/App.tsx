@@ -69,7 +69,7 @@ const App = () => {
   if (view === 'about') {
     return (
       <div className="pb-16 md:pb-0 min-h-screen bg-[#F5F5F5]">
-        <About lang={lang} setView={setView} onBookConsultation={() => setIsModalOpen(true)} />
+        <About lang={lang} setLang={setLang} setView={setView} onBookConsultation={() => setIsModalOpen(true)} />
         <MobileTabBar currentView={view} setView={setView} onOpenConsultation={() => setIsModalOpen(true)} lang={lang} />
         <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} lang={lang} />
         <Chatbot isRtl={isRtl} lang={lang} />
@@ -80,7 +80,7 @@ const App = () => {
   if (view === 'contact') {
     return (
       <div className="pb-16 md:pb-0 min-h-screen bg-white">
-        <Contact lang={lang} setView={setView} onBookConsultation={() => setIsModalOpen(true)} />
+        <Contact lang={lang} setLang={setLang} setView={setView} onBookConsultation={() => setIsModalOpen(true)} />
         <MobileTabBar currentView={view} setView={setView} onOpenConsultation={() => setIsModalOpen(true)} lang={lang} />
         <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} lang={lang} />
         <Chatbot isRtl={isRtl} lang={lang} />
@@ -91,7 +91,7 @@ const App = () => {
   if (view === 'services') {
     return (
       <div className="pb-16 md:pb-0 min-h-screen bg-[#F5F5F5]">
-        <Services lang={lang} setView={setView} onBookConsultation={() => setIsModalOpen(true)} />
+        <Services lang={lang} setLang={setLang} setView={setView} onBookConsultation={() => setIsModalOpen(true)} />
         <MobileTabBar currentView={view} setView={setView} onOpenConsultation={() => setIsModalOpen(true)} lang={lang} />
         <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} lang={lang} />
         <Chatbot isRtl={isRtl} lang={lang} />
@@ -102,7 +102,7 @@ const App = () => {
   if (view === 'laws') {
     return (
       <div className="pb-16 md:pb-0 min-h-screen bg-[#F5F5F5]">
-        <Laws isRtl={isRtl} lang={lang} setView={setView} />
+        <Laws isRtl={isRtl} lang={lang} setLang={setLang} setView={setView} />
         <MobileTabBar currentView={view} setView={setView} onOpenConsultation={() => setIsModalOpen(true)} lang={lang} />
         <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isRtl={isRtl} lang={lang} />
         <Chatbot isRtl={isRtl} lang={lang} />
@@ -115,20 +115,20 @@ const App = () => {
       {/* Wrapper for Navbar + Hero */}
       <div className="min-h-screen flex flex-col relative">
         {/* Navbar */}
-        <nav className="absolute top-0 left-0 right-0 z-20 px-4 sm:px-6 py-4 sm:py-5">
+        <nav className="absolute top-0 left-0 right-0 z-20 px-3 sm:px-6 py-3 sm:py-5">
           <div className="flex items-center justify-between max-w-[88rem] mx-auto">
             {/* Logo */}
-            <div className="flex items-center gap-2.5 sm:gap-3 cursor-pointer" onClick={() => setView('home')}>
+            <div className="flex items-center gap-2 sm:gap-3 cursor-pointer select-none" onClick={() => setView('home')}>
               <img
                 src={lang === 'ar' ? '/logo.png' : '/logo-en.png'}
                 alt={t.brandName}
-                className="h-9 sm:h-11 md:h-12 w-auto object-contain"
+                className="h-8 sm:h-11 md:h-12 w-auto object-contain shrink-0"
               />
               <div className="flex flex-col">
-                <span className="text-base sm:text-lg md:text-xl font-bold tracking-tight text-black leading-tight">
+                <span className="text-sm sm:text-lg md:text-xl font-bold tracking-tight text-black leading-tight">
                   {t.brandName}
                 </span>
-                <span className="text-[10px] sm:text-[11px] md:text-xs text-black/60 font-medium line-clamp-1">
+                <span className="text-[9px] sm:text-[11px] md:text-xs text-black/60 font-medium line-clamp-1">
                   {t.brandSub}
                 </span>
               </div>
@@ -180,13 +180,18 @@ const App = () => {
 
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
-          <div className="absolute top-[76px] left-4 right-4 bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl z-50 p-6 flex flex-col gap-4 border border-black/10 md:hidden animate-in slide-in-from-top-3">
+          <div className="absolute top-[68px] sm:top-[76px] left-3 right-3 sm:left-4 sm:right-4 bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl z-50 p-5 sm:p-6 flex flex-col gap-3.5 sm:gap-4 border border-black/10 md:hidden animate-in slide-in-from-top-3 max-h-[85vh] overflow-y-auto">
             {/* Language Segmented Bar inside mobile menu */}
             <div className="pb-3 border-b border-black/5">
               <div className="text-[11px] font-bold text-black/50 mb-2">
                 {t.chooseLang}
               </div>
-              <LanguageSelector lang={lang} setLang={setLang} variant="mobile-bar" />
+              <LanguageSelector 
+                lang={lang} 
+                setLang={setLang} 
+                variant="mobile-bar" 
+                onSelect={() => setIsMobileMenuOpen(false)} 
+              />
             </div>
 
             <button onClick={() => { setView('home'); setIsMobileMenuOpen(false); }} className={`text-lg font-bold transition-colors text-black ${isRtl ? 'text-right' : 'text-left'}`}>

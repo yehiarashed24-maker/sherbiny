@@ -19,7 +19,7 @@ interface ServiceItem {
   client: string;
 }
 
-import type { LangType } from './components/ui/language-selector';
+import LanguageSelector, { type LangType } from './components/ui/language-selector';
 
 const SERVICES_CARDS: Record<LangType, ServiceItem[]> = {
   ar: [
@@ -525,10 +525,11 @@ const SERVICES_UI_TEXT: Record<LangType, { home: string; book: string; badge: st
 interface ServicesProps {
   lang: LangType;
   setView: (view: 'home' | 'about' | 'contact' | 'services' | 'laws') => void;
+  setLang?: (lang: LangType) => void;
   onBookConsultation?: () => void;
 }
 
-export default function Services({ lang, setView, onBookConsultation }: ServicesProps) {
+export default function Services({ lang, setView, setLang, onBookConsultation }: ServicesProps) {
   const isRtl = lang === 'ar';
   const BackIcon = isRtl ? ArrowRight : ArrowLeft;
   const servicesList = SERVICES_CARDS[lang] || SERVICES_CARDS.ar || SERVICES_CARDS.en;
@@ -746,37 +747,40 @@ export default function Services({ lang, setView, onBookConsultation }: Services
     <div className="relative w-screen h-screen bg-[#F5F5F5] text-black flex items-center justify-center overflow-hidden select-none font-sans" dir={isRtl ? 'rtl' : 'ltr'}>
       
       {/* Top Navbar */}
-      <nav className="absolute top-0 left-0 right-0 z-50 px-6 py-5 flex items-center justify-between pointer-events-none">
+      <nav className="absolute top-0 left-0 right-0 z-50 px-4 sm:px-6 py-3 sm:py-5 flex items-center justify-between pointer-events-none">
         <div className="max-w-[88rem] mx-auto w-full flex items-center justify-between">
           <button 
             onClick={() => setView('home')} 
-            className="pointer-events-auto inline-flex items-center gap-2 bg-white/80 hover:bg-white backdrop-blur-xl px-5 py-2.5 rounded-full border border-black/5 shadow-md text-black transition-all duration-200"
+            className="pointer-events-auto inline-flex items-center gap-1.5 sm:gap-2 bg-white/80 hover:bg-white backdrop-blur-xl px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full border border-black/5 shadow-md text-black transition-all duration-200"
           >
-            <BackIcon className="w-5 h-5" />
-            <span className="font-semibold text-sm">{uiText.home}</span>
+            <BackIcon className="w-4 h-4 sm:w-5 sm:h-5" />
+            <span className="font-semibold text-xs sm:text-sm">{uiText.home}</span>
           </button>
 
-          <div className="pointer-events-none text-center">
+          <div className="pointer-events-none text-center hidden md:block">
             <h1 className="text-xl md:text-2xl font-bold tracking-tight text-black">
               {uiText.title}
             </h1>
-            <p className="text-xs text-black/60 hidden sm:block font-medium">
+            <p className="text-xs text-black/60 font-medium">
               {uiText.subtitle}
             </p>
           </div>
 
-          <button 
-            onClick={handleConsultation}
-            className="pointer-events-auto bg-black text-white px-5 py-2.5 rounded-full text-xs md:text-sm font-bold hover:bg-black/80 transition-all shadow-md hover:scale-105 active:scale-95"
-          >
-            {uiText.book}
-          </button>
+          <div className="pointer-events-auto flex items-center gap-2 sm:gap-3">
+            {setLang && <LanguageSelector lang={lang} setLang={setLang} />}
+            <button 
+              onClick={handleConsultation}
+              className="bg-black text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs md:text-sm font-bold hover:bg-black/80 transition-all shadow-md hover:scale-105 active:scale-95"
+            >
+              {uiText.book}
+            </button>
+          </div>
         </div>
       </nav>
 
       {/* Floating Bottom Helper */}
-      <div className="absolute bottom-6 inset-x-6 z-40 flex items-center justify-center pointer-events-none">
-        <div className="bg-white/90 backdrop-blur-xl border border-black/10 px-5 py-2.5 rounded-full text-xs font-semibold text-black/80 shadow-xl flex items-center gap-2">
+      <div className="absolute bottom-20 sm:bottom-6 inset-x-6 z-30 flex items-center justify-center pointer-events-none">
+        <div className="bg-white/90 backdrop-blur-xl border border-black/10 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-semibold text-black/80 shadow-xl flex items-center gap-2">
           <span>{uiText.subtitle}</span>
         </div>
       </div>

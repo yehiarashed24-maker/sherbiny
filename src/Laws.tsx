@@ -1,10 +1,11 @@
 import { BookOpen, Scale, FileText, Landmark, Gavel, ExternalLink, ArrowLeft, ArrowRight } from 'lucide-react';
-import type { LangType } from './components/ui/language-selector';
+import LanguageSelector, { type LangType } from './components/ui/language-selector';
 import Footer from './components/ui/footer';
 
 interface LawsProps {
   isRtl?: boolean;
   lang?: LangType;
+  setLang?: (lang: LangType) => void;
   setView: (view: 'home' | 'about' | 'contact' | 'services' | 'laws') => void;
 }
 
@@ -120,7 +121,7 @@ const LAWS_UI_TEXT: Record<LangType, { back: string; title: string; subtitle: st
   }
 };
 
-export default function Laws({ isRtl = false, lang = 'ar', setView }: LawsProps) {
+export default function Laws({ isRtl = false, lang = 'ar', setLang, setView }: LawsProps) {
   const IconBack = isRtl ? ArrowRight : ArrowLeft;
   const t = LAWS_UI_TEXT[lang] || LAWS_UI_TEXT.en;
 
@@ -128,23 +129,25 @@ export default function Laws({ isRtl = false, lang = 'ar', setView }: LawsProps)
     <div className={`min-h-screen bg-[#F5F5F5] ${isRtl ? 'rtl' : 'ltr'} flex flex-col justify-between`} dir={isRtl ? 'rtl' : 'ltr'}>
       <div>
         {/* Navigation Bar */}
-        <nav className="fixed w-full z-50 bg-[#F5F5F5]/80 backdrop-blur-md border-b border-black/5 transition-all duration-300">
-          <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <nav className="fixed w-full z-50 bg-[#F5F5F5]/85 backdrop-blur-md border-b border-black/5 transition-all duration-300">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
             <button 
               onClick={() => setView('home')}
-              className="group flex items-center gap-3 text-black hover:text-black/70 transition-colors"
+              className="group flex items-center gap-2 sm:gap-3 text-black hover:text-black/70 transition-colors"
             >
-              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
-                <IconBack className="w-5 h-5" />
+              <div className="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                <IconBack className="w-4 sm:w-5 h-4 sm:h-5" />
               </div>
               <span className="font-semibold text-sm sm:text-base">
                 {t.back}
               </span>
             </button>
+
+            {setLang && <LanguageSelector lang={lang} setLang={setLang} />}
           </div>
         </nav>
 
-        <div className="max-w-5xl mx-auto px-6 pt-28 pb-24">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-20 sm:pb-24">
           {/* Header */}
           <div className="text-center mb-14">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-black text-white mb-5 shadow-xl">

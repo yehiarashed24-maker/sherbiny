@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ArrowLeft, ArrowRight, MapPin, Phone, Mail, Clock, Send, ExternalLink, MessageCircle, QrCode } from 'lucide-react';
 import Footer from './components/ui/footer';
-import type { LangType } from './components/ui/language-selector';
+import LanguageSelector, { type LangType } from './components/ui/language-selector';
 
 const BRANCHES: Record<LangType, { city: string; address: string; phones: string[]; mapUrl: string }[]> = {
   en: [
@@ -483,10 +483,11 @@ const CONTACT_UI_STRINGS: Record<LangType, {
 interface ContactProps {
   lang: LangType;
   setView: (view: 'home' | 'about' | 'contact' | 'services' | 'laws') => void;
+  setLang?: (lang: LangType) => void;
   onBookConsultation?: () => void;
 }
 
-export default function Contact({ lang, setView, onBookConsultation }: ContactProps) {
+export default function Contact({ lang, setView, setLang, onBookConsultation }: ContactProps) {
   const isRtl = lang === 'ar';
   const BackIcon = isRtl ? ArrowRight : ArrowLeft;
   const t = CONTACT_INFO[lang] || CONTACT_INFO.ar || CONTACT_INFO.en;
@@ -538,24 +539,27 @@ export default function Contact({ lang, setView, onBookConsultation }: ContactPr
       dir={isRtl ? 'rtl' : 'ltr'}
     >
       {/* Navbar/Header area */}
-      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-black/5">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div className="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-black/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
           <button 
             onClick={() => setView('home')} 
-            className="inline-flex items-center gap-2 text-black/70 hover:text-black transition-colors duration-200"
+            className="inline-flex items-center gap-2 text-black/75 hover:text-black transition-colors duration-200"
           >
             <BackIcon className="w-5 h-5" />
-            <span className="font-medium text-lg">{t.back}</span>
+            <span className="font-semibold text-base sm:text-lg">{t.back}</span>
           </button>
 
-          {onBookConsultation && (
-            <button 
-              onClick={onBookConsultation}
-              className="bg-black text-white px-5 py-2 rounded-full text-xs sm:text-sm font-bold hover:bg-black/80 transition-colors shadow-md active:scale-95"
-            >
-              {ui.bookConsultation}
-            </button>
-          )}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {setLang && <LanguageSelector lang={lang} setLang={setLang} />}
+            {onBookConsultation && (
+              <button 
+                onClick={onBookConsultation}
+                className="bg-black text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold hover:bg-black/80 transition-colors shadow-md active:scale-95"
+              >
+                {ui.bookConsultation}
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
@@ -640,13 +644,13 @@ export default function Contact({ lang, setView, onBookConsultation }: ContactPr
                 </div>
                 <h3 className="text-xl font-semibold">{t.workingHoursTitle}</h3>
               </div>
-              <p className="text-black/60 leading-relaxed pl-13 rtl:pl-0 rtl:pr-13">
+              <p className="text-black/60 leading-relaxed pl-0 sm:pl-13 rtl:pr-0 sm:rtl:pr-13">
                 {t.workingHours}
               </p>
             </div>
 
             {/* Email & Direct Phones */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pl-13 rtl:pl-0 rtl:pr-13">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pl-0 sm:pl-13 rtl:pr-0 sm:rtl:pr-13">
               <div>
                 <div className="flex items-center gap-3 mb-3 text-black">
                   <Phone className="w-5 h-5" />
@@ -712,7 +716,7 @@ export default function Contact({ lang, setView, onBookConsultation }: ContactPr
                 <h3 className="text-xl font-semibold">{t.branchesTitle}</h3>
               </div>
 
-              <div className="grid grid-cols-1 gap-4 pl-13 rtl:pl-0 rtl:pr-13">
+              <div className="grid grid-cols-1 gap-4 pl-0 sm:pl-13 rtl:pr-0 sm:rtl:pr-13">
                 {branches.map((branch, idx) => (
                   <div
                     key={idx}
@@ -762,7 +766,7 @@ export default function Contact({ lang, setView, onBookConsultation }: ContactPr
             </div>
 
             {/* QR Code Quick Save Card */}
-            <div className="pl-13 rtl:pl-0 rtl:pr-13">
+            <div className="pl-0 sm:pl-13 rtl:pr-0 sm:rtl:pr-13">
               <div className="bg-gradient-to-br from-neutral-900 to-black text-white p-6 sm:p-7 rounded-3xl shadow-xl border border-white/10 flex flex-col sm:flex-row items-center gap-6">
                 <div className="flex flex-col items-center shrink-0">
                   <div className="bg-white p-3 rounded-2xl shadow-lg flex items-center justify-center border-2 border-white/80">

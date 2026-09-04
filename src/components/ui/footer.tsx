@@ -204,7 +204,7 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
 
   return (
     <footer 
-      className="relative text-white pt-16 pb-12 border-t border-[#1e4632]/50 overflow-hidden" 
+      className="relative text-white pt-16 pb-28 md:pb-12 border-t border-[#1e4632]/50 overflow-hidden" 
       style={{
         background: 'radial-gradient(ellipse at 50% 0%, #163625 0%, #0d2217 40%, #07130d 100%)'
       }}
@@ -394,12 +394,12 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
           </div>
 
           {/* QR Code & Signature Column (3 cols) */}
-          <div className="lg:col-span-3 flex flex-col items-center">
+          <div className="lg:col-span-3 flex flex-col items-center sm:items-start lg:items-center">
             <h4 className="text-base sm:text-lg font-bold mb-6 text-white border-b border-[#235338]/60 pb-2 w-full text-center sm:text-start inline-flex items-center justify-center sm:justify-start gap-2">
               <span>{t.qrLabel || (lang === 'ar' ? 'بيانات التواصل الفوري' : 'Instant Contact')}</span>
             </h4>
 
-            <div className="w-full max-w-[270px] flex flex-col items-center p-4 rounded-3xl bg-[#081a11]/85 border border-[#d4af37]/35 shadow-2xl backdrop-blur-md relative overflow-hidden group hover:border-[#d4af37]/60 transition-all duration-300">
+            <div className="w-full max-w-[270px] mx-auto sm:mx-0 lg:mx-auto flex flex-col items-center p-4 rounded-3xl bg-[#081a11]/85 border border-[#d4af37]/35 shadow-2xl backdrop-blur-md relative overflow-hidden group hover:border-[#d4af37]/60 transition-all duration-300">
               {/* Subtle ambient lighting */}
               <div className="absolute -top-12 -right-12 w-28 h-28 bg-[#d4af37]/10 rounded-full blur-xl pointer-events-none" />
               <div className="absolute -bottom-12 -left-12 w-28 h-28 bg-emerald-500/10 rounded-full blur-xl pointer-events-none" />

@@ -1,11 +1,12 @@
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import AboutUsSection from './components/ui/about-us-section';
 import Footer from './components/ui/footer';
-import type { LangType } from './components/ui/language-selector';
+import LanguageSelector, { type LangType } from './components/ui/language-selector';
 
 interface AboutProps {
   lang: LangType;
   setView: (view: 'home' | 'about' | 'contact' | 'services' | 'laws') => void;
+  setLang?: (lang: LangType) => void;
   onBookConsultation?: () => void;
 }
 
@@ -21,7 +22,7 @@ const NAV_TEXT: Record<LangType, { home: string; book: string }> = {
   it: { home: 'Home', book: 'Prenota Consulenza' }
 };
 
-export default function About({ lang, setView, onBookConsultation }: AboutProps) {
+export default function About({ lang, setView, setLang, onBookConsultation }: AboutProps) {
   const isRtl = lang === 'ar';
   const BackIcon = isRtl ? ArrowRight : ArrowLeft;
   const handleConsultation = onBookConsultation || (() => setView('contact'));
@@ -30,20 +31,21 @@ export default function About({ lang, setView, onBookConsultation }: AboutProps)
   return (
     <div className="min-h-screen bg-[#F5F5F5] text-black font-sans selection:bg-black selection:text-white" dir={isRtl ? 'rtl' : 'ltr'}>
       {/* Fixed Navbar with Back Button */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between pointer-events-none">
+      <nav className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between pointer-events-none">
         <div className="max-w-[88rem] mx-auto w-full flex items-center justify-between">
           <button 
             onClick={() => setView('home')} 
-            className="pointer-events-auto inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-5 py-2.5 rounded-full border border-black/5 shadow-md text-black/80 hover:text-black hover:bg-white transition-all duration-200"
+            className="pointer-events-auto inline-flex items-center gap-1.5 sm:gap-2 bg-white/80 backdrop-blur-md px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full border border-black/5 shadow-md text-black/80 hover:text-black hover:bg-white transition-all duration-200"
           >
-            <BackIcon className="w-5 h-5" />
-            <span className="font-semibold text-sm">{t.home}</span>
+            <BackIcon className="w-4 sm:w-5 h-4 sm:h-5" />
+            <span className="font-semibold text-xs sm:text-sm">{t.home}</span>
           </button>
           
-          <div className="pointer-events-auto flex items-center gap-3">
+          <div className="pointer-events-auto flex items-center gap-2 sm:gap-3">
+            {setLang && <LanguageSelector lang={lang} setLang={setLang} />}
             <button 
               onClick={handleConsultation}
-              className="bg-black text-white px-6 py-2.5 rounded-full text-xs md:text-sm font-bold hover:bg-black/80 transition-colors shadow-md active:scale-95"
+              className="bg-black text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold hover:bg-black/80 transition-colors shadow-md active:scale-95"
             >
               {t.book}
             </button>
