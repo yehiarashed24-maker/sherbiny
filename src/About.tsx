@@ -17,7 +17,8 @@ const NAV_TEXT: Record<LangType, { home: string; book: string }> = {
   ja: { home: 'ホーム', book: '相談を予約' },
   zh: { home: '首页', book: '预约咨询' },
   ko: { home: '홈', book: '상담 예약' },
-  es: { home: 'Inicio', book: 'Reservar Consulta' }
+  es: { home: 'Inicio', book: 'Reservar Consulta' },
+  it: { home: 'Home', book: 'Prenota Consulenza' }
 };
 
 export default function About({ lang, setView, onBookConsultation }: AboutProps) {

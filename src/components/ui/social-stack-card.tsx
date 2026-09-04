@@ -14,7 +14,8 @@ const CARD_TEXT: Record<LangType, { title: string; hover: string }> = {
   ja: { title: 'ソーシャル', hover: 'カーソルを合わせて探索' },
   zh: { title: '社交媒体', hover: '悬停以浏览' },
   ko: { title: '소셜', hover: '탐색하려면 마우스를 올리세요' },
-  es: { title: 'Redes', hover: 'Pasa el cursor para explorar' }
+  es: { title: 'Redes', hover: 'Pasa el cursor para explorar' },
+  it: { title: 'Social', hover: 'Passa il cursore per esplorare' }
 };
 
 const LAYER_NAMES: Record<string, Record<LangType, string>> = {
@@ -26,7 +27,8 @@ const LAYER_NAMES: Record<string, Record<LangType, string>> = {
     ja: 'インスタグラム',
     zh: 'Instagram',
     ko: '인스타그램',
-    es: 'Instagram'
+    es: 'Instagram',
+    it: 'Instagram'
   },
   twitter: {
     ar: 'منصة إكس',
@@ -36,7 +38,8 @@ const LAYER_NAMES: Record<string, Record<LangType, string>> = {
     ja: 'X（旧Twitter）',
     zh: 'X (Twitter)',
     ko: 'X (트위터)',
-    es: 'X (Twitter)'
+    es: 'X (Twitter)',
+    it: 'X (Twitter)'
   },
   linkedin: {
     ar: 'لينكد إن',
@@ -46,7 +49,8 @@ const LAYER_NAMES: Record<string, Record<LangType, string>> = {
     ja: 'リンクトイン',
     zh: '领英 (LinkedIn)',
     ko: '링크드인',
-    es: 'LinkedIn'
+    es: 'LinkedIn',
+    it: 'LinkedIn'
   },
   facebook: {
     ar: 'فيسبوك',
@@ -56,7 +60,8 @@ const LAYER_NAMES: Record<string, Record<LangType, string>> = {
     ja: 'フェイスブック',
     zh: 'Facebook',
     ko: '페이스북',
-    es: 'Facebook'
+    es: 'Facebook',
+    it: 'Facebook'
   },
   whatsapp: {
     ar: 'واتساب',
@@ -66,7 +71,8 @@ const LAYER_NAMES: Record<string, Record<LangType, string>> = {
     ja: 'WhatsApp',
     zh: 'WhatsApp',
     ko: '왓츠앱',
-    es: 'WhatsApp'
+    es: 'WhatsApp',
+    it: 'WhatsApp'
   }
 };
 

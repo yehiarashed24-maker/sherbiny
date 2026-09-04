@@ -24,6 +24,7 @@ const FOOTER_TEXT: Record<LangType, {
   whatsapp: string;
   chat: string;
   rights: string;
+  qrLabel: string;
 }> = {
   ar: {
     name: 'أحمد الشربيني وشركاه',
@@ -41,7 +42,8 @@ const FOOTER_TEXT: Record<LangType, {
     mansoura: 'المنصورة (أرضي)',
     whatsapp: 'الواتساب الأساسي',
     chat: 'محادثة',
-    rights: 'جميع الحقوق محفوظة.'
+    rights: 'جميع الحقوق محفوظة.',
+    qrLabel: 'بيانات التواصل الفوري'
   },
   en: {
     name: 'Ahmed El Sherbiny & Co.',
@@ -59,7 +61,8 @@ const FOOTER_TEXT: Record<LangType, {
     mansoura: 'Mansoura Office',
     whatsapp: 'Primary WhatsApp',
     chat: 'Chat',
-    rights: 'All rights reserved.'
+    rights: 'All rights reserved.',
+    qrLabel: 'Instant Contact & QR'
   },
   fr: {
     name: 'Ahmed El Sherbiny & Co.',
@@ -77,7 +80,8 @@ const FOOTER_TEXT: Record<LangType, {
     mansoura: 'Mansourah (Fixe)',
     whatsapp: 'WhatsApp Principal',
     chat: 'Discuter',
-    rights: 'Tous droits réservés.'
+    rights: 'Tous droits réservés.',
+    qrLabel: 'Contact Immédiat'
   },
   tr: {
     name: 'Ahmed El Sherbiny & Co.',
@@ -95,7 +99,8 @@ const FOOTER_TEXT: Record<LangType, {
     mansoura: 'Mansura (Sabit)',
     whatsapp: 'Ana WhatsApp',
     chat: 'Sohbet',
-    rights: 'Tüm hakları saklıdır.'
+    rights: 'Tüm hakları saklıdır.',
+    qrLabel: 'Hızlı İletişim'
   },
   ja: {
     name: 'アハメド・エル・シェルビニ事務所',
@@ -113,7 +118,8 @@ const FOOTER_TEXT: Record<LangType, {
     mansoura: 'マンスーラオフィス',
     whatsapp: 'メインのWhatsApp',
     chat: 'チャット',
-    rights: '全著作権所有。'
+    rights: '全著作権所有。',
+    qrLabel: 'インスタント連絡先'
   },
   zh: {
     name: '艾哈迈德·谢尔比尼公司',
@@ -131,7 +137,8 @@ const FOOTER_TEXT: Record<LangType, {
     mansoura: '曼苏拉办公室',
     whatsapp: '主要WhatsApp',
     chat: '聊天',
-    rights: '版权所有。'
+    rights: '版权所有。',
+    qrLabel: '即时联系与二维码'
   },
   ko: {
     name: '아흐메드 엘 셰르비니 주식회사',
@@ -149,7 +156,8 @@ const FOOTER_TEXT: Record<LangType, {
     mansoura: '만수라 사무소',
     whatsapp: '기본 WhatsApp',
     chat: '채팅',
-    rights: '모든 권리 보유.'
+    rights: '모든 권리 보유.',
+    qrLabel: '빠른 연락처 및 QR'
   },
   es: {
     name: 'Ahmed El Sherbiny & Co.',
@@ -167,7 +175,27 @@ const FOOTER_TEXT: Record<LangType, {
     mansoura: 'Oficina de Mansoura',
     whatsapp: 'WhatsApp Principal',
     chat: 'Chat',
-    rights: 'Todos los derechos reservados.'
+    rights: 'Todos los derechos reservados.',
+    qrLabel: 'Contacto Inmediato'
+  },
+  it: {
+    name: 'Ahmed El Sherbiny & Co.',
+    sub: 'Dottori Commercialisti e Revisori Legali',
+    desc: 'Studio Ahmed El Sherbiny & Co. Dottori Commercialisti e Revisori Contabili. Esperti in consulenza tributaria, revisione contabile e costituzione societaria in Egitto.',
+    quickLinks: 'Collegamenti Rapidi',
+    home: 'Home',
+    about: 'Chi Siamo',
+    services: 'Servizi',
+    laws: 'Leggi',
+    contact: 'Contattaci',
+    address: '59 Media City - Agouza, Il Cairo',
+    cairo: 'Ufficio Il Cairo (Fisso)',
+    mobile: 'Cellulare 2',
+    mansoura: 'Ufficio Mansura (Fisso)',
+    whatsapp: 'WhatsApp Principale',
+    chat: 'Chat',
+    rights: 'Tutti i diritti riservati.',
+    qrLabel: 'Contatto Rapido & QR'
   }
 };
 
@@ -175,13 +203,22 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
   const t = FOOTER_TEXT[lang] || FOOTER_TEXT.ar;
 
   return (
-    <footer className="bg-black text-white pt-16 pb-12 border-t border-white/10" dir={isRtl ? 'rtl' : 'ltr'}>
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 mb-14">
+    <footer 
+      className="relative text-white pt-16 pb-12 border-t border-[#1e4632]/50 overflow-hidden" 
+      style={{
+        background: 'radial-gradient(ellipse at 50% 0%, #163625 0%, #0d2217 40%, #07130d 100%)'
+      }}
+      dir={isRtl ? 'rtl' : 'ltr'}
+    >
+      {/* Ambient green & gold glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.08),_transparent_65%)] pointer-events-none" />
+
+      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 mb-14">
           
-          {/* Brand Column (5 cols) */}
-          <div className="md:col-span-4 flex flex-col items-start">
-            <div className="flex items-center gap-3 mb-5 bg-white/10 p-2.5 rounded-2xl backdrop-blur-sm border border-white/10">
+          {/* Brand Column (4 cols) */}
+          <div className="lg:col-span-4 flex flex-col items-start">
+            <div className="flex items-center gap-3 mb-5 bg-[#122e20]/80 p-2.5 rounded-2xl backdrop-blur-sm border border-[#235338]/60 shadow-lg">
               <img
                 src={lang === 'ar' ? '/logo.png' : '/logo-en.png'}
                 alt={t.name}
@@ -191,24 +228,24 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
             <h3 className="text-xl sm:text-2xl font-bold mb-1.5 tracking-tight text-white">
               {t.name}
             </h3>
-            <p className="text-xs text-amber-400/90 mb-4 font-semibold tracking-wide">
+            <p className="text-xs text-amber-300 mb-4 font-semibold tracking-wide">
               {t.sub}
             </p>
-            <p className="text-white/65 max-w-sm text-sm leading-relaxed mb-6">
+            <p className="text-white/70 max-w-sm text-sm leading-relaxed mb-6">
               {t.desc}
             </p>
           </div>
 
-          {/* Quick Links Column (3 cols) */}
-          <div className="md:col-span-3 flex flex-col">
-            <h4 className="text-base sm:text-lg font-bold mb-6 text-white border-b border-white/10 pb-2 inline-flex items-center gap-2">
+          {/* Quick Links Column (2 cols) */}
+          <div className="lg:col-span-2 flex flex-col">
+            <h4 className="text-base sm:text-lg font-bold mb-6 text-white border-b border-[#235338]/60 pb-2 inline-flex items-center gap-2">
               <span>{t.quickLinks}</span>
             </h4>
-            <ul className="space-y-3.5 text-white/70">
+            <ul className="space-y-3.5 text-white/75">
               <li>
                 <button
                   onClick={() => { setView('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="hover:text-amber-400 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 text-sm font-medium inline-flex items-center gap-1.5"
+                  className="hover:text-amber-300 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 text-sm font-medium inline-flex items-center gap-1.5"
                 >
                   <span>{t.home}</span>
                 </button>
@@ -216,7 +253,7 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
               <li>
                 <button
                   onClick={() => { setView('about'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="hover:text-amber-400 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 text-sm font-medium inline-flex items-center gap-1.5"
+                  className="hover:text-amber-300 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 text-sm font-medium inline-flex items-center gap-1.5"
                 >
                   <span>{t.about}</span>
                 </button>
@@ -224,7 +261,7 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
               <li>
                 <button
                   onClick={() => { setView('services'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="hover:text-amber-400 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 text-sm font-medium inline-flex items-center gap-1.5"
+                  className="hover:text-amber-300 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 text-sm font-medium inline-flex items-center gap-1.5"
                 >
                   <span>{t.services}</span>
                 </button>
@@ -232,7 +269,7 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
               <li>
                 <button
                   onClick={() => { setView('laws'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="hover:text-amber-400 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 text-sm font-medium inline-flex items-center gap-1.5"
+                  className="hover:text-amber-300 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 text-sm font-medium inline-flex items-center gap-1.5"
                 >
                   <span>{t.laws}</span>
                 </button>
@@ -240,7 +277,7 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
               <li>
                 <button
                   onClick={() => { setView('contact'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="hover:text-amber-400 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 text-sm font-medium inline-flex items-center gap-1.5"
+                  className="hover:text-amber-300 hover:translate-x-1 rtl:hover:-translate-x-1 transition-all duration-200 text-sm font-medium inline-flex items-center gap-1.5"
                 >
                   <span>{t.contact}</span>
                 </button>
@@ -248,25 +285,25 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
             </ul>
           </div>
 
-          {/* Contact Details Column (5 cols) */}
-          <div className="md:col-span-5 flex flex-col">
-            <h4 className="text-base sm:text-lg font-bold mb-6 text-white border-b border-white/10 pb-2 inline-flex items-center gap-2">
+          {/* Contact Details Column (3 cols) */}
+          <div className="lg:col-span-3 flex flex-col">
+            <h4 className="text-base sm:text-lg font-bold mb-6 text-white border-b border-[#235338]/60 pb-2 inline-flex items-center gap-2">
               <span>{t.contact}</span>
             </h4>
 
-            <div className="space-y-3.5">
+            <div className="space-y-3">
               {/* Address */}
               <a
                 href="https://www.google.com/maps/search/?api=1&query=59+Media+City%2C+Agouza%2C+Giza%2C+Cairo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 transition-all group"
+                className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-[#0f291c]/70 hover:bg-[#143625]/90 border border-[#235338]/50 transition-all group"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center shrink-0 text-white/70 group-hover:text-amber-400 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center shrink-0 text-white/80 group-hover:text-amber-300 transition-colors">
                     <MapPin className="w-4 h-4" />
                   </div>
-                  <span className="text-xs sm:text-sm text-white/80 group-hover:text-white transition-colors leading-relaxed">
+                  <span className="text-xs sm:text-sm text-white/85 group-hover:text-white transition-colors leading-relaxed">
                     {t.address}
                   </span>
                 </div>
@@ -278,10 +315,10 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
                 href="https://wa.me/201223233620"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 transition-all group"
+                className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/40 transition-all group"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0 text-emerald-400">
+                  <div className="w-8 h-8 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0 text-emerald-300">
                     <MessageCircle className="w-4 h-4" />
                   </div>
                   <div className="flex flex-col">
@@ -293,45 +330,45 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
                     </span>
                   </div>
                 </div>
-                <span className="text-[11px] font-bold text-emerald-400 bg-emerald-400/10 px-2.5 py-1 rounded-full border border-emerald-400/20 group-hover:bg-emerald-400 group-hover:text-black transition-colors shrink-0">
+                <span className="text-[11px] font-bold text-emerald-300 bg-emerald-400/15 px-2.5 py-1 rounded-full border border-emerald-400/30 group-hover:bg-emerald-400 group-hover:text-black transition-colors shrink-0">
                   {t.chat}
                 </span>
               </a>
 
               {/* Phone Lines Clean Grid */}
-              <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2.5">
-                <div className="flex items-center justify-between text-xs sm:text-sm pb-2 border-b border-white/5">
-                  <span className="text-white/60 font-medium">{t.cairo}:</span>
+              <div className="p-3 rounded-2xl bg-[#0f291c]/70 border border-[#235338]/50 space-y-2">
+                <div className="flex items-center justify-between text-xs sm:text-sm pb-1.5 border-b border-white/5">
+                  <span className="text-white/70 font-medium">{t.cairo}:</span>
                   <a
                     href="tel:+20233470139"
-                    className="font-semibold text-white/90 hover:text-amber-400 transition-colors inline-flex items-center gap-1.5"
+                    className="font-semibold text-white hover:text-amber-300 transition-colors inline-flex items-center gap-1.5"
                     dir="ltr"
                   >
-                    <Phone className="w-3 h-3 text-white/40" />
+                    <Phone className="w-3 h-3 text-white/50" />
                     <span>+20 2 3347 0139</span>
                   </a>
                 </div>
 
-                <div className="flex items-center justify-between text-xs sm:text-sm pb-2 border-b border-white/5">
-                  <span className="text-white/60 font-medium">{t.mobile}:</span>
+                <div className="flex items-center justify-between text-xs sm:text-sm pb-1.5 border-b border-white/5">
+                  <span className="text-white/70 font-medium">{t.mobile}:</span>
                   <a
                     href="tel:+201066162823"
-                    className="font-semibold text-white/90 hover:text-amber-400 transition-colors inline-flex items-center gap-1.5"
+                    className="font-semibold text-white hover:text-amber-300 transition-colors inline-flex items-center gap-1.5"
                     dir="ltr"
                   >
-                    <Phone className="w-3 h-3 text-white/40" />
+                    <Phone className="w-3 h-3 text-white/50" />
                     <span>+20 106 616 2823</span>
                   </a>
                 </div>
 
                 <div className="flex items-center justify-between text-xs sm:text-sm">
-                  <span className="text-white/60 font-medium">{t.mansoura}:</span>
+                  <span className="text-white/70 font-medium">{t.mansoura}:</span>
                   <a
                     href="tel:+20502269057"
-                    className="font-semibold text-white/90 hover:text-amber-400 transition-colors inline-flex items-center gap-1.5"
+                    className="font-semibold text-white hover:text-amber-300 transition-colors inline-flex items-center gap-1.5"
                     dir="ltr"
                   >
-                    <Phone className="w-3 h-3 text-white/40" />
+                    <Phone className="w-3 h-3 text-white/50" />
                     <span>+20 50 2269 057</span>
                   </a>
                 </div>
@@ -340,13 +377,13 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
               {/* Email */}
               <a
                 href="mailto:Sherbiny.co@gmail.com"
-                className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 transition-all group"
+                className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-[#0f291c]/70 hover:bg-[#143625]/90 border border-[#235338]/50 transition-all group"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center shrink-0 text-white/70 group-hover:text-amber-400 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center shrink-0 text-white/80 group-hover:text-amber-300 transition-colors">
                     <Mail className="w-4 h-4" />
                   </div>
-                  <span className="text-xs sm:text-sm text-white/80 group-hover:text-white transition-colors" dir="ltr">
+                  <span className="text-xs sm:text-sm text-white/85 group-hover:text-white transition-colors" dir="ltr">
                     Sherbiny.co@gmail.com
                   </span>
                 </div>
@@ -356,14 +393,48 @@ export default function Footer({ isRtl = false, lang = 'ar', setView }: FooterPr
             </div>
           </div>
 
+          {/* QR Code & Signature Column (3 cols) */}
+          <div className="lg:col-span-3 flex flex-col items-center">
+            <h4 className="text-base sm:text-lg font-bold mb-6 text-white border-b border-[#235338]/60 pb-2 w-full text-center sm:text-start inline-flex items-center justify-center sm:justify-start gap-2">
+              <span>{t.qrLabel || (lang === 'ar' ? 'بيانات التواصل الفوري' : 'Instant Contact')}</span>
+            </h4>
+
+            <div className="w-full max-w-[270px] flex flex-col items-center p-4 rounded-3xl bg-[#081a11]/85 border border-[#d4af37]/35 shadow-2xl backdrop-blur-md relative overflow-hidden group hover:border-[#d4af37]/60 transition-all duration-300">
+              {/* Subtle ambient lighting */}
+              <div className="absolute -top-12 -right-12 w-28 h-28 bg-[#d4af37]/10 rounded-full blur-xl pointer-events-none" />
+              <div className="absolute -bottom-12 -left-12 w-28 h-28 bg-emerald-500/10 rounded-full blur-xl pointer-events-none" />
+
+              {/* The Gold Framed QR Code */}
+              <div className="relative p-1 rounded-2xl group-hover:scale-[1.03] transition-transform duration-300">
+                <img
+                  src="/qr-gold-blended.png"
+                  alt="Ahmed Elsherbiny & Co QR"
+                  className="w-40 sm:w-44 h-auto object-contain rounded-xl shadow-lg border border-[#d4af37]/25"
+                />
+              </div>
+
+              {/* Underneath: The Signature */}
+              <div className="mt-2.5 flex flex-col items-center w-full px-2">
+                <img
+                  src="/signature-gold-transparent.png"
+                  alt="Ahmed Elsherbiny"
+                  className="h-10 sm:h-12 w-auto object-contain filter drop-shadow group-hover:scale-105 transition-transform duration-300"
+                />
+                <span className="text-[11px] text-amber-200/70 tracking-widest uppercase font-serif mt-1">
+                  Cairo • Mansoura
+                </span>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-start">
-          <p className="text-white/50 text-xs sm:text-sm font-medium">
+        <div className="pt-8 border-t border-[#1e4632]/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-start">
+          <p className="text-white/60 text-xs sm:text-sm font-medium">
             © {new Date().getFullYear()} {t.name}. {t.rights}
           </p>
-          <div className="flex items-center gap-6 text-xs text-white/40">
+          <div className="flex items-center gap-6 text-xs text-white/50">
             <span>Cairo • Mansoura • Egypt</span>
           </div>
         </div>

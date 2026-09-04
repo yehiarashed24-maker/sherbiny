@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Globe, ChevronDown, Check } from 'lucide-react';
 
-export type LangType = 'ar' | 'en' | 'fr' | 'tr' | 'ja' | 'zh' | 'ko' | 'es';
+export type LangType = 'ar' | 'en' | 'fr' | 'es' | 'it' | 'tr' | 'ja' | 'zh' | 'ko';
 
 export const LANGUAGES: {
   id: LangType;
@@ -13,11 +13,12 @@ export const LANGUAGES: {
   { id: 'ar', name: 'Arabic', nativeName: 'العربية', flag: '🇪🇬', dir: 'rtl' },
   { id: 'en', name: 'English', nativeName: 'English', flag: '🇬🇧', dir: 'ltr' },
   { id: 'fr', name: 'French', nativeName: 'Français', flag: '🇫🇷', dir: 'ltr' },
+  { id: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸', dir: 'ltr' },
+  { id: 'it', name: 'Italian', nativeName: 'Italiano', flag: '🇮🇹', dir: 'ltr' },
   { id: 'tr', name: 'Turkish', nativeName: 'Türkçe', flag: '🇹🇷', dir: 'ltr' },
   { id: 'ja', name: 'Japanese', nativeName: '日本語', flag: '🇯🇵', dir: 'ltr' },
   { id: 'zh', name: 'Chinese', nativeName: '中文', flag: '🇨🇳', dir: 'ltr' },
-  { id: 'ko', name: 'Korean', nativeName: '한국어', flag: '🇰🇷', dir: 'ltr' },
-  { id: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸', dir: 'ltr' }
+  { id: 'ko', name: 'Korean', nativeName: '한국어', flag: '🇰🇷', dir: 'ltr' }
 ];
 
 interface LanguageSelectorProps {

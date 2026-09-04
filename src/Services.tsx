@@ -397,6 +397,53 @@ const SERVICES_CARDS: Record<LangType, ServiceItem[]> = {
       bullets: ['전자세금계산서·영수증 연동', '전자 세무 신고 대행', '정부 포털 등록 및 관리'],
       client: 'DIGITAL TAX COMPLIANCE'
     }
+  ],
+  it: [
+    {
+      id: '01',
+      category: 'Audit e Revisione',
+      title: 'Revisione Contabile e Finanziaria',
+      shortDesc: 'Audit completo e controllo dei conti secondo i principi contabili egiziani e internazionali (IFRS).',
+      cardNumber: '9021 8842 1040 0019',
+      bullets: ['Revisione Contabile Interna ed Esterna', 'Valutazione del Controllo Interno', 'Analisi e Valutazione dei Rischi'],
+      client: 'AHMED EL SHERBINY AUDIT'
+    },
+    {
+      id: '02',
+      category: 'Consulenza Finanziaria',
+      title: 'Valutazione e Ristrutturazione',
+      shortDesc: 'Due diligence, valutazione aziendale, piani di ristrutturazione e studi di fattibilità per investimenti.',
+      cardNumber: '5120 7733 9035 4412',
+      bullets: ['Audit di Due Diligence', 'Valutazione a Fair Value', 'Ristrutturazione del Debito e del Capitale'],
+      client: 'FINANCIAL ADVISORY GROUP'
+    },
+    {
+      id: '03',
+      category: 'Strategia Fiscale',
+      title: 'Pianificazione e Risoluzione Fiscale',
+      shortDesc: 'Conclusione verifiche fiscali per grandi contribuenti, comitati di ricorso e ottimizzazione del carico fiscale.',
+      cardNumber: '4441 5567 1223 2468',
+      bullets: ['Definizione Verifiche e Ispezioni', 'Difesa presso Commissioni di Ricorso', 'Pianificazione Fiscale Strategica'],
+      client: 'TAX PLANNING & DEFENSE'
+    },
+    {
+      id: '04',
+      category: 'Costituzione Societaria',
+      title: 'Costituzione e Modifiche Societarie',
+      shortDesc: 'Costituzione di società per azioni, SRL, filiali estere, registrazioni commerciali e licenze per investitori.',
+      cardNumber: '5375 8891 2234 7713',
+      bullets: ['Costituzione di Tutte le Forme Societarie', 'Aumenti di Capitale e Modifiche Statutarie', 'Rilascio Licenze e Registrazioni Camerali'],
+      client: 'CORPORATE INCORPORATION'
+    },
+    {
+      id: '05',
+      category: 'Sistemi Digitali',
+      title: 'Fatturazione Elettronica ed E-Tax',
+      shortDesc: 'Integrazione con il sistema della fattura elettronica e invio telematico accurato delle dichiarazioni.',
+      cardNumber: '4232 8908 1121 4892',
+      bullets: ['Fattura e Ricevuta Elettronica', 'Dichiarazioni Fiscali Telematiche', 'Registrazione Portali Istituzionali'],
+      client: 'DIGITAL TAX COMPLIANCE'
+    }
   ]
 };
 
@@ -464,6 +511,14 @@ const SERVICES_UI_TEXT: Record<LangType, { home: string; book: string; badge: st
     title: 'Servicios y Asesoría',
     subtitle: 'Desplázate o arrastra para explorar nuestras tarjetas interactivas',
     capabilities: 'Capacidades Clave'
+  },
+  it: {
+    home: 'Home',
+    book: 'Prenota Consulenza',
+    badge: 'LE NOSTRE SPECIALIZZAZIONI',
+    title: 'Servizi e Consulenza',
+    subtitle: 'Scorri o trascina per esplorare le nostre schede interattive',
+    capabilities: 'Competenze Chiave'
   }
 };
 

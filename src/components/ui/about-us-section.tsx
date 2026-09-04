@@ -449,6 +449,57 @@ const ABOUT_TEXT: Record<LangType, {
         position: "right"
       }
     ]
+  },
+  it: {
+    badge: "SCOPRI IL NOSTRO STUDIO",
+    title: "Ahmed El Sherbiny & Co.",
+    intro: "Uno studio leader nella consulenza contabile, revisione legale e consulenza tributaria. Mettiamo a disposizione decenni di comprovata esperienza per promuovere una crescita finanziaria sostenibile nel rispetto della legge.",
+    founderBadge: "Fondatore e Managing Director",
+    founderPrefix: "Dottore Commercialista",
+    founderName: "Ahmed El Sherbiny",
+    founderTitle: "Consulente Tributario e Revisore Legale Indipendente",
+    founderBio: "Oltre 40 anni di solida esperienza nella ristrutturazione aziendale, contenzioso tributario e revisione contabile in tutto l'Egitto.",
+    ctaTitle: "Cerchi una Consulenza Finanziaria o Fiscale Qualificata?",
+    ctaSubtitle: "Contatta oggi il nostro team di esperti per esaminare la tua posizione fiscale o costituire la tua società con rapidità e precisione.",
+    ctaButton: "Contattaci Subito",
+    stats: [
+      { label: "Clienti Aziendali", value: 500, suffix: "+" },
+      { label: "Consulenze Erogate", value: 1200, suffix: "+" },
+      { label: "Anni di Esperienza", value: 40, suffix: "+" },
+      { label: "Tasso di Successo e Fiducia", value: 100, suffix: "%" }
+    ],
+    services: [
+      {
+        title: "Pianificazione Fiscale",
+        description: "Aiutiamo i clienti a ottimizzare il carico fiscale secondo la legge attraverso la pianificazione e l'accesso a tutte le esenzioni legali.",
+        position: "left"
+      },
+      {
+        title: "Ispezione e Contenzioso",
+        description: "Risoluzione efficace di complesse verifiche fiscali presso il Centro Grandi Contribuenti con risultati d'eccellenza.",
+        position: "left"
+      },
+      {
+        title: "Valutazione e Ristrutturazione",
+        description: "Perizie indipendenti di stima societaria e ristrutturazioni economico-finanziarie approvate dagli organi regolatori.",
+        position: "left"
+      },
+      {
+        title: "Revisione e Certificazione",
+        description: "Audit contabile completo in stretta conformità con i principi contabili egiziani e internazionali (IFRS).",
+        position: "right"
+      },
+      {
+        title: "Costituzione Societaria",
+        description: "Costituzione societaria chiavi in mano, iscrizioni camerali e licenze per investitori locali ed esteri.",
+        position: "right"
+      },
+      {
+        title: "Servizi Digitali & E-Tax",
+        description: "Trasmissione telematica delle dichiarazioni, fatturazione elettronica e monitoraggio della compliance digitale in tempo reale.",
+        position: "right"
+      }
+    ]
   }
 };
 

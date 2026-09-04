@@ -84,6 +84,14 @@ const CHAT_TEXT: Record<LangType, {
     placeholder: 'Haz a AhmedSherbiny AI cualquier pregunta legal o fiscal...',
     hotline: 'Línea Directa:',
     subTitle: 'Asesor Inteligente Legal y Fiscal'
+  },
+  it: {
+    greeting: 'Benvenuto! Sono **AhmedSherbiny AI** 🤖, il consulente intelligente di **Ahmed El Sherbiny & Co.** Come posso aiutarti oggi con consulenze fiscali, contabili o costituzione di società in Egitto?',
+    quickPrompts: ['Chi è Ahmed El Sherbiny?', 'Costituzione di Società', 'Ispezioni e Ricorsi Fiscali', 'Fatturazione Elettronica', 'Sedi e Contatti'],
+    thinking: 'AhmedSherbiny AI sta analizzando...',
+    placeholder: 'Fai una domanda legale o fiscale ad AhmedSherbiny AI...',
+    hotline: 'Linea Diretta:',
+    subTitle: 'Consulente Fiscale e Legale Intelligente'
   }
 };
 

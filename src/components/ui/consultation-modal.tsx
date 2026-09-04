@@ -237,6 +237,32 @@ const MODAL_TEXT: Record<LangType, {
     successDesc: 'Gracias por contactar a Ahmed El Sherbiny & Co. Nuestro asesor te contactará vía telefónica o WhatsApp en breve.',
     hotline: 'Línea Directa y WhatsApp:',
     doneBtn: 'Hecho'
+  },
+  it: {
+    badge: 'Consulenza Gratuita',
+    title: 'Prenota una Consulenza',
+    subtitle: 'Inserisci i tuoi dati e un nostro consulente finanziario ti ricontatterà per definire il piano ideale.',
+    nameLabel: 'Nome Completo *',
+    namePlaceholder: 'Il tuo nome o nome azienda',
+    phoneLabel: 'Telefono / WhatsApp *',
+    phonePlaceholder: '+20 1XXXXXXXXX',
+    serviceLabel: 'Tipo di Consulenza',
+    services: {
+      tax: 'Fisco e Ispezioni Tributarie',
+      audit: 'Contabilità e Revisione',
+      incorporation: 'Costituzione di Società',
+      advisory: 'Consulenza Finanziaria e Valutazione',
+      other: 'Altra Richiesta'
+    },
+    emailLabel: 'Indirizzo Email (Opzionale)',
+    notesLabel: 'Dettagli Aggiuntivi / Orario Preferito',
+    notesPlaceholder: 'Breve descrizione della tua richiesta o orario preferito per essere contattato...',
+    submit: 'Conferma e Prenota Consulenza',
+    submitting: 'Invio della richiesta in corso...',
+    successTitle: 'Richiesta Ricevuta con Successo!',
+    successDesc: 'Grazie per aver contattato Ahmed El Sherbiny & Co. Il nostro consulente ti contatterà telefonicamente o tramite WhatsApp.',
+    hotline: 'Linea Diretta e WhatsApp:',
+    doneBtn: 'Fatto'
   }
 };
 

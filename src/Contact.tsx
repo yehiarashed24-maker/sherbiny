@@ -115,6 +115,20 @@ const BRANCHES: Record<LangType, { city: string; address: string; phones: string
       phones: ['+20 50 2269 057'],
       mapUrl: 'https://www.google.com/maps/search/?api=1&query=Al+Hegaz+Tower+Tamyouhi+Square+Mansoura'
     }
+  ],
+  it: [
+    {
+      city: 'Il Cairo (Sede Principale)',
+      address: '59 Media City - Agouza, Il Cairo',
+      phones: ['+20 2 3347 0139', '+20 106 616 2823'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=59+Media+City%2C+Agouza%2C+Giza%2C+Cairo'
+    },
+    {
+      city: 'Mansura',
+      address: 'Torre Al Hegaz - Piazza Tamyouhi',
+      phones: ['+20 50 2269 057'],
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=Al+Hegaz+Tower+Tamyouhi+Square+Mansoura'
+    }
   ]
 };
 
@@ -124,7 +138,7 @@ const DIRECT_PHONES: { label: Record<LangType, string>; phone: string; isPrimary
       ar: 'الرقم الأساسي / واتساب',
       en: 'Primary / WhatsApp',
       fr: 'Numéro Principal / WhatsApp',
-      tr: 'Ana Hat / WhatsApp', ja: 'メイン / WhatsApp', zh: '主要 / WhatsApp', ko: '기본 / WhatsApp', es: 'Principal / WhatsApp'
+      tr: 'Ana Hat / WhatsApp', ja: 'メイン / WhatsApp', zh: '主要 / WhatsApp', ko: '기본 / WhatsApp', es: 'Principal / WhatsApp', it: 'Principale / WhatsApp'
     },
     phone: '+20 122 323 3620',
     isPrimary: true
@@ -134,7 +148,7 @@ const DIRECT_PHONES: { label: Record<LangType, string>; phone: string; isPrimary
       ar: 'القاهرة (أرضي)',
       en: 'Cairo Office',
       fr: 'Le Caire (Fixe)',
-      tr: 'Kahire (Sabit)', ja: 'カイロオフィス', zh: '开罗办公室', ko: '카이로 사무소', es: 'Oficina El Cairo'
+      tr: 'Kahire (Sabit)', ja: 'カイロオフィス', zh: '开罗办公室', ko: '카이로 사무소', es: 'Oficina El Cairo', it: 'Ufficio Il Cairo (Fisso)'
     },
     phone: '+20 2 3347 0139'
   },
@@ -143,7 +157,7 @@ const DIRECT_PHONES: { label: Record<LangType, string>; phone: string; isPrimary
       ar: 'المحمول الثاني',
       en: 'Mobile 2',
       fr: 'Mobile 2',
-      tr: 'Mobil Hat 2', ja: 'モバイル2', zh: '手机2', ko: '모바일 2', es: 'Móvil 2'
+      tr: 'Mobil Hat 2', ja: 'モバイル2', zh: '手机2', ko: '모바일 2', es: 'Móvil 2', it: 'Cellulare 2'
     },
     phone: '+20 106 616 2823'
   },
@@ -152,7 +166,7 @@ const DIRECT_PHONES: { label: Record<LangType, string>; phone: string; isPrimary
       ar: 'المنصورة (أرضي)',
       en: 'Mansoura Office',
       fr: 'Mansourah (Fixe)',
-      tr: 'Mansura (Sabit)', ja: 'マンスーラオフィス', zh: '曼苏拉办公室', ko: '만수라 사무소', es: 'Oficina Mansoura'
+      tr: 'Mansura (Sabit)', ja: 'マンスーラオフィス', zh: '曼苏拉办公室', ko: '만수라 사무소', es: 'Oficina Mansoura', it: 'Ufficio Mansura (Fisso)'
     },
     phone: '+20 50 2269 057'
   }
@@ -358,6 +372,29 @@ const CONTACT_INFO: Record<LangType, {
       submit: 'Enviar Mensaje'
     },
     back: 'Atrás'
+  },
+  it: {
+    title: 'Contattaci',
+    subtitle: 'Siamo a tua disposizione per rispondere a qualsiasi domanda sui nostri servizi di consulenza finanziaria e fiscale. Contattaci e ti risponderemo tempestivamente.',
+    workingHoursTitle: 'Orari di Lavoro',
+    workingHours: 'Hai domande? Compila questo modulo e ti ricontatteremo al più presto! Il nostro team risponde entro 4 ore. Orari di lavoro: da Sabato a Giovedì dalle 9:00 alle 21:00.',
+    branchesTitle: 'Le Nostre Sedi',
+    phonesTitle: 'Linee Telefoniche Dirette',
+    emailTitle: 'Scrivici via Email',
+    emails: ['Sherbiny.co@gmail.com', 'A.elsherbiny@yahoo.com'],
+    openMap: 'Apri su Google Maps',
+    callNow: 'Chiama',
+    qrBadge: 'QR Code di Contatto Diretto',
+    qrTitle: 'Scansiona per Salvare il Contatto',
+    qrDesc: 'Scansiona con la fotocamera del tuo smartphone per salvare istantaneamente i recapiti ufficiali di Ahmed El Sherbiny & Co.',
+    form: {
+      name: 'Nome Completo',
+      email: 'Indirizzo Email',
+      phone: 'Numero di Telefono',
+      message: 'Il Tuo Messaggio',
+      submit: 'Invia Messaggio'
+    },
+    back: 'Indietro'
   }
 };
 
@@ -432,6 +469,14 @@ const CONTACT_UI_STRINGS: Record<LangType, {
     sending: 'Enviando...',
     chatWhatsApp: 'Chatear en WhatsApp',
     bookConsultation: 'Reservar Consulta'
+  },
+  it: {
+    sendError: 'Si è verificato un errore durante l’invio, riprova.',
+    connError: 'Errore di connessione, riprova più tardi.',
+    successMsg: '✅ Il tuo messaggio è stato inviato con successo! Ti ricontatteremo a breve.',
+    sending: 'Invio in corso...',
+    chatWhatsApp: 'Scrivici su WhatsApp',
+    bookConsultation: 'Prenota Consulenza'
   }
 };
 
@@ -719,8 +764,15 @@ export default function Contact({ lang, setView, onBookConsultation }: ContactPr
             {/* QR Code Quick Save Card */}
             <div className="pl-13 rtl:pl-0 rtl:pr-13">
               <div className="bg-gradient-to-br from-neutral-900 to-black text-white p-6 sm:p-7 rounded-3xl shadow-xl border border-white/10 flex flex-col sm:flex-row items-center gap-6">
-                <div className="bg-white p-3 rounded-2xl shadow-lg shrink-0 flex items-center justify-center border-2 border-white/80">
-                  <img src="/qr-code.png" alt="Office Contact QR Code" className="w-28 h-28 sm:w-32 sm:h-32 object-contain" />
+                <div className="flex flex-col items-center shrink-0">
+                  <div className="bg-white p-3 rounded-2xl shadow-lg flex items-center justify-center border-2 border-white/80">
+                    <img src="/qr-code.png" alt="Office Contact QR Code" className="w-28 h-28 sm:w-32 sm:h-32 object-contain" />
+                  </div>
+                  <img
+                    src="/signature-gold-transparent.png"
+                    alt="Ahmed Elsherbiny Signature"
+                    className="h-9 sm:h-11 w-auto object-contain mt-3 filter drop-shadow"
+                  />
                 </div>
                 <div className="text-center sm:text-start flex flex-col items-center sm:items-start">
                   <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-bold mb-2.5 border border-amber-400/30">
